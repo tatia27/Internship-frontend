@@ -1,0 +1,49 @@
+.user-profiles__info {
+  display: flex;
+  column-gap: 24px;
+  padding: 40px 0;
+}
+
+.user-profiles__wrapper {
+  padding: 40px;
+  border-radius: 20px;
+  background-color: var(--text-color);
+}
+.user-profiles__company__title {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.user-profiles__company p {
+  background-color: #f8f9fa;
+  width: 800px;
+  height: 150px;
+  border-radius: 5px;
+  padding: 8px;
+  color: #181818;
+  font-weight: 600;
+  opacity: 0.5;
+}
+
+.user-profiles__active-internhip {
+  font-size: 22px;
+  font-weight: 700;
+  margin-left: 310px;
+}
+
+.user-profiles__favorite-internhip {
+  margin-bottom: 38px;
+}
+.user-profile__skills {
+  display: flex;
+  column-gap: 20px;
+  margin-left: 305px;
+  margin-bottom: 25px;
+}
+.skills {
+  width: 430px;
+  height: 168px;
+  background-color: var(--text-color);
+  padding: 15px 26px;
+  border-radius: 20px;
+}

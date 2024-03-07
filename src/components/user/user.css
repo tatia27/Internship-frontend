@@ -1,0 +1,14 @@
+.user {
+  width: 430px;
+  color: #404040;
+  display: flex;
+  align-items: center;
+  background-color: var(--text-color);
+  border-radius: 4px;
+  padding: 25px 35px;
+  margin-bottom: 24px;
+}
+
+.user span {
+  margin-left: 25px;
+}

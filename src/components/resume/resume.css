@@ -1,0 +1,101 @@
+.resume-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.registration-intern {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+}
+
+.resume-internship__form {
+  padding: 50px 100px;
+  max-width: 980px;
+  margin: 10px auto;
+  background-color: var(--text-color);
+  border-radius: 10px;
+  border: 1px solid #f3f3f3;
+}
+
+.registration-intern__button {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color);
+  padding: 14px 121px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.registration-intern__button:hover {
+  background-color: var(--primary-color-hover);
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #404040;
+}
+
+/* input[type="text"],
+input[type="password"],
+input[type="email"] {
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 0 0 15px 0;
+  width: 100%;
+  border: 0 solid #fff;
+  border-bottom: 1px solid #363232;
+  margin-bottom: 35px;
+} */
+
+input[type="text"],
+textarea,
+select {
+  border-radius: 4px;
+  background-color: var(--text-color);
+  border: 1px solid rgba(54, 50, 50, 0.5);
+  font-size: 18px;
+  padding: 15px;
+  width: 100%;
+  color: #363232;
+  margin-bottom: 30px;
+}
+
+fieldset {
+  border: none;
+}
+
+.ololo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ololo span {
+  font-size: 14px;
+  text-align: center;
+}
+
+.ololo span a {
+  color: var(--primary-color);
+}
+
+.resume-button {
+  padding: 8px 56px;
+  border-radius: 4px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 18px;
+  margin: 0 auto;
+  display: block;
+}

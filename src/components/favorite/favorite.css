@@ -1,0 +1,30 @@
+.user-profiles__favorite-internhip {
+  font-size: 22px;
+}
+.favorite__interns {
+  margin-left: 305px;
+}
+
+.favorite__interns__card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  column-gap: 52px;
+  margin-bottom: 20px;
+}
+
+.favorite__interns__more__item {
+  width: 50px;
+  height: 50px;
+  background-color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.favorite__interns__more {
+  display: flex;
+  column-gap: 10px;
+  margin-bottom: 45px;
+}

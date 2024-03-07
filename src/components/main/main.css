@@ -1,0 +1,48 @@
+/* img {
+  width: 100%;
+} */
+
+.main_part {
+  width: 100%;
+  background: url("./../../assets/wallpaper.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 630px;
+  /* width: 100%; */
+  /* background-size: cover; /* Растягиваем изображение чтобы оно занимало всю доступную площадь */
+}
+
+.main__title1 {
+  font-size: 58px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.main__title2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 60px;
+}
+
+.main__button {
+  font-size: 22px;
+  padding: 15px 67px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color);
+}

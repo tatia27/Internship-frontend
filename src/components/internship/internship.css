@@ -1,0 +1,82 @@
+.intership {
+  padding: 40px 80px;
+  margin: 98px 0;
+  background-color: var(--text-color);
+  border-radius: 10px;
+}
+
+.intership__title h4 {
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #363232;
+  margin-bottom: 5px;
+}
+
+.intership__title h5 {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.intership__title {
+  margin-bottom: 15px;
+}
+.intership__card-info {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 16px;
+  margin-bottom: 24px;
+}
+
+.intership__card-info__item {
+  background-color: #ebf0f3;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+
+.intership__card-info__item span {
+  font-size: 12px;
+}
+
+.intership__skills span {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.intership__conditions span {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.intership__time-salary {
+  display: flex;
+  column-gap: 46px;
+  margin-bottom: 25px;
+}
+
+.intership__time-salary__all p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.intership__time-salary__all span {
+  font-size: 14px;
+}
+
+.intership__skills {
+  margin-bottom: 25px;
+}
+
+.intership__conditions {
+  margin-bottom: 40px;
+}
+
+.intership__button {
+  font-size: 18px;
+  padding: 15px 28px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color);
+}
