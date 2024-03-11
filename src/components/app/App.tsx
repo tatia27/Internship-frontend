@@ -18,46 +18,46 @@ import Button from "../button/Button";
 import ProfileStudent from "../profileStudent/ProfileStudent";
 import Internship from "../internship/Internship";
 import Resume from "../resume/Resume";
+import Authorization from "../authorization/Authorization";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
-      <Main></Main>
-      <Instructions></Instructions>
-      <Filter></Filter>
-      <Resume></Resume>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Main />
+              <Instructions />
+              <Popular />
+              <Button />
+            </>
+          }
+        />
+        <Route path="internships" element={<Filter />} />
+        <Route path="addInternship" element={<Resume />} />
+        <Route path="registration" element={<Registration />} />
+        <Route path="login" element={<Authorization />} />
+      </Routes>
       <Footer></Footer>
-
-      {/* <Instructions></Instructions>
-      <Popular></Popular>
-      // <Filter></Filter>
-      <ProfileCompany></ProfileCompany> */}
-      {/* <Internship></Internship>
-
-      {/* <ProfileStudent></ProfileStudent>
-
-      <RegistrationCompany></RegistrationCompany>
-      <RegistrationIntern></RegistrationIntern>
-      <Registration></Registration> */}
-      {/* <Popular></Popular>
-      <Card></Card> */}
-      {/* <Button></Button> */}
-      {/* <Card></Card> */}
-      {/* <Instructions></Instructions>
-      // <Card></Card>
-      // <Registration></Registration>
-      <RegistrationIntern></RegistrationIntern>
-      <RegistrationCompany></RegistrationCompany>
-      <AllUsers></AllUsers>
-      <ProfileCompany></ProfileCompany> */}
-      {/* <FullCard></FullCard> */}
-      {/* <NewCard></NewCard> */}
-      {/* <Filter></Filter> */}
-      {/* <Popular></Popular> */}
-      {/* <Footer></Footer> */}
     </div>
   );
 }
 
 export default App;
+{
+  /* <Filter></Filter> */
+}
+{
+  /* <Registration></Registration>
+      <RegistrationCompany></RegistrationCompany>
+      <RegistrationIntern></RegistrationIntern>
+      <Authorization></Authorization>
+      <Internship></Internship>
+      <ProfileStudent></ProfileStudent>
+      <ProfileCompany></ProfileCompany>
+      <AllUsers></AllUsers> */
+}

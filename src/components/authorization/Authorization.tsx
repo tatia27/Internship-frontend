@@ -25,9 +25,6 @@ function Authorization() {
             <button type="submit" className="registration-intern__button">
               Войти
             </button>
-            {/* <span>
-              Уже есть аккаунт? <a href="#">Войдите</a>
-            </span> */}
           </div>
         </form>
       </div>

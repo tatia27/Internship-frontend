@@ -57,7 +57,8 @@ input[type="email"] {
   margin-bottom: 35px;
 } */
 
-input[type="text"],
+/* input[type="text"], */
+.resume-input,
 textarea,
 select {
   border-radius: 4px;

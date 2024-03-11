@@ -6,11 +6,6 @@
   color: aquamarine;
 }
 
-/* .container {
-  width: 1180px;
-  margin: 0 auto;
-} */
-
 .header__menu {
   display: flex;
   justify-content: space-between;
@@ -34,10 +29,13 @@
   margin-left: 20px;
 }
 
-.header__nav li a:hover {
+.header__nav__item:hover {
   color: var(--primary-color);
 }
 
+.header__nav-btn:hover {
+  color: var(--text-color);
+}
 .header__nav-btn {
   background-color: var(--primary-color);
   padding: 8px 20px;
@@ -53,4 +51,8 @@
   background-color: var(--primary-color-hover);
   color: var(--text-color);
   border: none;
+}
+
+.active {
+  color: var(--primary-color);
 }

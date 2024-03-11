@@ -9,7 +9,7 @@
 
 .filter {
   display: flex;
-  padding: 25px 27px;
+  padding: 25px;
   flex-direction: column;
   border-radius: 5px;
   width: 290px;
@@ -48,23 +48,24 @@
   color: #363232;
 }
 
-.checkbox {
+.checkbox-filter {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   accent-color: var(--primary-color);
   margin-top: 2px;
 }
 
-.checkbox:last-child {
+.checkbox-filter:last-child {
   margin-bottom: 0px;
 }
 
-.checkbox input {
+.checkbox-filter input {
   width: 16px;
   height: 16px;
-  margin-right: 4px;
+  margin-right: 8px;
+  margin-bottom: 6px;
 }
 
 .checkbox label {

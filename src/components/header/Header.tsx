@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Outlet, NavLink } from "react-router-dom";
 import logo from "./../../assets/logo.svg";
 import "./header.css";
 
@@ -7,29 +8,36 @@ function Header() {
     <header className="header">
       <div className="container">
         <div className="header__menu">
-          <a href="#">
+          <Link to="/">
             <img src={logo} alt="Логотип" />
-          </a>
+          </Link>
           <div className="header__nav">
             <ul>
               <li>
-                <a href="#">Стажировки</a>
+                <NavLink to="/internships" className="header__nav__item">
+                  Стажировки
+                </NavLink>
               </li>
               <li>
-                <a href="#">Разместить стажировку</a>
+                <NavLink to="/addInternship" className="header__nav__item">
+                  Разместить стажировку
+                </NavLink>
               </li>
               <li>
-                <a href="#">Регистрация</a>
+                <NavLink to="/registration" className="header__nav__item">
+                  Регистрация
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="header__nav-btn">
+                <Link to="/login" className="header__nav-btn">
                   Войти
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
       </div>
+      <Outlet />
     </header>
   );
 }

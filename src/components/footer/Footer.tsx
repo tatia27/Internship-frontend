@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Outlet, NavLink } from "react-router-dom";
 import logo from "./../../assets/ship.svg";
 import email from "./../../assets/ic_baseline-email.svg";
 import vk from "./../../assets/gjgjg.svg";
@@ -12,9 +13,9 @@ function Footer() {
         <div className="footer__nav">
           <div className="footer__left-part">
             <div className="footer__logo">
-              <a href="#">
+              <Link to="/">
                 <img src={logo} alt="Логотип" />
-              </a>
+              </Link>
               <p className="logo__text">
                 сервис для поиска
                 <br />и организации IT-стажировок
@@ -24,13 +25,13 @@ function Footer() {
             <div className="footer__menu">
               <ul>
                 <li>
-                  <a href="#">Войти</a>
+                  <NavLink to="/login">Войти</NavLink>
                 </li>
                 <li>
-                  <a href="#">Стажировки</a>
+                  <NavLink to="/internships">Стажировки</NavLink>
                 </li>
                 <li>
-                  <a href="#">Разместить стажировку</a>
+                  <NavLink to="/addInternship">Разместить стажировку</NavLink>
                 </li>
               </ul>
             </div>

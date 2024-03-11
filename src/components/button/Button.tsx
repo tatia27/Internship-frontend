@@ -4,7 +4,7 @@ import arrow from "./../../assets/Arrow.svg";
 
 function Button() {
   return (
-    <div>
+    <div className="container">
       <button className="main-button">
         Показать больше{" "}
         <img src={arrow} alt="Cтрелка" className="main-button__arrow" />
