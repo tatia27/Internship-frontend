@@ -55,6 +55,11 @@ span {
   margin-bottom: 18px;
 }
 
+.full-current-card__top h4 {
+  font-family: "Gilroy-bold";
+  font-size: 14px;
+}
+
 .full-current-card__top__action {
   display: flex;
   column-gap: 25px;
@@ -71,14 +76,16 @@ span {
   column-gap: 16px;
 }
 
-.current-card__info_title {
+.current-card__info__title {
   margin-bottom: 5px;
+  font-family: "Gilroy-bold";
+  font-size: 18px;
 }
 .current-card__info__item {
   background-color: #ebf0f3;
   display: flex;
   align-items: center;
-  padding: 4px 15px;
+  padding: 4px 12px;
   border-radius: 2px;
 }
 

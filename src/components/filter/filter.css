@@ -41,6 +41,7 @@
   font-weight: 600;
   color: #141414;
   margin-bottom: 12px;
+  font-family: "Gilroy-semibold";
 }
 
 .filter-reset {
@@ -65,7 +66,8 @@
   width: 16px;
   height: 16px;
   margin-right: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
+  margin-top: 2px;
 }
 
 .checkbox label {

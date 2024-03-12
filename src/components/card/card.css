@@ -3,6 +3,8 @@
 }
 
 .current-card {
+  display: flex;
+  align-items: center;
   width: 380px;
   height: 284px;
   padding: 32px 18px;
@@ -28,11 +30,17 @@ span {
   font-size: 18px;
 }
 
-.mgm {
+.current-card__top__logo__comapny {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   column-gap: 10px;
+}
+
+.current-card__top__logo__comapny h4 {
+  font-family: "Gilroy-semibold";
+  font-size: 18px;
+  margin-bottom: 4px;
 }
 
 .location {
@@ -43,6 +51,7 @@ span {
 }
 
 .location span {
+  font-family: "Gilroy-regular";
   font-size: 14px;
 }
 
@@ -50,10 +59,10 @@ span {
   display: flex;
 }
 
-h4 {
-  font-size: 18px;
-  margin-bottom: 4px;
+.card-middle {
+  margin-bottom: 15px;
 }
+
 .current-card__top {
   display: flex;
   justify-content: space-between;
@@ -65,6 +74,32 @@ h4 {
   display: flex;
   column-gap: 24px;
 }
+
+.current-card__info_title {
+  font-size: 18px;
+  font-family: "Gilroy-semibold";
+  font-weight: 700;
+}
+.current-card__info {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 16px;
+  margin-bottom: 28px;
+}
+
+.current-card__info__item-small {
+  background-color: #ebf0f3;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-family: "Gilroy-regular";
+}
+
+.current-card__info__item-small span {
+  font-size: 12px;
+}
+
 .button-respond {
   background-color: var(--primary-color);
   padding: 5px 36px;
@@ -72,7 +107,9 @@ h4 {
   border: none;
   border-radius: 4px;
   font-size: 14px;
+  font-family: "Gilroy-medium";
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .button-more {
@@ -83,32 +120,6 @@ h4 {
   border: 2px solid var(--primary-color);
   border-radius: 4px;
   font-size: 14px;
-}
-
-.current-card__info {
-  display: flex;
-  justify-content: flex-start;
-  column-gap: 16px;
-  margin-bottom: 24px;
-}
-
-.current-card__info__item {
-  background-color: #ebf0f3;
-  display: flex;
-  align-items: center;
-  padding: 4px 8px;
-  border-radius: 2px;
-}
-
-.current-card__info__item span {
-  font-size: 12px;
-}
-
-.current-card__info_title {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.hhh {
-  margin-bottom: 15px;
+  font-family: "Gilroy-medium";
+  cursor: pointer;
 }

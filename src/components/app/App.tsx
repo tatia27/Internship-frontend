@@ -20,6 +20,7 @@ import Internship from "../internship/Internship";
 import Resume from "../resume/Resume";
 import Authorization from "../authorization/Authorization";
 import { Routes, Route } from "react-router-dom";
+import AddInternship from "../addInternship/AddInternship";
 
 function App() {
   return (
@@ -37,10 +38,22 @@ function App() {
             </>
           }
         />
+
         <Route path="internships" element={<Filter />} />
-        <Route path="addInternship" element={<Resume />} />
+        <Route path="addInternship" element={<AddInternship />} />
         <Route path="registration" element={<Registration />} />
+        <Route
+          path="/registration/registationIntern"
+          element={<RegistrationIntern />}
+        />
+        <Route
+          path="/registration/registationCompany"
+          element={<RegistrationCompany />}
+        />
         <Route path="login" element={<Authorization />} />
+        <Route path="internship" element={<Internship />} />
+        <Route path="profile" element={<AllUsers />} />
+        <Route path="/profile/resume" element={<Resume />} />
       </Routes>
       <Footer></Footer>
     </div>

@@ -14,6 +14,7 @@
   font-weight: 600;
   margin-bottom: 75px;
   margin-left: 175px;
+  font-family: "Gilroy-semibold";
 }
 
 .card {
@@ -32,6 +33,7 @@
   font-weight: normal;
   color: #363232;
   margin-bottom: 30px;
+  font-family: "Gilroy-medium";
 }
 
 .registration__button {

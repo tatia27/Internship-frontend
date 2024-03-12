@@ -30,7 +30,7 @@ function Header() {
               </li>
               <li>
                 <Link to="/login" className="header__nav-btn">
-                  Войти
+                  Вход
                 </Link>
               </li>
             </ul>

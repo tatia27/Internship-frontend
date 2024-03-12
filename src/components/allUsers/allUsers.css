@@ -14,11 +14,13 @@
 
 .user-profiles__company__title {
   font-size: 32px;
+  font-family: "Gilroy-bold";
   margin-bottom: 10px;
 }
 
 .user-profiles__company__internship {
   font-size: 22px;
-  font-weight: 600;
+  font-family: "Gilroy-medium";
+  /* font-weight: 600; */
   margin-bottom: 30px;
 }

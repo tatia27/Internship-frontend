@@ -1,30 +1,46 @@
 import React from "react";
-import currentCompany from "./../../assets/CurrentCompany.svg";
+import iconStudent from "./../../assets/student_icon.png";
 import "./profileStudent.css";
-import Card from "../card/card";
 import Favorite from "../favorite/Favorite";
+import { useNavigate } from "react-router-dom";
 
 function ProfileStudent() {
+  let navigate = useNavigate();
   return (
     <div className="user-profile">
       <div className="container">
         <div className="user-profiles__info">
           <div>
-            <img src={currentCompany} alt="Логотип компании"></img>
+            <img src={iconStudent} alt="Иконка пользователя"></img>
+            <button
+              className="button-resume"
+              onClick={() => navigate("/profile/resume")}
+            >
+              Загрузить резюме
+            </button>
           </div>
           <div className="user-profiles__wrapper">
-            <div className="user-profiles__company">
-              <h2 className="user-profiles__company__title">BeHance</h2>
-              <p>Описание профиля</p>
+            <div className="user-profiles__student">
+              <h2 className="user-profiles__student__title">
+                Чепурная Татьяна Владимировна
+              </h2>
+              <p className="user-profiles__student__description">Описание</p>
+              <div className="user-profiles__student__person-info">
+                <p>Возраст</p>
+                <p>Email</p>
+                <p>Местоположение</p>
+                <p>Образование</p>
+                <p>Специализация</p>
+              </div>
             </div>
           </div>
         </div>
         <div className="user-profile__skills">
           <div className="skills">
-            <h4>Hard Skills</h4>
+            <h4 className="skills__hard-soft">Hard Skills</h4>
           </div>
           <div className="skills">
-            <h4>Soft Skills</h4>
+            <h4 className="skills__hard-soft">Soft Skills</h4>
           </div>
         </div>
         <Favorite></Favorite>

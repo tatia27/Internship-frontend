@@ -3,9 +3,8 @@ import "./internship.css";
 
 function Internship() {
   return (
-    // <div className="container">
-    <div className="intership">
-      <div className="container">
+    <div className="container">
+      <div className="intership">
         <div className="intership__title">
           <h4>UI/UX дизайнер</h4>
           <h5>Яндекс</h5>

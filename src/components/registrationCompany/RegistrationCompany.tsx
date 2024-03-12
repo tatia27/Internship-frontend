@@ -13,20 +13,23 @@ function RegistrationCompany() {
               id="name"
               name="surname"
               placeholder="Наименование компании"
+              className="registration__input"
             />
             <input
               type="email"
               id="mail"
               name="user_email"
               placeholder="Email"
+              className="registration__input"
             />
             <input
               type="password"
               id="password"
               name="user_password"
               placeholder="Пароль"
+              className="registration__input"
             />
-            <div className="checkbox">
+            <div className="checkbox-company">
               <input
                 type="checkbox"
                 value="interest_development"

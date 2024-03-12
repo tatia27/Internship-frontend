@@ -1,8 +1,9 @@
 .user-profiles__favorite-internhip {
   font-size: 22px;
+  font-family: "Gilroy-medium";
 }
 .favorite__interns {
-  margin-left: 305px;
+  margin-left: 310px;
 }
 
 .favorite__interns__card {
@@ -10,7 +11,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  column-gap: 52px;
+  /* column-gap: 55px; */
   margin-bottom: 20px;
 }
 

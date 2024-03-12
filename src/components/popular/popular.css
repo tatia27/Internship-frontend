@@ -8,12 +8,14 @@
 
 .popular__title h3 {
   font-size: 32px;
+  font-family: "Gilroy-semibold";
   font-weight: 700;
   color: #363232;
   margin-bottom: 8px;
 }
 
 .popular__title span {
+  font-family: "Gilroy-regular";
   font-size: 18px;
   color: #363232;
 }

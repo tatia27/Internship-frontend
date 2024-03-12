@@ -1,11 +1,13 @@
 import React from "react";
 import currentCompany from "./../../assets/CurrentCompany.svg";
-import like from "./../../assets/Like2.svg";
+import like from "./../../assets/like.svg";
 import company from "./../../assets/Avatar.svg";
 import location from "./../../assets/location.svg";
 import "./fullCard.css";
+import { useNavigate } from "react-router-dom";
 
 function FullCard() {
+  let navigate = useNavigate();
   return (
     <div className="user-profiles__card">
       <div className="full-current-card">
@@ -17,14 +19,17 @@ function FullCard() {
             </div>
             <div className="full-current-card__top__action">
               <img src={like} alt="Избранное" />
-              <button className="full-current-card__top__button-respond">
+              <button
+                className="full-current-card__top__button-respond"
+                onClick={() => navigate("/login")}
+              >
                 Откликнуться
               </button>
             </div>
           </div>
         </div>
         <div>
-          <p className="current-card__info_title">UI/UX дизайнер</p>
+          <p className="current-card__info__title">UI/UX дизайнер</p>
           <div className="locatio">
             <img src={location} alt="Локация" />
             <span>Таганрог</span>

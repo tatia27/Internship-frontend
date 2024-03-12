@@ -1,7 +1,9 @@
 import React from "react";
 import "./registration.css";
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
+  let navigate = useNavigate();
   return (
     <section className="registration">
       <div className="container">
@@ -9,13 +11,19 @@ function Registration() {
         <div className="registration__buttons">
           <div className="card">
             <h3>Поиск стажировки</h3>
-            <button className="registration__button">
+            <button
+              className="registration__button"
+              onClick={() => navigate("/registration/registationIntern")}
+            >
               Продолжить как стажёр
             </button>
           </div>
           <div className="card">
             <h3>Поиск сотрудников</h3>
-            <button className="registration__button">
+            <button
+              className="registration__button"
+              onClick={() => navigate("/registration/registationCompany")}
+            >
               Продолжить как компания
             </button>
           </div>

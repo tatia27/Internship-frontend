@@ -8,27 +8,42 @@ function RegistrationIntern() {
         <form method="post" className="registration-intern__form">
           <h1>Регистрация стажёра</h1>
           <fieldset>
-            <input type="text" id="name" name="surname" placeholder="Фамилия" />
-            <input type="text" id="name" name="user_name" placeholder="Имя" />
+            <input
+              type="text"
+              id="name"
+              name="surname"
+              placeholder="Фамилия"
+              className="registartion-intern-input"
+            />
+            <input
+              type="text"
+              id="name"
+              name="user_name"
+              placeholder="Имя"
+              className="registartion-intern-input"
+            />
             <input
               type="text"
               id="name"
               name="last_name"
               placeholder="Отчество"
+              className="registartion-intern-input"
             />
             <input
               type="email"
               id="mail"
               name="user_email"
               placeholder="Email"
+              className="registartion-intern-input"
             />
             <input
               type="password"
               id="password"
               name="user_password"
               placeholder="Пароль"
+              className="registartion-intern-input"
             />
-            <div className="checkbox">
+            <div className="checkbox-intern">
               <input
                 type="checkbox"
                 value="interest_development"

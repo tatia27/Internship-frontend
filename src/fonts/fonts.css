@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Lato-semibold";
+  src: url("./../fonts/Lato/Lato-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Lato-regular";
+  src: url("../fonts/Lato/Lato-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-regular";
+  src: url("../fonts/Gilroy/gilroy-regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Gilroy-medium";
+  src: url("../fonts/Gilroy/gilroy-medium.ttf") format("truetype");
+  /* font-weight: 600; */
+}
+
+@font-face {
+  font-family: "Gilroy-semibold";
+  src: url("../fonts/Gilroy/gilroy-semibold.ttf") format("truetype");
+  /* font-weight: 500; */
+}
+
+@font-face {
+  font-family: "Gilroy-bold";
+  src: url("../fonts/Gilroy/gilroy-bold.ttf") format("truetype");
+  font-weight: 700;
+}

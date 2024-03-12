@@ -29,5 +29,6 @@ hr {
 }
 
 .instructions__block__item__text {
+  font-family: "Gilroy-semibold";
   margin-top: 20px;
 }

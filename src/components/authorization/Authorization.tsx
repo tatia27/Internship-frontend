@@ -1,7 +1,9 @@
 import React from "react";
 import "./authorization.css";
+import { useNavigate } from "react-router-dom";
 
 function Authorization() {
+  let navigate = useNavigate();
   return (
     <div className="registration-intern">
       <div className="container">
@@ -13,16 +15,22 @@ function Authorization() {
               id="mail"
               name="user_email"
               placeholder="Email"
+              className="authorization-input"
             />
             <input
               type="password"
               id="password"
               name="user_password"
               placeholder="Пароль"
+              className="authorization-input"
             />
           </fieldset>
-          <div className="ololo">
-            <button type="submit" className="registration-intern__button">
+          <div className="registration-intern__wrapper">
+            <button
+              type="submit"
+              className="registration-intern__button"
+              onClick={() => navigate("/profile")}
+            >
               Войти
             </button>
           </div>

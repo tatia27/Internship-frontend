@@ -24,38 +24,38 @@
 
 .footer__menu ul li {
   list-style-type: none;
+  margin-bottom: 4px;
 }
 
 .footer__menu ul li a {
   color: var(--text-color);
-  font-weight: normal;
+  font-family: "Gilroy-semibold";
+  font-size: 14px;
 }
 
 .footer_info {
+  font-family: "Gilroy-regular";
   text-align: center;
-}
-
-.footer__right-part {
 }
 
 .footer__title {
   font-size: 16px;
-  font-weight: 700;
+  font-family: "Gilroy-semibold";
 }
-.footer_text {
+
+.footer__text {
   font-size: 14px;
-  font-weight: 700;
+  font-family: "Gilroy-semibold";
+  margin-bottom: 4px;
 }
 
 .logo__text {
   font-size: 14px;
-}
-span {
-  font-size: 16px;
+  font-family: "Gilroy-semibold";
 }
 
-p {
-  font-size: 14px;
+.footer__right-part__contacts {
+  margin-top: 10px;
 }
 
 .footer__icons {

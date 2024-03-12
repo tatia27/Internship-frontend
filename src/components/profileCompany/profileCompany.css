@@ -12,6 +12,7 @@
 }
 .user-profiles__company__title {
   font-size: 32px;
+  font-family: "Gilroy-bold";
   margin-bottom: 10px;
 }
 
@@ -36,4 +37,5 @@
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
+  font-family: "Gilroy-bold";
 }
