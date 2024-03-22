@@ -1,5 +1,4 @@
 import React from "react";
-import wallpaper from "./../../assets/wallpaper.png";
 import "./main.css";
 import { useNavigate } from "react-router-dom";
 
@@ -30,3 +29,5 @@ function Main() {
 }
 
 export default Main;
+
+// import wallpaper from "./../../assets/wallpaper.png";

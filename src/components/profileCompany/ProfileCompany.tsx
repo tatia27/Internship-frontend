@@ -2,8 +2,10 @@ import React from "react";
 import currentCompany from "./../../assets/CurrentCompany.svg";
 import "./profileCompany.css";
 import FullCard from "../fullCard/FullCard";
+import { useNavigate } from "react-router-dom";
 
 function ProfileCompany() {
+  let navigate = useNavigate();
   return (
     <div className="user-profile">
       <div className="container">

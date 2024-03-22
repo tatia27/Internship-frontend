@@ -1,9 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import "./App.css";
 import Header from "../header/Header";
+import HeaderIntern from "../headerIntern/HeaderIntern";
+import HeaderCompany from "../headerCompany/HeaderCompany";
 import Main from "../main/Main";
 import Instructions from "../instrucntions/Instructions";
 import Footer from "../footer/Footer";
+import FooterCompany from "../footerCompany/FooterCompany";
+import FooterIntern from "../footerIntern/FooterIntern";
 import Card from "../card/card";
 import Registration from "../registration/Registration";
 import RegistrationIntern from "../registrationIntern/RegistrationIntern";
@@ -19,13 +24,44 @@ import ProfileStudent from "../profileStudent/ProfileStudent";
 import Internship from "../internship/Internship";
 import Resume from "../resume/Resume";
 import Authorization from "../authorization/Authorization";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import AddInternship from "../addInternship/AddInternship";
 
 function App() {
+  const [isStudent, setStudent] = useState(false);
+  const [isCompany, setComapny] = useState(false);
+  const location = useLocation();
+  React.useEffect(() => {
+    setComapny(location.pathname.includes("/profileCompany"));
+  }, [location]);
+  React.useEffect(() => {
+    setStudent(location.pathname.includes("/profileIntern"));
+  }, [location]);
+
+  const renderHeader = () => {
+    if (isStudent) {
+      return <HeaderIntern />;
+    } else if (isCompany) {
+      return <HeaderCompany />;
+    } else {
+      return <Header />;
+    }
+  };
+
+  const renderFooter = () => {
+    if (isStudent) {
+      return <FooterIntern />;
+    } else if (isCompany) {
+      return <FooterCompany />;
+    } else {
+      return <Footer />;
+    }
+  };
+
   return (
     <div className="App">
-      <Header></Header>
+      {renderHeader()}
+
       <Routes>
         <Route
           path="/"
@@ -38,7 +74,6 @@ function App() {
             </>
           }
         />
-
         <Route path="internships" element={<Filter />} />
         <Route path="addInternship" element={<AddInternship />} />
         <Route path="registration" element={<Registration />} />
@@ -51,11 +86,21 @@ function App() {
           element={<RegistrationCompany />}
         />
         <Route path="login" element={<Authorization />} />
+        <Route
+          path="/registration/registartionCompamy"
+          element={<Authorization />}
+        />
+        <Route
+          path="/registration/registartionIntern"
+          element={<Authorization />}
+        />
         <Route path="internship" element={<Internship />} />
-        <Route path="profile" element={<AllUsers />} />
-        <Route path="/profile/resume" element={<Resume />} />
+        <Route path="/profileIntern" element={<ProfileStudent />} />
+        <Route path="/profileCompany" element={<ProfileCompany />} />
+        <Route path="/profileIntern/resume" element={<Resume />} />
       </Routes>
-      <Footer></Footer>
+      {renderFooter()}
+      {/* <Footer></Footer> */}
     </div>
   );
 }

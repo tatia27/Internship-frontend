@@ -4,9 +4,9 @@ import logo from "./../../assets/ship.svg";
 import email from "./../../assets/ic_baseline-email.svg";
 import vk from "./../../assets/gjgjg.svg";
 import whatsapp from "./../../assets/fa6-brands_square-whatsapp.svg";
-import "./footer.css";
+import "./footerCompany.css";
 
-function Footer() {
+function FooterComapny() {
   return (
     <footer className="footer">
       <div className="container">
@@ -24,15 +24,15 @@ function Footer() {
 
             <div className="footer__menu">
               <ul>
-                <li>
+                {/* <li>
                   <NavLink to="/login">Войти</NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink to="/internships">Стажировки</NavLink>
                 </li>
-                {/* <li>
+                <li>
                   <NavLink to="/addInternship">Разместить стажировку</NavLink>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>
@@ -56,4 +56,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterComapny;

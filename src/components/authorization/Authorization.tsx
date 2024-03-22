@@ -29,7 +29,7 @@ function Authorization() {
             <button
               type="submit"
               className="registration-intern__button"
-              onClick={() => navigate("/profile")}
+              onClick={() => navigate("/profileIntern")}
             >
               Войти
             </button>

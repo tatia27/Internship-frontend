@@ -14,7 +14,7 @@ function ProfileStudent() {
             <img src={iconStudent} alt="Иконка пользователя"></img>
             <button
               className="button-resume"
-              onClick={() => navigate("/profile/resume")}
+              onClick={() => navigate("/profileIntern/resume")}
             >
               Загрузить резюме
             </button>

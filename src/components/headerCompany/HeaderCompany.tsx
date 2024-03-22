@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, Outlet, NavLink } from "react-router-dom";
 import logo from "./../../assets/logo.svg";
-import "./header.css";
+import profile from "./../../assets/profile.svg";
+import "./headerCompany.css";
 
 function Header() {
   return (
@@ -11,29 +12,20 @@ function Header() {
           <Link to="/">
             <img src={logo} alt="Логотип" />
           </Link>
-          <div className="header__nav">
+          <div className="header__nav__company">
             <ul>
               <li>
                 <NavLink to="/internships" className="header__nav__item">
                   Стажировки
                 </NavLink>
               </li>
-              {/* <li>
+              <li>
                 <NavLink to="/addInternship" className="header__nav__item">
                   Разместить стажировку
                 </NavLink>
-              </li> */}
-              <li>
-                <NavLink to="/registration" className="header__nav__item">
-                  Регистрация
-                </NavLink>
-              </li>
-              <li>
-                <Link to="/login" className="header__nav-btn">
-                  Вход
-                </Link>
               </li>
             </ul>
+            <img src={profile} alt="Профиль"></img>
           </div>
         </div>
       </div>

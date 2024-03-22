@@ -4,7 +4,7 @@ import logo from "./../../assets/ship.svg";
 import email from "./../../assets/ic_baseline-email.svg";
 import vk from "./../../assets/gjgjg.svg";
 import whatsapp from "./../../assets/fa6-brands_square-whatsapp.svg";
-import "./footer.css";
+import "./footerIntern.css";
 
 function Footer() {
   return (
@@ -24,9 +24,9 @@ function Footer() {
 
             <div className="footer__menu">
               <ul>
-                <li>
+                {/* <li>
                   <NavLink to="/login">Войти</NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink to="/internships">Стажировки</NavLink>
                 </li>

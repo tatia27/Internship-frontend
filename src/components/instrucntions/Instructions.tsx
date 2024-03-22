@@ -10,7 +10,11 @@ function Instructions() {
       <div className="container">
         <div className="instructions__block">
           <div className="instructions__block__item">
-            <img src={user} alt="Пользователь" />
+            <img
+              src={user}
+              alt="Пользователь"
+              className="instructions__block__item__user"
+            />
             <span className="instructions__block__item__text">
               Зарегистрируйся на сайте
             </span>
@@ -24,7 +28,11 @@ function Instructions() {
           </div>
           <hr />
           <div className="instructions__block__item">
-            <img src={letter} alt="Письмо" />
+            <img
+              src={letter}
+              alt="Письмо"
+              className="instructions__block__item__letter"
+            />
             <span className="instructions__block__item__text">
               Подай заявку
             </span>

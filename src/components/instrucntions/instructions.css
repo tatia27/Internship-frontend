@@ -23,6 +23,13 @@
   align-items: center;
 }
 
+.instructions__block__item__user {
+  margin-top: 15px;
+}
+
+.instructions__block__item__letter {
+  margin-top: 7px;
+}
 hr {
   height: 176px;
   border: 1px solid #e8e8e8;
