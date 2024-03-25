@@ -34,3 +34,8 @@ button:hover {
   background-color: var(--primary-color-hover);
   color: var(--text-color);
 }
+
+.toastify {
+  width: 400px;
+  margin-top: 20px;
+}

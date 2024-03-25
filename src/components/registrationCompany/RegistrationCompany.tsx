@@ -1,26 +1,82 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
 import "./registrationCompany.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 type FormCompanyState = {
-  nameCompany: string;
+  name: string;
   email: string;
   password: string;
+  conditions: boolean;
 };
 
 function RegistrationCompany() {
   let navigate = useNavigate();
   const [form, setForm] = useState<FormCompanyState>({
-    nameCompany: "",
+    name: "",
     email: "",
     password: "",
+    conditions: false,
   });
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setForm({ ...form, [event.target.name]: event.target.value });
-    console.log(form);
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+    setForm({ ...form, [event.target.name]: value });
   }
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!form.name || !form.email || !form.password || !form.conditions) {
+      toast.info("Заполните все поля формы", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      // alert("Заполните все поля формы");
+      return;
+    }
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8000/v1/company/",
+        form,
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      // console.log(form);
+      navigate("/profileCompany");
+    } catch (error) {
+      toast.error("Email уже зарегистрирован, используйте другой", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
+  };
+
+  // if (isAuthorized) {
+  //   return <Navigate to={"/"} />;
+  // }
 
   return (
     <div className="registration-intern">
@@ -28,14 +84,14 @@ function RegistrationCompany() {
         <form
           className="registration-intern__form"
           method="post"
-          action="/registration/registationCompany"
+          onSubmit={handleRegister}
         >
           <h1>Регистрация компании</h1>
           <fieldset>
             <input
               type="text"
               id="name"
-              name="nameCompany"
+              name="name"
               placeholder="Наименование компании"
               className="registration__input"
               onChange={changeHandler}
@@ -59,22 +115,20 @@ function RegistrationCompany() {
             <div className="checkbox-company">
               <input
                 type="checkbox"
+                checked={form.conditions}
                 value="interest_development"
-                name="user_interest"
+                name="conditions"
                 className="checkbox__square"
+                onChange={changeHandler}
               />
               <label>
-                Я принимаю условия соглашения и ознакомился с политикой
+                Я принимаю условия соглашения и ознакомился  политикой
                 конфиденциальности
               </label>
             </div>
           </fieldset>
           <div className="ololo">
-            <button
-              type="submit"
-              className="registration-intern__button"
-              onClick={() => navigate("/profileCompany")}
-            >
+            <button type="submit" className="registration-intern__button">
               Зарегистрироваться
             </button>
             <span>

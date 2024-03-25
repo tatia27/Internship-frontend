@@ -17,7 +17,7 @@ import AllUsers from "../allUsers/AllUsers";
 import ProfileCompany from "../profileCompany/ProfileCompany";
 import FullCard from "../fullCard/FullCard";
 import Filter from "../filter/Filter";
-import NewCard from "../newCard/NewCard";
+// import NewCard from "../newCard/NewCard";
 import Popular from "../popular/Popular";
 import Button from "../button/Button";
 import ProfileStudent from "../profileStudent/ProfileStudent";
@@ -26,6 +26,8 @@ import Resume from "../resume/Resume";
 import Authorization from "../authorization/Authorization";
 import { Routes, Route, useLocation } from "react-router-dom";
 import AddInternship from "../addInternship/AddInternship";
+import { Bounce, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [isStudent, setStudent] = useState(false);
@@ -60,7 +62,22 @@ function App() {
 
   return (
     <div className="App">
+      {/* <ToastContainer /> */}
       {renderHeader()}
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
 
       <Routes>
         <Route
