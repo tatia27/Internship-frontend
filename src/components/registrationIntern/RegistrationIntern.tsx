@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./registrationIntern.css";
 import { useNavigate } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 type FormInternState = {
@@ -47,14 +47,6 @@ function RegistrationIntern() {
     ) {
       toast.info("Заполните все поля формы", {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
       });
       return;
     }
@@ -74,14 +66,6 @@ function RegistrationIntern() {
     } catch (error) {
       toast.error("Email уже зарегистрирован, используйте другой", {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
       });
     }
   };
@@ -143,7 +127,6 @@ function RegistrationIntern() {
               <input
                 type="checkbox"
                 checked={form.conditions}
-                // value="interest_development"
                 name="conditions"
                 className="checkbox__square"
                 onChange={changeHandler}

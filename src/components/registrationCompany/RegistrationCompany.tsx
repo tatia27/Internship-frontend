@@ -35,16 +35,7 @@ function RegistrationCompany() {
     if (!form.name || !form.email || !form.password || !form.conditions) {
       toast.info("Заполните все поля формы", {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
       });
-      // alert("Заполните все поля формы");
       return;
     }
     try {
@@ -62,14 +53,6 @@ function RegistrationCompany() {
     } catch (error) {
       toast.error("Email уже зарегистрирован, используйте другой", {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
       });
     }
   };
@@ -142,17 +125,3 @@ function RegistrationCompany() {
 }
 
 export default RegistrationCompany;
-
-// function registartionHandler() {
-//   try {
-//     await axios.post(
-//       "/api/registr/registration/registationCompany",
-//       { ...form },
-//       {
-//         headers: { "Content-type": "application/json" },
-//       }
-//     );
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }

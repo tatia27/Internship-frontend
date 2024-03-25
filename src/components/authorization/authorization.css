@@ -63,3 +63,12 @@ label {
   align-items: center;
   margin-top: 200px;
 }
+
+.registration-intern__wrapper span {
+  font-size: 14px;
+  text-align: center;
+}
+
+.registration-intern__wrapper span a {
+  color: var(--primary-color);
+}
