@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "./registrationCompany.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 type FormCompanyState = {
   name: string;
@@ -33,9 +33,7 @@ function RegistrationCompany() {
     e.preventDefault();
 
     if (!form.name || !form.email || !form.password || !form.conditions) {
-      toast.info("Заполните все поля формы", {
-        position: "bottom-right",
-      });
+      toast.info("Заполните все поля формы");
       return;
     }
     try {
@@ -48,12 +46,11 @@ function RegistrationCompany() {
           },
         }
       );
-      // console.log(form);
       navigate("/profileCompany");
     } catch (error) {
-      toast.error("Email уже зарегистрирован, используйте другой", {
-        position: "bottom-right",
-      });
+      if ((error as AxiosError).response?.status === 400) {
+        toast.error("Email уже зарегистрирован, используйте другой");
+      }
     }
   };
 

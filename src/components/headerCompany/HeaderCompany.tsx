@@ -24,6 +24,9 @@ function Header() {
                   Разместить стажировку
                 </NavLink>
               </li>
+              {/* <li>
+                <a className="header__nav__item">Выйти</a>
+              </li> */}
             </ul>
             <img src={profile} alt="Профиль"></img>
           </div>

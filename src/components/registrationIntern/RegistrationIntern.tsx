@@ -45,9 +45,7 @@ function RegistrationIntern() {
       !form.password ||
       !form.conditions
     ) {
-      toast.info("Заполните все поля формы", {
-        position: "bottom-right",
-      });
+      toast.info("Заполните все поля формы");
       return;
     }
     try {
@@ -64,9 +62,7 @@ function RegistrationIntern() {
       // console.log(form);
       navigate("/profileIntern");
     } catch (error) {
-      toast.error("Email уже зарегистрирован, используйте другой", {
-        position: "bottom-right",
-      });
+      toast.error("Email уже зарегистрирован, используйте другой");
     }
   };
 

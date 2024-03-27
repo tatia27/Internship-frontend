@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./authorization.css";
 import { useNavigate, Link } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
-import axios from "axios";
+import { toast } from "react-toastify";
+import axios, { AxiosError } from "axios";
 
 type AuthorizationtState = {
   email: string;
@@ -25,9 +25,7 @@ function Authorization() {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formAuth.email || !formAuth.password) {
-      toast.info("Заполните все поля формы", {
-        position: "bottom-right",
-      });
+      toast.info("Заполните все поля формы");
       return;
     }
     try {
@@ -38,18 +36,22 @@ function Authorization() {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
-      // toast.success(data.message);
+      console.log(data);
       // setEmail("");
       // setPassword("");
       // setRole("");
       // setIsAuthorized(true);
-      // localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", data.token);
       navigate("/profileIntern");
     } catch (error) {
-      console.log(error);
-      // toast.error(error.response.data.message);
+      if ((error as AxiosError).response?.status === 401) {
+        toast.error("Неверный пароль");
+      } else {
+        toast.error("Пользователь не найден");
+      }
     }
   };
 

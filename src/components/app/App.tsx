@@ -28,6 +28,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import AddInternship from "../addInternship/AddInternship";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import { UserConternProvider } from "../../context/userContext";
 
 function App() {
   const [isStudent, setStudent] = useState(false);
@@ -62,7 +63,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <ToastContainer /> */}
+      {/* <UserConternProvider> */}
       {renderHeader()}
 
       <ToastContainer
@@ -118,14 +119,13 @@ function App() {
       </Routes>
       {renderFooter()}
       {/* <Footer></Footer> */}
+      {/* </UserConternProvider> */}
     </div>
   );
 }
 
 export default App;
-{
-  /* <Filter></Filter> */
-}
+
 {
   /* <Registration></Registration>
       <RegistrationCompany></RegistrationCompany>
