@@ -1,9 +1,37 @@
-import React from "react";
-import FullCard from "../fullCard/FullCard";
+import { useEffect, useState } from "react";
+import FullCard from "../internships/fullCard/FullCard";
 import "./filter.css";
-import NewCard from "../newCard/NewCard";
+import axios from "axios";
+
+export type Internship = {
+  _id: String;
+  title: String;
+  company: String;
+  focusOfInternship: String;
+  typeOfInternship: String;
+  schedule: String;
+  typeOfEmployment: String;
+  durationOfInternship: String;
+  salary: Number;
+  skills: String;
+  conditions: String;
+};
 
 function Filter() {
+  const [internships, setInternships] = useState<Internship[]>([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/v1/internships/")
+      .then((response) => {
+        setInternships(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(internships);
+
   return (
     <div className="internship">
       <div className="container">
@@ -90,14 +118,10 @@ function Filter() {
             </a>
           </div>
           <div>
-            <FullCard></FullCard>
-            <FullCard></FullCard>
-            <FullCard></FullCard>
-            <FullCard></FullCard>
-            {/* <NewCard></NewCard>
-            <NewCard></NewCard> */}
-            {/* <NewCard></NewCard>
-            <NewCard></NewCard> */}
+            {internships.map((item) => {
+              console.log(item);
+              return <FullCard key={item._id.toString()} {...item} />;
+            })}
           </div>
         </div>
       </div>

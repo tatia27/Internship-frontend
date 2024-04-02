@@ -19,13 +19,11 @@
 @font-face {
   font-family: "Gilroy-medium";
   src: url("../fonts/Gilroy/gilroy-medium.ttf") format("truetype");
-  /* font-weight: 600; */
 }
 
 @font-face {
   font-family: "Gilroy-semibold";
   src: url("../fonts/Gilroy/gilroy-semibold.ttf") format("truetype");
-  /* font-weight: 500; */
 }
 
 @font-face {

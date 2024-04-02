@@ -1,31 +1,29 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import Header from "../header/Header";
-import HeaderIntern from "../headerIntern/HeaderIntern";
-import HeaderCompany from "../headerCompany/HeaderCompany";
+import Header from "../headers/header/Header";
+import HeaderIntern from "../headers/headerIntern/HeaderIntern";
+import HeaderCompany from "../headers/headerCompany/HeaderCompany";
 import Main from "../main/Main";
-import Instructions from "../instrucntions/Instructions";
-import Footer from "../footer/Footer";
-import FooterCompany from "../footerCompany/FooterCompany";
-import FooterIntern from "../footerIntern/FooterIntern";
-import Card from "../card/card";
-import Registration from "../registration/Registration";
-import RegistrationIntern from "../registrationIntern/RegistrationIntern";
-import RegistrationCompany from "../registrationCompany/RegistrationCompany";
-import AllUsers from "../allUsers/AllUsers";
-import ProfileCompany from "../profileCompany/ProfileCompany";
-import FullCard from "../fullCard/FullCard";
+import Instructions from "../instructions/Instructions";
+import Footer from "../footers/footer/Footer";
+import FooterCompany from "../footers/footerCompany/FooterCompany";
+import FooterIntern from "../footers/footerIntern/FooterIntern";
+import Card from "../internships/card/card";
+import Registration from "../registration/register/Registration";
+import RegistrationIntern from "../registration/registrationIntern/RegistrationIntern";
+import RegistrationCompany from "../registration/registrationCompany/RegistrationCompany";
+import AllUsers from "../users/allUsers/AllUsers";
+import ProfileCompany from "../profile/profileCompany/ProfileCompany";
+import FullCard from "../internships/fullCard/FullCard";
 import Filter from "../filter/Filter";
-// import NewCard from "../newCard/NewCard";
 import Popular from "../popular/Popular";
-import Button from "../button/Button";
-import ProfileStudent from "../profileStudent/ProfileStudent";
-import Internship from "../internship/Internship";
+import ProfileStudent from "../profile/profileStudent/ProfileStudent";
+import Internship from "../internships/internship/Internship";
 import Resume from "../resume/Resume";
 import Authorization from "../authorization/Authorization";
 import { Routes, Route, useLocation } from "react-router-dom";
-import AddInternship from "../addInternship/AddInternship";
+import AddInternship from "../internships/addInternship/AddInternship";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { UserConternProvider } from "../../context/userContext";
@@ -88,13 +86,12 @@ function App() {
               <Main />
               <Instructions />
               <Popular />
-              <Button />
             </>
           }
         />
-        <Route path="internships" element={<Filter />} />
-        <Route path="addInternship" element={<AddInternship />} />
-        <Route path="registration" element={<Registration />} />
+        <Route path="/internships" element={<Filter />} />
+        <Route path="/addInternship" element={<AddInternship />} />
+        <Route path="/registration" element={<Registration />} />
         <Route
           path="/registration/registationIntern"
           element={<RegistrationIntern />}
@@ -103,7 +100,7 @@ function App() {
           path="/registration/registationCompany"
           element={<RegistrationCompany />}
         />
-        <Route path="login" element={<Authorization />} />
+        <Route path="/login" element={<Authorization />} />
         <Route
           path="/registration/registartionCompamy"
           element={<Authorization />}
@@ -112,27 +109,14 @@ function App() {
           path="/registration/registartionIntern"
           element={<Authorization />}
         />
-        <Route path="internship" element={<Internship />} />
+        <Route path="/internship" element={<Internship />} />
         <Route path="/profileIntern" element={<ProfileStudent />} />
         <Route path="/profileCompany" element={<ProfileCompany />} />
         <Route path="/profileIntern/resume" element={<Resume />} />
       </Routes>
       {renderFooter()}
-      {/* <Footer></Footer> */}
-      {/* </UserConternProvider> */}
     </div>
   );
 }
 
 export default App;
-
-{
-  /* <Registration></Registration>
-      <RegistrationCompany></RegistrationCompany>
-      <RegistrationIntern></RegistrationIntern>
-      <Authorization></Authorization>
-      <Internship></Internship>
-      <ProfileStudent></ProfileStudent>
-      <ProfileCompany></ProfileCompany>
-      <AllUsers></AllUsers> */
-}

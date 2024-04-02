@@ -1,9 +1,10 @@
-import React from "react";
+import { useState, useContext } from "react";
 import "./main.css";
 import { useNavigate } from "react-router-dom";
 
 function Main() {
   let navigate = useNavigate();
+
   return (
     <div className="main_part">
       <div className="container">
@@ -29,5 +30,3 @@ function Main() {
 }
 
 export default Main;
-
-// import wallpaper from "./../../assets/wallpaper.png";

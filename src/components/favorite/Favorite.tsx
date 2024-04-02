@@ -1,8 +1,7 @@
-import React from "react";
 import "./favorite.css";
 import left from "./../../assets/Left.svg";
 import right from "./../../assets/Right.svg";
-import Card from "../card/card";
+import Card from "../internships/card/card";
 
 function Favorite() {
   return (

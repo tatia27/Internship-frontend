@@ -20,8 +20,6 @@ function Authorization() {
     setformAuth({ ...formAuth, [event.target.name]: event.target.value });
   }
 
-  console.log(formAuth);
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formAuth.email || !formAuth.password) {
