@@ -40,6 +40,7 @@ function RegistrationIntern() {
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (
       !form.firstName ||
       !form.secondName ||
@@ -61,7 +62,6 @@ function RegistrationIntern() {
       const { data } = await axios.post(
         "http://localhost:8000/v1/intern/",
         form,
-
         {
           headers: {
             "Content-type": "application/json",
@@ -81,6 +81,7 @@ function RegistrationIntern() {
   // if (isAuthorized) {
   //   return <Navigate to={"/"} />;
   // }
+
   return (
     <div className="registration-intern">
       <div className="container">

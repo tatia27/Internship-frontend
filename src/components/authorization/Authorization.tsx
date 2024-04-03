@@ -22,10 +22,12 @@ function Authorization() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (!formAuth.email || !formAuth.password) {
       toast.info("Заполните все поля формы");
       return;
     }
+
     try {
       const { data } = await axios.post(
         "http://localhost:8000/v1/auth/login",

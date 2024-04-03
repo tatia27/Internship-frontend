@@ -48,6 +48,7 @@ function RegistrationCompany() {
       toast.info("Email должен содержать специальные символы @ ,");
       return;
     }
+
     try {
       const { data } = await axios.post(
         "http://localhost:8000/v1/company/",

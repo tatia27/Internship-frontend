@@ -6,7 +6,7 @@ import "./fullCard.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Internship } from "../../filter/Filter";
+import { Internship } from "../../internships/internship/Internship";
 import { UserContext } from "../../../context/userContext";
 
 function FullCard(props: Internship) {

@@ -1,22 +1,60 @@
 import "./internship.css";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+export type Internship = {
+  _id: String;
+  title: String;
+  company: String;
+  focusOfInternship: String;
+  typeOfInternship: String;
+  schedule: String;
+  typeOfEmployment: String;
+  durationOfInternship: String;
+  salary: Number;
+  skills: String;
+  conditions: String;
+};
 
 function Internship() {
+  const { id } = useParams();
+  const [internship, setInternship] = useState<Internship>();
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/v1/internships/${id}`)
+      .then((response) => {
+        setInternship(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className="container">
       <div className="intership">
         <div className="intership__title">
-          <h4>UI/UX дизайнер</h4>
-          <h5>Яндекс</h5>
+          <h4>{internship?.title}</h4>
+          <h5>{internship?.company}</h5>
         </div>
         <div className="intership__card-info">
           <div className="intership__card-info__item">
-            <span>Оплачиваеамая</span>
+            <span>
+              {internship?.salary !== 0 ? "Оплачиваеамая" : "Неоплачиваемая"}
+            </span>
           </div>
           <div className="intership__card-info__item">
-            <span>Полный день</span>
+            <span>
+              {internship?.typeOfEmployment === "Full"
+                ? "Полный день"
+                : "Неполный день"}
+            </span>
           </div>
           <div className="intership__card-info__item">
-            <span>В офисе</span>
+            <span>
+              {internship?.schedule === "Office" ? "В офисе" : "Удалённо"}
+            </span>
           </div>
         </div>
         <div className="intership__time-salary">
@@ -26,7 +64,9 @@ function Internship() {
           </div>
           <div className="intership__time-salary__all">
             <p>Зарплата</p>
-            <span>-</span>
+            <span>
+              {internship?.salary !== 0 ? `${internship?.salary} р.` : "-"}
+            </span>
           </div>
         </div>
 

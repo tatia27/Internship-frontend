@@ -22,7 +22,7 @@ function AddInternship() {
   const [internship, setInternship] = useState<InternshipForm>({
     title: "",
     company: "",
-    focusOfInternship: "",
+    focusOfInternship: "Frontend developer",
     schedule: "",
     typeOfEmployment: "",
     durationOfInternship: "",
@@ -32,12 +32,10 @@ function AddInternship() {
   });
   const [salaryActive, setSalaryActive] = useState<Boolean>(false);
 
-  type value = string | number | readonly string[] | undefined;
-  // const [selectedItDirection, setSelectedItDirection] = useState<
-  //   string | number | readonly string[] | undefined
-  // >("Other");
-
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  function changeInputHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    setInternship({ ...internship, [event.target.name]: event.target.value });
+  }
+  function changSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     setInternship({ ...internship, [event.target.name]: event.target.value });
   }
 
@@ -52,7 +50,7 @@ function AddInternship() {
       !internship.schedule ||
       !internship.typeOfEmployment ||
       !internship.durationOfInternship ||
-      !internship.salary ||
+      // !internship.salary ||
       !internship.skills ||
       !internship.conditions
     ) {
@@ -71,11 +69,16 @@ function AddInternship() {
         }
       );
       console.log(data);
-      navigate("/internship");
+      navigate("/internship/" + data.id);
+      // navigate("/internship");
     } catch (error) {
       toast.error("Стажировка не создана");
     }
   };
+
+  // if (role !== "Company") {
+  //   navigate("/main");
+  // }
 
   return (
     <div className="resume">
@@ -92,12 +95,13 @@ function AddInternship() {
             name="title"
             placeholder="Наименование стажировки"
             className="resume-input"
-            onChange={changeHandler}
+            onChange={changeInputHandler}
           />
           <select
             id="education"
             name="focusOfInternship"
             className="resume-input"
+            onChange={changSelectHandler}
           >
             <option value="Frontend developer">Frontend-разработчик</option>
             <option value="Backend developer">Backend-разработчик</option>
@@ -119,7 +123,7 @@ function AddInternship() {
             name="company"
             placeholder="Компания"
             className="resume-input"
-            onChange={changeHandler}
+            onChange={changeInputHandler}
           />
           <input
             type="text"
@@ -127,7 +131,7 @@ function AddInternship() {
             name="durationOfInternship"
             placeholder="Длительность"
             className="resume-input"
-            onChange={changeHandler}
+            onChange={changeInputHandler}
           />
           <div className="resume-internship__form__salary">
             <div className="resume-internship__form__salary__margin">
@@ -144,7 +148,7 @@ function AddInternship() {
               name="salary"
               placeholder="Зарплата"
               className="resume-input"
-              onChange={changeHandler}
+              onChange={changeInputHandler}
               disabled={!salaryActive}
             />
           </div>
@@ -158,7 +162,7 @@ function AddInternship() {
                     value="Remotely"
                     name="schedule"
                     className="checkbox"
-                    onChange={changeHandler}
+                    onChange={changeInputHandler}
                   />
                   <label>Удалённо</label>
                 </div>
@@ -168,7 +172,7 @@ function AddInternship() {
                     name="schedule"
                     value="Office"
                     className="checkbox"
-                    onChange={changeHandler}
+                    onChange={changeInputHandler}
                   />
                   <label>В офисе</label>
                 </div>
@@ -182,7 +186,7 @@ function AddInternship() {
                     type="checkbox"
                     name="typeOfEmployment"
                     value="Full"
-                    onChange={changeHandler}
+                    onChange={changeInputHandler}
                   />
                   <label>Полная</label>
                 </div>
@@ -191,7 +195,7 @@ function AddInternship() {
                     type="checkbox"
                     name="typeOfEmployment"
                     value="Partial"
-                    onChange={changeHandler}
+                    onChange={changeInputHandler}
                   />
                   <label>Частичная</label>
                 </div>
@@ -204,7 +208,7 @@ function AddInternship() {
             name="skills"
             placeholder="Навыки"
             className="resume-input"
-            onChange={changeHandler}
+            onChange={changeInputHandler}
           />
           <input
             type="text"
@@ -212,7 +216,7 @@ function AddInternship() {
             name="conditions"
             placeholder="Условия"
             className="resume-input"
-            onChange={changeHandler}
+            onChange={changeInputHandler}
           />
           <button className="resume-button">Создать</button>
         </form>

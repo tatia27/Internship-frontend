@@ -110,6 +110,7 @@ function App() {
           element={<Authorization />}
         />
         <Route path="/internship" element={<Internship />} />
+        <Route path="/internship/:id" element={<Internship />} />
         <Route path="/profileIntern" element={<ProfileStudent />} />
         <Route path="/profileCompany" element={<ProfileCompany />} />
         <Route path="/profileIntern/resume" element={<Resume />} />
