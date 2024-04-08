@@ -1,6 +1,6 @@
 import like from "./../../assets/Like2.svg";
-import company from "./../../assets/Avatar.svg";
-import location from "./../../assets/location.svg";
+import companyLogo from "../../../assets/icons/companyLogo.svg";
+import location from "./../../../assets/icons/location.svg";
 import "./newCard.css";
 
 function NewCard() {
@@ -10,7 +10,7 @@ function NewCard() {
         <div className="current-card__text">
           <div className="full-current-card__top">
             <div className="full-current-card__top__company">
-              <img src={company} alt="Компания" />
+              <img src={companyLogo} alt="Компания" />
               <h4>BeHance</h4>
             </div>
             <div className="full-current-card__top__action">

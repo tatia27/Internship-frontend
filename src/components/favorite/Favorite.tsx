@@ -1,6 +1,6 @@
 import "./favorite.css";
-import left from "./../../assets/Left.svg";
-import right from "./../../assets/Right.svg";
+import left from "./../../assets/icons/left.svg";
+import right from "./../../assets/icons/right.svg";
 import Card from "../internships/card/card";
 
 function Favorite() {
@@ -10,8 +10,8 @@ function Favorite() {
         Избранные стажировки
       </h3>
       <div className="favorite__interns__card">
-        <Card></Card>
-        <Card></Card>
+        {/* <Card></Card>
+        <Card></Card> */}
       </div>
       <div className="favorite__interns__more">
         <div className="favorite__interns__more__item">

@@ -1,29 +1,29 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import Header from "../headers/header/Header";
-import HeaderIntern from "../headers/headerIntern/HeaderIntern";
-import HeaderCompany from "../headers/headerCompany/HeaderCompany";
-import Main from "../main/Main";
-import Instructions from "../instructions/Instructions";
-import Footer from "../footers/footer/Footer";
-import FooterCompany from "../footers/footerCompany/FooterCompany";
-import FooterIntern from "../footers/footerIntern/FooterIntern";
+import Header from "../headers/header/header";
+import HeaderIntern from "../headers/headerIntern/headerIntern";
+import HeaderCompany from "../headers/headerCompany/headerCompany";
+import Main from "../main/main";
+import Instructions from "../instructions/instructions";
+import Footer from "../footers/footer/footer";
+import FooterCompany from "../footers/footerCompany/footerCompany";
+import FooterIntern from "../footers/footerIntern/footerIntern";
 import Card from "../internships/card/card";
-import Registration from "../registration/register/Registration";
-import RegistrationIntern from "../registration/registrationIntern/RegistrationIntern";
-import RegistrationCompany from "../registration/registrationCompany/RegistrationCompany";
-import AllUsers from "../users/allUsers/AllUsers";
-import ProfileCompany from "../profile/profileCompany/ProfileCompany";
-import FullCard from "../internships/fullCard/FullCard";
-import Filter from "../filter/Filter";
-import Popular from "../popular/Popular";
-import ProfileStudent from "../profile/profileStudent/ProfileStudent";
-import Internship from "../internships/internship/Internship";
-import Resume from "../resume/Resume";
-import Authorization from "../authorization/Authorization";
+import Registration from "../registration/register/registration";
+import RegistrationIntern from "../registration/registrationIntern/registrationIntern";
+import RegistrationCompany from "../registration/registrationCompany/registrationCompany";
+import AllUsers from "../users/allUsers/allUsers";
+import ProfileCompany from "../profile/profileCompany/profileCompany";
+import FullCard from "../internships/fullCard/fullCard";
+import Filter from "../filter/filter/filter";
+import Popular from "../popular/popular";
+import ProfileStudent from "../profile/profileStudent/profileStudent";
+import Internship from "../internships/internship/internship";
+import Resume from "../resume/resume";
+import Authorization from "../authorization/authorization";
 import { Routes, Route, useLocation } from "react-router-dom";
-import AddInternship from "../internships/addInternship/AddInternship";
+import AddInternship from "../internships/addInternship/addInternship";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { UserConternProvider } from "../../context/userContext";
@@ -89,8 +89,11 @@ function App() {
             </>
           }
         />
+
         <Route path="/internships" element={<Filter />} />
+        <Route path="/internships/:id" element={<Internship />} />
         <Route path="/addInternship" element={<AddInternship />} />
+
         <Route path="/registration" element={<Registration />} />
         <Route
           path="/registration/registationIntern"
@@ -109,8 +112,7 @@ function App() {
           path="/registration/registartionIntern"
           element={<Authorization />}
         />
-        <Route path="/internship" element={<Internship />} />
-        <Route path="/internship/:id" element={<Internship />} />
+
         <Route path="/profileIntern" element={<ProfileStudent />} />
         <Route path="/profileCompany" element={<ProfileCompany />} />
         <Route path="/profileIntern/resume" element={<Resume />} />

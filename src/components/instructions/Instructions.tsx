@@ -1,6 +1,6 @@
-import user from "./../../assets/use.svg";
-import resume from "./../../assets/resume.svg";
-import letter from "./../../assets/letter.svg";
+import user from "./../../assets/icons/user.svg";
+import resume from "./../../assets/icons/resume.svg";
+import letter from "./../../assets/icons/letter.svg";
 import "./instructions.css";
 
 function Instructions() {

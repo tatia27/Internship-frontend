@@ -1,6 +1,6 @@
 import { Link, Outlet, NavLink } from "react-router-dom";
-import logo from "./../../../assets/logo.svg";
-import profile from "./../../../assets/profile.svg";
+import logo from "./../../../assets/icons/logo.svg";
+import profile from "./../../../assets/icons/profileHeader.svg";
 import "./headerIntern.css";
 
 function HeaderIntern() {

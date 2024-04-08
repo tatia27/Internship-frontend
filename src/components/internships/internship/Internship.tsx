@@ -1,7 +1,8 @@
 import "./internship.css";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../../../context/userContext";
 
 export type Internship = {
   _id: String;
@@ -15,11 +16,15 @@ export type Internship = {
   salary: Number;
   skills: String;
   conditions: String;
+  onClick: () => void;
 };
 
 function Internship() {
   const { id } = useParams();
   const [internship, setInternship] = useState<Internship>();
+  const { isAuth } = useContext(UserContext);
+  let navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/v1/internships/${id}`)
@@ -89,7 +94,16 @@ function Internship() {
             </li>
           </ul>
         </div>
-        <button className="intership__button">Подать заявку</button>
+        <button
+          className="intership__button"
+          onClick={() => {
+            if (!isAuth) {
+              navigate("/login");
+            }
+          }}
+        >
+          Подать заявку
+        </button>
       </div>
     </div>
   );

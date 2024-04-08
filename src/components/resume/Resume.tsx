@@ -2,7 +2,7 @@ import "./resume.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 type ResumeForm = {
   age: Number | null;
@@ -14,6 +14,7 @@ type ResumeForm = {
 };
 function Resume() {
   let navigate = useNavigate();
+  const { internId } = useParams();
   const [resume, setResume] = useState<ResumeForm>({
     age: null,
     location: "",
@@ -38,7 +39,7 @@ function Resume() {
     }
     try {
       const { data } = await axios.patch(
-        "http://localhost:8000/v1/intern/:id/resume",
+        `http://localhost:8000/v1/intern/${internId}/resume`,
         resume,
         {
           headers: {
@@ -91,6 +92,7 @@ function Resume() {
             name="levelOfEducation"
             className="resume-input"
             onChange={changeSelectHandler}
+            defaultValue="Bachelor"
           >
             <option value="Bachelor">Бакалавриат</option>
             <option value="Master">Специалитет</option>

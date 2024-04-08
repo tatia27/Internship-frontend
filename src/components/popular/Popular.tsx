@@ -1,12 +1,40 @@
 import "./popular.css";
-import arrow from "./../../assets/Arrow.svg";
+import arrow from "./../../assets/icons/arrow.svg";
 import Card from "../internships/card/card";
-import { Internship } from "../filter/Filter";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+export type Internship = {
+  _id: String;
+  title: String;
+  company: String;
+  focusOfInternship: String;
+  typeOfInternship: String;
+  schedule: String;
+  typeOfEmployment: String;
+  durationOfInternship: String;
+  salary: Number;
+  skills: String;
+  conditions: String;
+  onClick: () => void;
+};
 
 function Popular() {
   let navigate = useNavigate();
-  // console.log(props);
+  const [internships, setInternships] = useState<Internship[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/v1/internships/")
+      .then((response) => {
+        setInternships(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className="popular">
       <div className="container">
@@ -15,15 +43,10 @@ function Popular() {
           <span>Специально для вас</span>
         </div>
         <div className="popular__interns">
-          {/* {props.map((item) => {
+          {/* {internships.map((item) => {
             console.log(item);
-            return <FullCard key={item._id.toString()} {...item} />;
+            return <Card key={item._id.toString()} {...item} />;
           })} */}
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
         </div>
         <button
           className="main-button"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./addInternship.css";
 import { useNavigate } from "react-router-dom";
-import { Internship } from "../../filter/Filter";
+import { Internship } from "../../filter/filter/filter";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
 
@@ -35,11 +35,10 @@ function AddInternship() {
   function changeInputHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setInternship({ ...internship, [event.target.name]: event.target.value });
   }
-  function changSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+
+  function changeSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     setInternship({ ...internship, [event.target.name]: event.target.value });
   }
-
-  console.log(internship);
 
   const handleIntership = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +49,6 @@ function AddInternship() {
       !internship.schedule ||
       !internship.typeOfEmployment ||
       !internship.durationOfInternship ||
-      // !internship.salary ||
       !internship.skills ||
       !internship.conditions
     ) {
@@ -70,7 +68,6 @@ function AddInternship() {
       );
       console.log(data);
       navigate("/internship/" + data.id);
-      // navigate("/internship");
     } catch (error) {
       toast.error("Стажировка не создана");
     }
@@ -101,7 +98,7 @@ function AddInternship() {
             id="education"
             name="focusOfInternship"
             className="resume-input"
-            onChange={changSelectHandler}
+            onChange={changeSelectHandler}
           >
             <option value="Frontend developer">Frontend-разработчик</option>
             <option value="Backend developer">Backend-разработчик</option>

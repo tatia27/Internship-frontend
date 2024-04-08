@@ -1,6 +1,6 @@
-import currentCompany from "./../../../assets/CurrentCompany.svg";
+import currentCompany from "./../../../assets/icons/currentCompany.svg";
 import "./profileCompany.css";
-import FullCard from "../../internships/fullCard/FullCard";
+import FullCard from "../../internships/fullCard/fullCard";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";

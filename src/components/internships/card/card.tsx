@@ -1,67 +1,79 @@
-import { useEffect, useState } from "react";
-import like from "./../../../assets//likeCard.svg";
-import company from "./../../../assets/companyLogo.svg";
-import location from "./../../../assets/location.svg";
+import { useEffect, useState, useContext } from "react";
+import like from "./../../../assets/icons/likeCard.svg";
+import company from "./../../../assets/icons/companyLogo.svg";
+import location from "./../../../assets/icons/location.svg";
 import "./card.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { Internship } from "../../filter/Filter";
+import { UserContext } from "../../../context/userContext";
+import { Internship } from "../../filter/filter/filter";
 import axios from "axios";
 
-function Card() {
+function Card(props: Internship) {
   let navigate = useNavigate();
   const [internships, setInternship] = useState<Internship>();
-  const { id } = useParams();
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/v1/internships/${id}")
-      .then((response) => {
-        setInternship(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const { isAuth } = useContext(UserContext);
+
+  const handleClick = () => {
+    navigate(`/internships/${props._id}`);
+  };
+
   return (
-    <div className="current-card">
+    <div className="current-card" onClick={handleClick}>
       <div className="current-card__text">
         <div className="current-card__top">
           <div className="current-card__top__logo">
             <img src={company} alt="Компания" />
             <div className="current-card__top__logo__comapny">
-              <h4>BeHance</h4>
+              <h4>{props.company}</h4>
               <div className="location">
                 <img src={location} alt="Локация" />
                 <span>Таганрог</span>
               </div>
             </div>
           </div>
-          <img src={like} alt="Избранное" />
+          <img
+            src={like}
+            alt="Избранное"
+            onClick={() => {
+              if (!isAuth) {
+                navigate("/login");
+              }
+            }}
+          />
         </div>
-
         <div>
           <div className="card-middle">
-            <p className="current-card__info_title">UI/UX дизайнер</p>
+            <p className="current-card__info_title">{props.title}</p>
           </div>
           <div className="current-card__info">
             <div className="current-card__info__item-small">
-              <span>Оплачиваеамая</span>
+              <span>
+                {props.typeOfInternship === "Paid"
+                  ? "Оплачиваемая"
+                  : "Неоплачиваемая"}
+              </span>
             </div>
             <div className="current-card__info__item-small">
-              <span>Полный день</span>
+              <span>
+                {props.typeOfEmployment === "Full"
+                  ? "Полный день"
+                  : "Неполный день"}
+              </span>
             </div>
             <div className="current-card__info__item-small">
-              <span>В офисе</span>
+              <span>
+                {props.schedule === "Office" ? "В офиссе" : "Удалённо"}
+              </span>
             </div>
           </div>
         </div>
-
         <div className="current-card__button">
           <button className="button-respond" onClick={() => navigate("/login")}>
             Откликнуться
           </button>
           <button
             className="button-more"
-            onClick={() => navigate("/internship")}
+            onClick={() => navigate("/internships/")}
           >
             Подробнее
           </button>

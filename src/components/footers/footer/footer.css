@@ -37,34 +37,3 @@
   font-family: "Gilroy-regular";
   text-align: center;
 }
-
-.footer__title {
-  font-size: 16px;
-  font-family: "Gilroy-semibold";
-}
-
-.footer__text {
-  font-size: 14px;
-  font-family: "Gilroy-semibold";
-  margin-bottom: 4px;
-}
-
-.logo__text {
-  font-size: 14px;
-  font-family: "Gilroy-semibold";
-}
-
-.footer__right-part__contacts {
-  margin-top: 10px;
-}
-
-.footer__icons {
-  display: flex;
-  column-gap: 20px;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.footer_nav2 ul li {
-  list-style-type: none;
-}
