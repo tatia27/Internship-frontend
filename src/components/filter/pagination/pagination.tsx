@@ -7,16 +7,9 @@ type PaginationProps = {
   setCurrentPage: (page: number) => void;
 };
 
-function Pagination({
-  currentPage,
-  setCurrentPage,
-  totalDocuments,
-}: PaginationProps) {
-  const PAGE_ITEMS = 4;
-
+function Pagination({ setCurrentPage, totalDocuments }: PaginationProps) {
   const handlePageClick = async (data: { selected: number }) => {
-    let currentPage = data.selected + 1;
-    setCurrentPage(currentPage);
+    setCurrentPage(data.selected + 1);
   };
 
   return (
@@ -24,7 +17,7 @@ function Pagination({
       <ReactPaginate
         nextLabel=">"
         onPageChange={handlePageClick}
-        pageCount={Math.ceil(totalDocuments / PAGE_ITEMS)}
+        pageCount={totalDocuments}
         previousLabel="<"
         renderOnZeroPageCount={null}
         containerClassName={"pagination"}

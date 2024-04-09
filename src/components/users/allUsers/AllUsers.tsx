@@ -19,10 +19,10 @@ function AllUsers() {
               </h3>
             </div>
             <div className="user-profiles__all">
-              <User></User>
-              <User></User>
-              <User></User>
-              <User></User>
+              <User />
+              <User />
+              <User />
+              <User />
             </div>
           </div>
         </div>

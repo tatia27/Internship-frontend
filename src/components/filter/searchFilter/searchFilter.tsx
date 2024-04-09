@@ -1,28 +1,65 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "../searchFilter/searchFilter.css";
 import axios from "axios";
+import { Internship } from "../filter/filter";
+import { toast } from "react-toastify";
 
-export type Filter = {
-  specialization: {};
-  direction: String;
-  work: String;
-  workTime: String;
-};
+interface SearchFilterProps {
+  currentPage: number;
+  internships: Internship[];
+  setInternships: (internships: Internship[]) => void;
+  setTotalDocuments: (page: number) => void;
+}
 
-function SearchFilter() {
-  const [filter, setFilter] = useState<Filter>({
-    specialization: {},
-    direction: "",
-    work: "",
-    workTime: "",
-  });
-  // [event.target.name]:
+function SearchFilter({
+  currentPage,
+  internships,
+  setInternships,
+  setTotalDocuments,
+}: SearchFilterProps) {
+  const [focusOfInternship, setFocusOfInternship] = useState<String[]>([]);
+  const [shedule, setShedule] = useState<String[]>([]);
+  const [typeOfEmployment, setTypeOfEmployment] = useState<String[]>([]);
+
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setFilter({ ...filter, [event.target.name]: event.target.value });
+    if (event.target.name === "focusOfInternship") {
+      setFocusOfInternship([...focusOfInternship, event.target.value]);
+    }
+    if (event.target.name === "schedule") {
+      setShedule([...shedule, event.target.value]);
+    }
+    if (event.target.name === "typeOfEmployment") {
+      setTypeOfEmployment([...typeOfEmployment, event.target.value]);
+    }
   }
 
-  console.log(filter);
+  const url = `http://localhost:8000/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}`;
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((response) => {
+        setInternships(response.data.internships);
+        setTotalDocuments(response.data.numberOfPages);
+      })
+      .catch((error) => {
+        toast.error("Упс, не удалось выполнить запрос...");
+      });
+  }, [
+    setTotalDocuments,
+    setInternships,
+    currentPage,
+    focusOfInternship,
+    shedule,
+    typeOfEmployment,
+    url,
+  ]);
+
+  function resetFilter() {
+    setFocusOfInternship([]);
+    setShedule([]);
+    setTypeOfEmployment([]);
+  }
 
   return (
     <div className="filter">
@@ -31,7 +68,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="frontend"
+            name="focusOfInternship"
             value="Frontend developer"
             onChange={changeHandler}
           />
@@ -40,7 +77,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="backend"
+            name="focusOfInternship"
             value="Backend developer"
             onChange={changeHandler}
           />
@@ -53,7 +90,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="system administrator"
+            name="focusOfInternship"
             value="System administrator"
             onChange={changeHandler}
           />
@@ -62,7 +99,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="game dev"
+            name="focusOfInternship"
             value="Game developer"
             onChange={changeHandler}
           />
@@ -71,7 +108,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="teaster"
+            name="focusOfInternship"
             value="Teaster"
             onChange={changeHandler}
           />
@@ -80,7 +117,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="analyst"
+            name="focusOfInternship"
             value="Analyst"
             onChange={changeHandler}
           />
@@ -89,7 +126,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="designer"
+            name="focusOfInternship"
             value="Designer"
             onChange={changeHandler}
           />
@@ -98,7 +135,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="manager"
+            name="focusOfInternship"
             value="Manager"
             onChange={changeHandler}
           />
@@ -107,7 +144,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="recruiter"
+            name="focusOfInternship"
             value="Recruiter"
             onChange={changeHandler}
           />
@@ -116,7 +153,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="other"
+            name="focusOfInternship"
             value="Other"
             onChange={changeHandler}
           />
@@ -149,7 +186,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="remotely"
+            name="schedule"
             value="Remotely"
             onChange={changeHandler}
           />
@@ -158,7 +195,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="office"
+            name="schedule"
             value="Office"
             onChange={changeHandler}
           />
@@ -170,7 +207,7 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="full"
+            name="typeOfEmployment"
             value="Full"
             onChange={changeHandler}
           />
@@ -179,14 +216,14 @@ function SearchFilter() {
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="partial"
+            name="typeOfEmployment"
             value="Partial"
             onChange={changeHandler}
           />
           <label>Частичная</label>
         </div>
       </form>
-      <a href="#" className="filter-reset">
+      <a href="#" className="filter-reset" onClick={resetFilter}>
         Сбросить всё
       </a>
     </div>

@@ -5,7 +5,6 @@ import "./registrationCompany.css";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import { validateEmail } from "../registrationIntern/registrationIntern";
-
 // import { UserContext } from "../../context/userContext";
 
 type FormCompanyState = {

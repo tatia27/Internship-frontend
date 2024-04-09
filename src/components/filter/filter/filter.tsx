@@ -5,20 +5,20 @@ import SearchFilter from "../searchFilter/searchFilter";
 import "../filter/filter.css";
 import Pagination from "../pagination/pagination";
 
-export type Internship = {
-  _id: String;
-  title: String;
-  company: String;
-  focusOfInternship: String;
-  typeOfInternship: String;
-  schedule: String;
-  typeOfEmployment: String;
-  durationOfInternship: String;
-  salary: Number;
-  skills: String;
-  conditions: String;
+export interface Internship {
+  _id: string;
+  title: string;
+  company: string;
+  focusOfInternship: string;
+  typeOfInternship: string;
+  schedule: string;
+  typeOfEmployment: string;
+  durationOfInternship: string;
+  salary: number;
+  skills: string;
+  conditions: string;
   onClick: () => void;
-};
+}
 
 function Filter() {
   const [internships, setInternships] = useState<Internship[]>([]);
@@ -30,21 +30,23 @@ function Filter() {
       .get(`http://localhost:8000/v1/internships?page=${currentPage}`)
       .then((response) => {
         setInternships(response.data.internships);
-        setTotalDocuments(response.data.total);
+        setTotalDocuments(response.data.numberOfPages);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [currentPage]);
-
-  console.log(totalDocuments);
-  console.log(internships);
+  }, []);
 
   return (
     <div className="internship">
       <div className="container">
         <div className="internship__filter">
-          <SearchFilter />
+          <SearchFilter
+            currentPage={currentPage}
+            internships={internships}
+            setInternships={setInternships}
+            setTotalDocuments={setTotalDocuments}
+          />
           <div>
             {internships.map((item) => {
               console.log(item);
