@@ -18,7 +18,7 @@ import ProfileCompany from "../profile/profileCompany/profileCompany";
 import FullCard from "../internships/fullCard/fullCard";
 import Filter from "../filter/filter/filter";
 import Popular from "../popular/popular";
-import ProfileStudent from "../profile/profileStudent/profileStudent";
+import ProfileStudent from "../profile/profileIntern/profileIntern";
 import Internship from "../internships/internship/internship";
 import Resume from "../resume/resume";
 import Authorization from "../authorization/authorization";
@@ -114,6 +114,7 @@ function App() {
           element={<Authorization />}
         />
 
+        <Route path="/profileIntern/:id" element={<ProfileStudent />} />
         <Route path="/profileIntern" element={<ProfileStudent />} />
         <Route path="/profileCompany" element={<ProfileCompany />} />
         <Route path="/profileIntern/resume" element={<Resume />} />

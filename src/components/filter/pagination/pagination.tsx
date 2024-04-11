@@ -13,25 +13,23 @@ function Pagination({ setCurrentPage, totalDocuments }: PaginationProps) {
   };
 
   return (
-    <>
-      <ReactPaginate
-        nextLabel=">"
-        onPageChange={handlePageClick}
-        pageCount={totalDocuments}
-        previousLabel="<"
-        renderOnZeroPageCount={null}
-        containerClassName={"pagination"}
-        pageClassName={"page-item"}
-        pageLinkClassName={"page-link"}
-        previousClassName={"page-item"}
-        previousLinkClassName={"page-link"}
-        nextClassName={"page-item"}
-        nextLinkClassName={"page-link"}
-        breakClassName={"page-item"}
-        breakLinkClassName={"page-link"}
-        activeClassName={"active"}
-      />
-    </>
+    <ReactPaginate
+      nextLabel=">"
+      onPageChange={handlePageClick}
+      pageCount={totalDocuments}
+      previousLabel="<"
+      renderOnZeroPageCount={null}
+      containerClassName={"pagination"}
+      pageClassName={"page-item"}
+      pageLinkClassName={"page-link"}
+      previousClassName={"page-item"}
+      previousLinkClassName={"page-link"}
+      nextClassName={"page-item"}
+      nextLinkClassName={"page-link"}
+      breakClassName={"page-item"}
+      breakLinkClassName={"page-link"}
+      activeClassName={"active"}
+    />
   );
 }
 

@@ -24,6 +24,7 @@ function SearchFilter({
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value, checked } = event.target;
+
     if (name === "focusOfInternship") {
       if (checked) {
         setFocusOfInternship([...focusOfInternship, value]);
@@ -33,7 +34,6 @@ function SearchFilter({
         );
       }
     }
-
     if (name === "schedule") {
       if (checked) {
         setShedule([...shedule, value]);
@@ -41,7 +41,6 @@ function SearchFilter({
         setShedule(shedule.filter((item) => item !== value));
       }
     }
-
     if (name === "typeOfEmployment") {
       if (checked) {
         setTypeOfEmployment([...typeOfEmployment, value]);
@@ -49,7 +48,6 @@ function SearchFilter({
         setTypeOfEmployment(typeOfEmployment.filter((item) => item !== value));
       }
     }
-
     if (name === "salary") {
       if (checked) {
         setSalary([...salary, value]);

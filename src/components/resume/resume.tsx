@@ -29,7 +29,7 @@ function Resume() {
     if (
       !resume.age ||
       !resume.location ||
-      !resume.levelOfEducation ||
+      // !resume.levelOfEducation ||
       !resume.educationalInstitution ||
       !resume.hardSkills ||
       !resume.softSkills
@@ -50,7 +50,6 @@ function Resume() {
       );
       console.log(data);
       navigate("/profileIntern");
-      // navigate("/internship");
     } catch (error) {
       toast.error("Стажировка не создана");
     }

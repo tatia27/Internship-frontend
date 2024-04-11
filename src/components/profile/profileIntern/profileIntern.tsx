@@ -1,32 +1,51 @@
 import { useState, useContext } from "react";
 import iconStudent from "./../../../assets/images/student.png";
-import "./profileStudent.css";
 import Favorite from "../../favorite/favorite";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { useEffect } from "react";
+import "./profileIntern.css";
 import axios from "axios";
 
-function ProfileStudent() {
+type Cv = {
+  age: String | null;
+  location: String;
+  levelOfEducation: String;
+  educationalInstitution: String;
+  hardSkills: String;
+  softSkills: String;
+};
+
+interface IIntern {
+  firstName: String;
+  middleName: String;
+  lastName: String;
+  email: String;
+  role: String;
+  description: String;
+  favorites: [];
+  cv: Cv;
+}
+
+function ProfileIntern() {
+  const [intern, setIntern] = useState<IIntern>();
   let navigate = useNavigate();
-  const { internId } = useParams();
-  const [student, setStudent] = useState<String>();
+  const { id } = useParams();
+
   // const { isAuth } = useContext(UserContext);
   // if (!isAuth) {
   //   return navigate("/login");
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/v1/intern/${internId}`)
+      .get(`http://localhost:8000/v1/intern/${id}`)
       .then((response) => {
-        setStudent(response.data);
+        setIntern(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
-  console.log(student);
 
   return (
     <div className="user-profile">
@@ -44,12 +63,12 @@ function ProfileStudent() {
           <div className="user-profiles__wrapper">
             <div className="user-profiles__student">
               <h2 className="user-profiles__student__title">
-                Чепурная Татьяна Владимировна
+                {`${intern?.lastName} ${intern?.firstName} ${intern?.middleName}`}
               </h2>
               <p className="user-profiles__student__description">Описание</p>
               <div className="user-profiles__student__person-info">
                 <p>Возраст</p>
-                <p>Email</p>
+                <p>{intern?.email}</p>
                 <p>Местоположение</p>
                 <p>Образование</p>
                 <p>Специализация</p>
@@ -71,4 +90,4 @@ function ProfileStudent() {
   );
 }
 
-export default ProfileStudent;
+export default ProfileIntern;

@@ -12,7 +12,7 @@ export const validateEmail = (email: string): boolean => {
 
 type FormInternState = {
   firstName: string;
-  secondName: string;
+  middleName: string;
   lastName: string;
   email: string;
   password: string;
@@ -23,7 +23,7 @@ function RegistrationIntern() {
   let navigate = useNavigate();
   const [form, setForm] = useState<FormInternState>({
     firstName: "",
-    secondName: "",
+    middleName: "",
     lastName: "",
     email: "",
     password: "",
@@ -43,7 +43,7 @@ function RegistrationIntern() {
 
     if (
       !form.firstName ||
-      !form.secondName ||
+      !form.middleName ||
       !form.lastName ||
       !form.email ||
       !form.password
@@ -95,21 +95,21 @@ function RegistrationIntern() {
           <h1>Регистрация стажёра</h1>
           <input
             type="text"
-            name="firstName"
+            name="lastName"
             placeholder="Фамилия"
             className="registartion-intern-input"
             onChange={changeHandler}
           />
           <input
             type="text"
-            name="secondName"
+            name="firstName"
             placeholder="Имя"
             className="registartion-intern-input"
             onChange={changeHandler}
           />
           <input
             type="text"
-            name="lastName"
+            name="middleName"
             placeholder="Отчество"
             className="registartion-intern-input"
             onChange={changeHandler}

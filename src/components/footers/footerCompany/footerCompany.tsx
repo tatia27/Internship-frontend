@@ -10,7 +10,6 @@ function FooterComapny() {
         <div className="footer__nav">
           <div className="footer__left-part">
             <FooterLogo />
-
             <div className="footer__menu">
               <ul>
                 <li>

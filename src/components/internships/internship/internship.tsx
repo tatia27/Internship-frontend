@@ -37,6 +37,8 @@ function Internship() {
       });
   }, []);
 
+  console.log(internship);
+
   return (
     <div className="container">
       <div className="internship">
