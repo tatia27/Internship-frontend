@@ -1,4 +1,3 @@
-import { Link, NavLink } from "react-router-dom";
 import email from "./../../../assets/icons/email.svg";
 import vk from "./../../../assets/icons/vk.svg";
 import "./footerContacts.css";

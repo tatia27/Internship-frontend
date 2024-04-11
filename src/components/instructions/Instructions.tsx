@@ -1,4 +1,5 @@
-import user from "./../../assets/icons/user.svg";
+// import user from "./../../assets/icons/user.svg";
+import user from "./../../assets/icons/addUser.svg";
 import resume from "./../../assets/icons/resume.svg";
 import letter from "./../../assets/icons/letter.svg";
 import "./instructions.css";
@@ -14,7 +15,7 @@ function Instructions() {
               alt="Пользователь"
               className="instructions__block__item__user"
             />
-            <span className="instructions__block__item__text">
+            <span className="instructions__block__item__text-register">
               Зарегистрируйся на сайте
             </span>
           </div>

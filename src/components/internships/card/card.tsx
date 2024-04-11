@@ -1,16 +1,15 @@
 import { useEffect, useState, useContext } from "react";
 import like from "./../../../assets/icons/likeCard.svg";
-import company from "./../../../assets/icons/companyLogo.svg";
+import company from "./../../../assets/icons/companyLogoSmall.svg";
 import location from "./../../../assets/icons/location.svg";
 import "./card.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { Internship } from "../../filter/filter/filter";
-import axios from "axios";
+// import axios from "axios";
 
 function Card(props: Internship) {
   let navigate = useNavigate();
-  const [internships, setInternship] = useState<Internship>();
   const { isAuth } = useContext(UserContext);
 
   const handleClick = () => {
@@ -48,9 +47,7 @@ function Card(props: Internship) {
           <div className="current-card__info">
             <div className="current-card__info__item-small">
               <span>
-                {props.typeOfInternship === "Paid"
-                  ? "Оплачиваемая"
-                  : "Неоплачиваемая"}
+                {props.salary !== null ? "Оплачиваемая" : "Неоплачиваемая"}
               </span>
             </div>
             <div className="current-card__info__item-small">

@@ -1,7 +1,7 @@
-import { Link, NavLink } from "react-router-dom";
-import logo from "./../../../assets/icons/logoFooter.svg";
+import { NavLink } from "react-router-dom";
 import "./footerCompany.css";
 import FooterContacts from "../footerContacts/footerContacts";
+import FooterLogo from "../footerLogo/footerLogo";
 
 function FooterComapny() {
   return (
@@ -9,15 +9,7 @@ function FooterComapny() {
       <div className="container">
         <div className="footer__nav">
           <div className="footer__left-part">
-            <div className="footer__logo">
-              <Link to="/">
-                <img src={logo} alt="Логотип" />
-              </Link>
-              <p className="logo__text">
-                сервис для поиска
-                <br />и организации IT-стажировок
-              </p>
-            </div>
+            <FooterLogo />
 
             <div className="footer__menu">
               <ul>

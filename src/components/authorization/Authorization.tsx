@@ -3,21 +3,19 @@ import "./authorization.css";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
+// import { validateEmail } from "../registration/registrationIntern";
 
-type AuthorizationtState = {
-  email: string;
-  password: string;
-};
+type AuthorizationtState = { email: string; password: string };
 
 function Authorization() {
   let navigate = useNavigate();
-  const [formAuth, setformAuth] = useState<AuthorizationtState>({
+  const [formAuth, setFormAuth] = useState<AuthorizationtState>({
     email: "",
     password: "",
   });
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setformAuth({ ...formAuth, [event.target.name]: event.target.value });
+    setFormAuth({ ...formAuth, [event.target.name]: event.target.value });
   }
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,6 +25,10 @@ function Authorization() {
       toast.info("Заполните все поля формы");
       return;
     }
+    //  else if (validateEmail(formAuth.email) === false) {
+    //   toast.info("Email должен содержать специальные символы @ .");
+    //   return;
+    // }
 
     try {
       const { data } = await axios.post(
@@ -67,7 +69,6 @@ function Authorization() {
           <fieldset>
             <input
               type="email"
-              id="mail"
               name="email"
               placeholder="Email"
               className="authorization-input"
@@ -75,7 +76,6 @@ function Authorization() {
             />
             <input
               type="password"
-              id="password"
               name="password"
               placeholder="Пароль"
               className="authorization-input"

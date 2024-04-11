@@ -12,6 +12,7 @@ type User = {
   role: string;
   name: string;
 };
+
 interface IContext {
   isAuth: Boolean;
   setIsAuth?: Dispatch<SetStateAction<boolean>>;

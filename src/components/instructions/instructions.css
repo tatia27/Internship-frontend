@@ -24,7 +24,7 @@
 }
 
 .instructions__block__item__user {
-  margin-top: 15px;
+  margin-top: 2px;
 }
 
 .instructions__block__item__letter {
@@ -39,4 +39,9 @@ hr {
 .instructions__block__item__text {
   font-family: "Gilroy-semibold";
   margin-top: 20px;
+}
+
+.instructions__block__item__text-register {
+  font-family: "Gilroy-semibold";
+  margin-top: 12px;
 }

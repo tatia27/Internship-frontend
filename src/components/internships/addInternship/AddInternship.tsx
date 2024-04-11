@@ -88,14 +88,12 @@ function AddInternship() {
         >
           <input
             type="text"
-            id="name"
             name="title"
             placeholder="Наименование стажировки"
             className="resume-input"
             onChange={changeInputHandler}
           />
           <select
-            id="education"
             name="focusOfInternship"
             className="resume-input"
             onChange={changeSelectHandler}
@@ -116,7 +114,6 @@ function AddInternship() {
           </select>
           <input
             type="text"
-            id="company"
             name="company"
             placeholder="Компания"
             className="resume-input"
@@ -124,7 +121,6 @@ function AddInternship() {
           />
           <input
             type="text"
-            id="time"
             name="durationOfInternship"
             placeholder="Длительность"
             className="resume-input"
@@ -201,7 +197,6 @@ function AddInternship() {
           </div>
           <input
             type="text"
-            id="skills"
             name="skills"
             placeholder="Навыки"
             className="resume-input"
@@ -209,7 +204,6 @@ function AddInternship() {
           />
           <input
             type="text"
-            id="conditions"
             name="conditions"
             placeholder="Условия"
             className="resume-input"

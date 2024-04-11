@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function Registration() {
   let navigate = useNavigate();
+
   return (
     <section className="registration">
       <div className="container">

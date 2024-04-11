@@ -23,7 +23,6 @@ function HeaderIntern() {
           </div>
         </div>
       </div>
-      <Outlet />
     </header>
   );
 }

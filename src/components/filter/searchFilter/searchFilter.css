@@ -9,7 +9,7 @@
 
 .filter {
   display: flex;
-  padding: 25px;
+  padding: 23px;
   flex-direction: column;
   border-radius: 5px;
   width: 290px;

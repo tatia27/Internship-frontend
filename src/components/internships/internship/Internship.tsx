@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../../context/userContext";
+// import { Internship } from "../../filter/filter/filter";
 
 export type Internship = {
   _id: String;
@@ -38,45 +39,47 @@ function Internship() {
 
   return (
     <div className="container">
-      <div className="intership">
-        <div className="intership__title">
+      <div className="internship">
+        <div className="internship__title">
           <h4>{internship?.title}</h4>
           <h5>{internship?.company}</h5>
         </div>
-        <div className="intership__card-info">
-          <div className="intership__card-info__item">
+        <div className="internship__card-info">
+          <div className="internship__card-info__item">
             <span>
-              {internship?.salary !== 0 ? "Оплачиваеамая" : "Неоплачиваемая"}
+              {internship?.salary !== null ? "Оплачиваемая" : "Неоплачиваемая"}
             </span>
           </div>
-          <div className="intership__card-info__item">
+          <div className="internship__card-info__item">
             <span>
               {internship?.typeOfEmployment === "Full"
                 ? "Полный день"
                 : "Неполный день"}
             </span>
           </div>
-          <div className="intership__card-info__item">
+          <div className="internship__card-info__item">
             <span>
               {internship?.schedule === "Office" ? "В офисе" : "Удалённо"}
             </span>
           </div>
         </div>
-        <div className="intership__time-salary">
-          <div className="intership__time-salary__all">
-            <p>Длительность</p>
-            <span>3 месяца</span>
+        <div className="internship__time-salary">
+          <div className="internship__time-salary__all">
+            <p className="internship__time-salary__all__title">Длительность</p>
+            <span>
+              <span>{internship?.durationOfInternship}</span>
+            </span>
           </div>
-          <div className="intership__time-salary__all">
-            <p>Зарплата</p>
+          <div className="internship__time-salary__all">
+            <p className="internship__time-salary__all__title">Зарплата</p>
             <span>
               {internship?.salary !== 0 ? `${internship?.salary} р.` : "-"}
             </span>
           </div>
         </div>
 
-        <div className="intership__skills">
-          <span>Навыки</span>
+        <div className="internship__skills">
+          <p className="internship__skills__title">Навыки</p>
           <ul>
             <li>Владение Figma;</li>
             <li>Базовые знания Photoshop и Illustrator;</li>
@@ -84,8 +87,8 @@ function Internship() {
           </ul>
         </div>
 
-        <div className="intership__conditions">
-          <span>Условия</span>
+        <div className="internship__conditions">
+          <p className="internship__skills__title">Условия</p>
           <ul>
             <li>Студент очной формы обучения;</li>
             <li>Интерес к сфере UX-исследований;</li>
@@ -95,7 +98,7 @@ function Internship() {
           </ul>
         </div>
         <button
-          className="intership__button"
+          className="internship__button"
           onClick={() => {
             if (!isAuth) {
               navigate("/login");

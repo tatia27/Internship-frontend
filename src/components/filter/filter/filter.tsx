@@ -38,9 +38,9 @@ function Filter() {
   }, []);
 
   return (
-    <div className="internship">
+    <div className="internship-filter">
       <div className="container">
-        <div className="internship__filter">
+        <div className="internship-filter__items">
           <SearchFilter
             currentPage={currentPage}
             internships={internships}
@@ -49,7 +49,6 @@ function Filter() {
           />
           <div>
             {internships.map((item) => {
-              console.log(item);
               return <FullCard key={item._id.toString()} {...item} />;
             })}
           </div>

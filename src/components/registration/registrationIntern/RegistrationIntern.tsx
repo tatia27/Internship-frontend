@@ -74,6 +74,8 @@ function RegistrationIntern() {
         toast.error("Email уже зарегистрирован, используйте другой");
       } else if ((error as AxiosError).response?.status === 401) {
         toast.error("Примите условия соглашения");
+      } else {
+        toast.error("Упс, что-то пошло не так");
       }
     }
   };
@@ -93,7 +95,6 @@ function RegistrationIntern() {
           <h1>Регистрация стажёра</h1>
           <input
             type="text"
-            id="name"
             name="firstName"
             placeholder="Фамилия"
             className="registartion-intern-input"
@@ -101,7 +102,6 @@ function RegistrationIntern() {
           />
           <input
             type="text"
-            id="secondName"
             name="secondName"
             placeholder="Имя"
             className="registartion-intern-input"
@@ -109,7 +109,6 @@ function RegistrationIntern() {
           />
           <input
             type="text"
-            id="lastName"
             name="lastName"
             placeholder="Отчество"
             className="registartion-intern-input"
@@ -117,7 +116,6 @@ function RegistrationIntern() {
           />
           <input
             type="email"
-            id="email"
             name="email"
             placeholder="Email"
             className="registartion-intern-input"
@@ -125,7 +123,6 @@ function RegistrationIntern() {
           />
           <input
             type="password"
-            id="password"
             name="password"
             placeholder="Пароль"
             className="registartion-intern-input"

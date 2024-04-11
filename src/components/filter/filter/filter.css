@@ -1,8 +1,8 @@
-.internship {
+.internship-filter {
   padding: 40px;
 }
 
-.internship__filter {
+.internship-filter__items {
   display: flex;
   column-gap: 20px;
 }

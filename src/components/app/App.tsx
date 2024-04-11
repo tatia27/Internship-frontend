@@ -32,6 +32,7 @@ function App() {
   const [isStudent, setStudent] = useState(false);
   const [isCompany, setComapny] = useState(false);
   const location = useLocation();
+
   React.useEffect(() => {
     setComapny(location.pathname.includes("/profileCompany"));
   }, [location]);

@@ -1,47 +1,15 @@
-import currentCompany from "./../../assets/CurrentCompany.svg";
 import like from "./../../../assets/icons/like.svg";
 import companyLogo from "../../../assets/icons/companyLogo.svg";
 import location from "./../../../assets/icons/location.svg";
 import "./fullCard.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
-// import axios from "axios";
-// import { Internship } from "../../internships/internship/Internship";
+import { useContext } from "react";
 import { UserContext } from "../../../context/userContext";
-// import { Internship } from "./../../filter/Filter/Internship";
-
-export type Internship = {
-  _id: String;
-  title: String;
-  company: String;
-  focusOfInternship: String;
-  typeOfInternship: String;
-  schedule: String;
-  typeOfEmployment: String;
-  durationOfInternship: String;
-  salary: Number;
-  skills: String;
-  conditions: String;
-  onClick: () => void;
-};
+import { Internship } from "../internship/internship";
 
 function FullCard(props: Internship) {
   const { isAuth } = useContext(UserContext);
   let navigate = useNavigate();
-  // const [internships, setInternship] = useState<Internship>();
-  // let navigate = useNavigate();
-  // const { id } = useParams();
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8000/v1/internships/`)
-  //     .then((response) => {
-  //       setInternship(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   const handleClick = () => {
     navigate(`/internships/${props._id}`);
@@ -80,9 +48,7 @@ function FullCard(props: Internship) {
           <div className="current-card__info">
             <div className="current-card__info__item">
               <span>
-                {props.typeOfInternship === "Paid"
-                  ? "Оплачиваемая"
-                  : "Неоплачиваемая"}
+                {props.salary !== null ? "Оплачиваемая" : "Неоплачиваемая"}
               </span>
             </div>
             <div className="current-card__info__item">

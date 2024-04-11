@@ -28,7 +28,6 @@ function Header() {
           </div>
         </div>
       </div>
-      <Outlet />
     </header>
   );
 }

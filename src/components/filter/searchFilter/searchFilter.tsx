@@ -20,20 +20,46 @@ function SearchFilter({
   const [focusOfInternship, setFocusOfInternship] = useState<String[]>([]);
   const [shedule, setShedule] = useState<String[]>([]);
   const [typeOfEmployment, setTypeOfEmployment] = useState<String[]>([]);
+  const [salary, setSalary] = useState<String[]>([]);
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    if (event.target.name === "focusOfInternship") {
-      setFocusOfInternship([...focusOfInternship, event.target.value]);
+    const { name, value, checked } = event.target;
+    if (name === "focusOfInternship") {
+      if (checked) {
+        setFocusOfInternship([...focusOfInternship, value]);
+      } else {
+        setFocusOfInternship(
+          focusOfInternship.filter((item) => item !== value)
+        );
+      }
     }
-    if (event.target.name === "schedule") {
-      setShedule([...shedule, event.target.value]);
+
+    if (name === "schedule") {
+      if (checked) {
+        setShedule([...shedule, value]);
+      } else {
+        setShedule(shedule.filter((item) => item !== value));
+      }
     }
-    if (event.target.name === "typeOfEmployment") {
-      setTypeOfEmployment([...typeOfEmployment, event.target.value]);
+
+    if (name === "typeOfEmployment") {
+      if (checked) {
+        setTypeOfEmployment([...typeOfEmployment, value]);
+      } else {
+        setTypeOfEmployment(typeOfEmployment.filter((item) => item !== value));
+      }
+    }
+
+    if (name === "salary") {
+      if (checked) {
+        setSalary([...salary, value]);
+      } else {
+        setSalary(salary.filter((item) => item !== value));
+      }
     }
   }
 
-  const url = `http://localhost:8000/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}`;
+  const url = `http://localhost:8000/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
 
   useEffect(() => {
     axios
@@ -84,7 +110,12 @@ function SearchFilter({
           <label>Backend-разработчик</label>
         </div>
         <div className="checkbox-filter">
-          <input type="checkbox" name="mobile" value="Mobile developer" />
+          <input
+            type="checkbox"
+            name="focusOfInternship"
+            value="Mobile developer"
+            onChange={changeHandler}
+          />
           <label>Мобильный разработчик</label>
         </div>
         <div className="checkbox-filter">
@@ -165,7 +196,7 @@ function SearchFilter({
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="paid"
+            name="salary"
             value="paid"
             onChange={changeHandler}
           />
@@ -174,7 +205,7 @@ function SearchFilter({
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="unpaid"
+            name="salary"
             value="unpaid"
             onChange={changeHandler}
           />

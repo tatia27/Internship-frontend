@@ -44,7 +44,7 @@ function RegistrationCompany() {
       toast.info("Минимальная длина пароля 8 символов");
       return;
     } else if (validateEmail(form.email) === false) {
-      toast.info("Email должен содержать специальные символы @ ,");
+      toast.info("Email должен содержать специальные символы @ .");
       return;
     }
 
@@ -64,6 +64,8 @@ function RegistrationCompany() {
         toast.error("Email уже зарегистрирован, используйте другой");
       } else if ((error as AxiosError).response?.status === 401) {
         toast.error("Примите условия соглашения");
+      } else {
+        toast.error("Упс, что-то пошло не так");
       }
     }
   };
@@ -83,7 +85,6 @@ function RegistrationCompany() {
           <h1>Регистрация компании</h1>
           <input
             type="text"
-            id="name"
             name="name"
             placeholder="Наименование компании"
             className="registration__input"
@@ -91,7 +92,6 @@ function RegistrationCompany() {
           />
           <input
             type="email"
-            id="mail"
             name="email"
             placeholder="Email"
             className="registration__input"
@@ -99,7 +99,6 @@ function RegistrationCompany() {
           />
           <input
             type="password"
-            id="password"
             name="password"
             placeholder="Пароль"
             className="registration__input"
