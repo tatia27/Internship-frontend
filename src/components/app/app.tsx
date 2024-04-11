@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./App.css";
+import "./app.css";
 import Header from "../headers/header/header";
 import HeaderIntern from "../headers/headerIntern/headerIntern";
 import HeaderCompany from "../headers/headerCompany/headerCompany";
