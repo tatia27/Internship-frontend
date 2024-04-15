@@ -1,20 +1,11 @@
-import { useState, useContext } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import iconStudent from "./../../../assets/images/student.png";
 import Favorite from "../../favorite/favorite";
-import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
-import { useEffect } from "react";
+import { Cv } from "../../resume/resume";
 import "./profileIntern.css";
 import axios from "axios";
-
-type Cv = {
-  age: String | null;
-  location: String;
-  levelOfEducation: String;
-  educationalInstitution: String;
-  hardSkills: String;
-  softSkills: String;
-};
 
 interface IIntern {
   firstName: String;
@@ -38,7 +29,7 @@ function ProfileIntern() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/v1/intern/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/v1/intern/${id}`)
       .then((response) => {
         setIntern(response.data);
       })
@@ -53,30 +44,42 @@ function ProfileIntern() {
         <div className="user-profiles__info">
           <div>
             <img src={iconStudent} alt="Иконка пользователя"></img>
-            <button
-              className="button-resume"
-              onClick={() => navigate("/profileIntern/resume")}
-            >
-              Загрузить резюме
-            </button>
           </div>
           <div className="user-profiles__wrapper">
             <div className="user-profiles__student">
               <h2 className="user-profiles__student__title">
-                {`${intern?.lastName} ${intern?.firstName} ${intern?.middleName}`}
+                {`${
+                  intern?.lastName !== undefined ? intern?.lastName : "Фамилия"
+                } ${
+                  intern?.firstName !== undefined ? intern?.firstName : "Имя"
+                } 
+                ${
+                  intern?.middleName !== undefined
+                    ? intern?.middleName
+                    : "Отчество"
+                }`}
               </h2>
-              <p className="user-profiles__student__description">Описание</p>
               <div className="user-profiles__student__person-info">
-                <p>Возраст</p>
-                <p>{intern?.email}</p>
-                <p>Местоположение</p>
-                <p>Образование</p>
-                <p>Специализация</p>
+                <p>
+                  Возраст: {intern?.cv.age !== null ? `${intern?.cv.age}` : ""}
+                </p>
+                <p>Образование: {intern?.cv.levelOfEducation}</p>
+                <p>Специализация: {intern?.cv.specialization}</p>
+                <p>Местоположение: {intern?.cv.location}</p>
+                <p>Email: {intern?.email}</p>
               </div>
             </div>
           </div>
         </div>
         <div className="user-profile__skills">
+          <div>
+            <button
+              className="button-resume"
+              onClick={() => navigate(`/profileIntern/${id}/resume`)}
+            >
+              Загрузить резюме
+            </button>
+          </div>
           <div className="skills">
             <h4 className="skills__hard-soft">Hard Skills</h4>
           </div>

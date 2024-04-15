@@ -1,4 +1,3 @@
-// import user from "./../../assets/icons/user.svg";
 import user from "./../../assets/icons/addUser.svg";
 import resume from "./../../assets/icons/resume.svg";
 import letter from "./../../assets/icons/letter.svg";

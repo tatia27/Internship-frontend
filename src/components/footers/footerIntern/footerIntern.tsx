@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import "./footerIntern.css";
 import FooterContacts from "../footerContacts/footerContacts";
 import FooterLogo from "../footerLogo/footerLogo";
+import "./footerIntern.css";
 
 function Footer() {
   return (

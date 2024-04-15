@@ -1,8 +1,8 @@
-import "./internship.css";
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { UserContext } from "../../../context/userContext";
+import axios from "axios";
+import "./internship.css";
 // import { Internship } from "../../filter/filter/filter";
 
 export type Internship = {
@@ -28,7 +28,7 @@ function Internship() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/v1/internships/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/v1/internships/${id}`)
       .then((response) => {
         setInternship(response.data);
       })
@@ -37,7 +37,7 @@ function Internship() {
       });
   }, []);
 
-  console.log(internship);
+  console.log(process.env.API_URL);
 
   return (
     <div className="container">

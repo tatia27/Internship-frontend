@@ -1,10 +1,10 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./registrationCompany.css";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import { validateEmail } from "../registrationIntern/registrationIntern";
+import "./registrationCompany.css";
 // import { UserContext } from "../../context/userContext";
 
 type FormCompanyState = {
@@ -50,7 +50,7 @@ function RegistrationCompany() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/v1/company/",
+        `${process.env.REACT_APP_API_URL}/v1/company/`,
         form,
         {
           headers: {
@@ -58,7 +58,7 @@ function RegistrationCompany() {
           },
         }
       );
-      navigate("/profileCompany");
+      navigate("/");
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
         toast.error("Email уже зарегистрирован, используйте другой");

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { Internship } from "../filter/filter";
 import "../searchFilter/searchFilter.css";
 import axios from "axios";
-import { Internship } from "../filter/filter";
-import { toast } from "react-toastify";
 
 interface SearchFilterProps {
   currentPage: number;
@@ -57,7 +57,9 @@ function SearchFilter({
     }
   }
 
-  const url = `http://localhost:8000/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
+  const url = `${
+    process.env.REACT_APP_API_URL
+  }/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
 
   useEffect(() => {
     axios

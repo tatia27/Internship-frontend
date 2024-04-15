@@ -1,6 +1,5 @@
-import { useState, useContext } from "react";
-import "./main.css";
 import { useNavigate } from "react-router-dom";
+import "./main.css";
 
 function Main() {
   let navigate = useNavigate();

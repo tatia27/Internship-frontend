@@ -1,10 +1,10 @@
-import "./popular.css";
 import arrow from "./../../assets/icons/arrow.svg";
-import Card from "../internships/card/card";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Card from "../internships/card/card";
 import { Internship } from "../../components/filter/filter/filter";
 import axios from "axios";
+import "./popular.css";
 
 function Popular() {
   let navigate = useNavigate();
@@ -12,7 +12,7 @@ function Popular() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/v1/internships/popular")
+      .get(`${process.env.REACT_APP_API_URL}/v1/internships/popular`)
       .then((response) => {
         setInternships(response.data);
       })

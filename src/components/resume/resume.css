@@ -1,8 +1,9 @@
 .resume-title {
   font-size: 32px;
-  font-weight: 600;
-  margin-top: 40px;
-  margin-bottom: 50px;
+  margin: 40px 0;
+  text-align: center;
+  font-family: "Gilroy-semibold";
+  color: #404040;
 }
 
 .registration-intern {
@@ -16,6 +17,8 @@
   background-color: var(--text-color);
   border-radius: 10px;
   border: 1px solid #f3f3f3;
+  margin: auto;
+  margin-bottom: 40px;
 }
 
 .registration-intern__button {
@@ -34,13 +37,13 @@
   cursor: pointer;
 }
 
-h1 {
+/* h1 {
   margin: 0 0 30px 0;
   text-align: center;
   font-size: 22px;
   font-weight: 700;
   color: #404040;
-}
+} */
 
 .resume-input,
 textarea,

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import "./footerCompany.css";
 import FooterContacts from "../footerContacts/footerContacts";
 import FooterLogo from "../footerLogo/footerLogo";
+import "./footerCompany.css";
 
 function FooterComapny() {
   return (
@@ -21,8 +21,8 @@ function FooterComapny() {
               </ul>
             </div>
           </div>
+          <FooterContacts />
         </div>
-        <FooterContacts />
         <p className="footer_info">© 2024 Internship portal</p>
       </div>
     </footer>

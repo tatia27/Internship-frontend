@@ -1,12 +1,11 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import like from "./../../../assets/icons/likeCard.svg";
 import company from "./../../../assets/icons/companyLogoSmall.svg";
 import location from "./../../../assets/icons/location.svg";
-import "./card.css";
-import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { Internship } from "../../filter/filter/filter";
-// import axios from "axios";
+import "./card.css";
 
 function Card(props: Internship) {
   let navigate = useNavigate();

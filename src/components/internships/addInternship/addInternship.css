@@ -1,9 +1,7 @@
-.resume-title {
+.internship-title {
   font-size: 32px;
-  font-weight: 600;
-  margin-top: 40px;
-  margin-bottom: 50px;
-  font-family: "Gilroy-medium";
+  margin: 40px 0;
+  font-family: "Gilroy-semibold";
 }
 
 .registration-intern {

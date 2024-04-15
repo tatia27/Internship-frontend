@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import FullCard from "../../internships/fullCard/fullCard";
 import axios from "axios";
 import SearchFilter from "../searchFilter/searchFilter";
-import "../filter/filter.css";
 import Pagination from "../pagination/pagination";
+import "../filter/filter.css";
 
 export interface Internship {
   _id: string;
@@ -27,7 +27,9 @@ function Filter() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/v1/internships?page=${currentPage}`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/v1/internships?page=${currentPage}`
+      )
       .then((response) => {
         setInternships(response.data.internships);
         setTotalDocuments(response.data.numberOfPages);

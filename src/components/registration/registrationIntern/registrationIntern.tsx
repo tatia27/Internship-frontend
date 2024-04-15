@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./registrationIntern.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
+import "./registrationIntern.css";
 
 export const validateEmail = (email: string): boolean => {
   const regExp = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]/g;
@@ -60,7 +60,7 @@ function RegistrationIntern() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/v1/intern/",
+        `${process.env.REACT_APP_API_URL}/v1/intern/`,
         form,
         {
           headers: {
@@ -68,7 +68,7 @@ function RegistrationIntern() {
           },
         }
       );
-      navigate("/profileIntern");
+      navigate("/");
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
         toast.error("Email уже зарегистрирован, используйте другой");

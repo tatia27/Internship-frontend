@@ -1,9 +1,8 @@
 import { useState } from "react";
-import "./addInternship.css";
 import { useNavigate } from "react-router-dom";
-import { Internship } from "../../filter/filter/filter";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
+import "./addInternship.css";
 
 type InternshipForm = {
   title: String;
@@ -57,7 +56,7 @@ function AddInternship() {
     }
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/v1/internships/",
+        `${process.env.REACT_APP_API_URL}/v1/internships/`,
         internship,
         {
           headers: {
@@ -80,7 +79,7 @@ function AddInternship() {
   return (
     <div className="resume">
       <div className="container">
-        <h1 className="resume-title">Информация о стажировке</h1>
+        <h1 className="internship-title">Информация о стажировке</h1>
         <form
           method="post"
           className="resume-internship__form"

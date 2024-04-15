@@ -1,11 +1,11 @@
-import like from "./../../../assets/icons/like.svg";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import companyLogo from "../../../assets/icons/companyLogo.svg";
 import location from "./../../../assets/icons/location.svg";
-import "./fullCard.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 import { Internship } from "../internship/internship";
+import ActionForIntern from "../actionForIntern/actionForIntern";
+import "./fullCard.css";
 
 function FullCard(props: Internship) {
   const { isAuth } = useContext(UserContext);
@@ -24,19 +24,7 @@ function FullCard(props: Internship) {
               <img src={companyLogo} alt="Компания" />
               <h4>{props.company}</h4>
             </div>
-            <div className="full-current-card__top__action">
-              <img src={like} alt="Избранное" />
-              <button
-                className="full-current-card__top__button-respond"
-                onClick={() => {
-                  if (!isAuth) {
-                    navigate("/login");
-                  }
-                }}
-              >
-                Откликнуться
-              </button>
-            </div>
+            <ActionForIntern />
           </div>
         </div>
         <div>

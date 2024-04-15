@@ -1,0 +1,13 @@
+.full-current-card__top__action {
+  display: flex;
+  column-gap: 25px;
+}
+
+.full-current-card__top__button-respond {
+  background-color: var(--primary-color);
+  padding: 5px 36px;
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}

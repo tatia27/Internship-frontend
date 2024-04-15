@@ -39,15 +39,6 @@ span {
   font-weight: normal;
 }
 
-.full-current-card__top__button-respond {
-  background-color: var(--primary-color);
-  padding: 5px 36px;
-  color: var(--text-color);
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
 .full-current-card__top {
   display: flex;
   justify-content: space-between;
@@ -58,11 +49,6 @@ span {
 .full-current-card__top h4 {
   font-family: "Gilroy-bold";
   font-size: 14px;
-}
-
-.full-current-card__top__action {
-  display: flex;
-  column-gap: 25px;
 }
 
 .current-card__top__logo {

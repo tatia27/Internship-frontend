@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./authorization.css";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
+import "./authorization.css";
 // import { validateEmail } from "../registration/registrationIntern";
 
 type AuthorizationtState = { email: string; password: string };
@@ -32,7 +32,7 @@ function Authorization() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/v1/auth/login",
+        `${process.env.REACT_APP_API_URL}/v1/auth/login`,
         formAuth,
         {
           headers: {

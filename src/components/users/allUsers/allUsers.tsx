@@ -1,7 +1,6 @@
-import React from "react";
 import currentCompany from "./../../assets/icons/currentCompany.svg";
-import "./allUsers.css";
 import User from "../user/user";
+import "./allUsers.css";
 
 function AllUsers() {
   return (

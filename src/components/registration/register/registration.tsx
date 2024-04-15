@@ -1,5 +1,5 @@
-import "./registration.css";
 import { useNavigate } from "react-router-dom";
+import "./registration.css";
 
 function Registration() {
   let navigate = useNavigate();
@@ -13,7 +13,7 @@ function Registration() {
             <h3>Поиск стажировки</h3>
             <button
               className="registration__button"
-              onClick={() => navigate("/registration/registationIntern")}
+              onClick={() => navigate("/registration/registation-intern")}
             >
               Продолжить как стажёр
             </button>
@@ -22,7 +22,7 @@ function Registration() {
             <h3>Поиск сотрудников</h3>
             <button
               className="registration__button"
-              onClick={() => navigate("/registration/registationCompany")}
+              onClick={() => navigate("/registration/registation-company")}
             >
               Продолжить как компания
             </button>

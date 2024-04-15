@@ -1,45 +1,49 @@
-import "./resume.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import axios, { AxiosError } from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import axios, { AxiosError } from "axios";
+import "./resume.css";
 
-type ResumeForm = {
+export type Cv = {
   age: Number | null;
   location: String;
   levelOfEducation: String;
   educationalInstitution: String;
+  specialization: String;
   hardSkills: String;
   softSkills: String;
 };
+
 function Resume() {
   let navigate = useNavigate();
-  const { internId } = useParams();
-  const [resume, setResume] = useState<ResumeForm>({
+  const { id } = useParams();
+  const [resume, setResume] = useState<Cv>({
     age: null,
     location: "",
-    levelOfEducation: "",
+    levelOfEducation: "Bachelor",
     educationalInstitution: "",
+    specialization: "",
     hardSkills: "",
     softSkills: "",
   });
 
   const handleResume = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (
-      !resume.age ||
-      !resume.location ||
-      // !resume.levelOfEducation ||
-      !resume.educationalInstitution ||
-      !resume.hardSkills ||
-      !resume.softSkills
-    ) {
-      toast.info("Заполните все поля формы");
-      return;
-    }
     try {
-      const { data } = await axios.patch(
-        `http://localhost:8000/v1/intern/${internId}/resume`,
+      if (
+        !resume.age ||
+        !resume.location ||
+        !resume.levelOfEducation ||
+        !resume.educationalInstitution ||
+        !resume.specialization ||
+        !resume.hardSkills ||
+        !resume.softSkills
+      ) {
+        toast.info("Заполните все поля формы");
+        return;
+      }
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/v1/intern/${id}/resume`,
         resume,
         {
           headers: {
@@ -48,12 +52,12 @@ function Resume() {
           withCredentials: true,
         }
       );
-      console.log(data);
-      navigate("/profileIntern");
+      navigate(`/profileIntern/${id}`);
     } catch (error) {
       toast.error("Стажировка не создана");
     }
   };
+
   function changeInputHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setResume({ ...resume, [event.target.name]: event.target.value });
   }
@@ -101,6 +105,13 @@ function Resume() {
             type="text"
             name="educationalInstitution"
             placeholder="Учебное заведение"
+            className="resume-input"
+            onChange={changeInputHandler}
+          />
+          <input
+            type="text"
+            name="specialization"
+            placeholder="Специализация"
             className="resume-input"
             onChange={changeInputHandler}
           />

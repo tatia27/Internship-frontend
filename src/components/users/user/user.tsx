@@ -1,5 +1,5 @@
-import "./user.css";
 import user from "./../../assets/icons/user.svg";
+import "./user.css";
 
 function User() {
   return (

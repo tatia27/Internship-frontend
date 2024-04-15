@@ -1,7 +1,7 @@
-import "./favorite.css";
 import left from "./../../assets/icons/left.svg";
 import right from "./../../assets/icons/right.svg";
 import Card from "../internships/card/card";
+import "./favorite.css";
 
 function Favorite() {
   return (
