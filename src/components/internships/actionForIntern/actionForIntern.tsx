@@ -7,13 +7,15 @@ import "./actionForIntern.css";
 function ActionForIntern() {
   const { isAuth } = useContext(UserContext);
   let navigate = useNavigate();
+
   return (
     <div className="full-current-card__top__action">
       <img src={like} alt="Избранное" />
       <button
         className="full-current-card__top__button-respond"
-        onClick={() => {
+        onClick={(event) => {
           if (!isAuth) {
+            event.stopPropagation();
             navigate("/login");
           }
         }}

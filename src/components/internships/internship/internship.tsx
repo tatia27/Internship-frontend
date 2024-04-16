@@ -37,8 +37,6 @@ function Internship() {
       });
   }, []);
 
-  console.log(process.env.API_URL);
-
   return (
     <div className="container">
       <div className="internship">

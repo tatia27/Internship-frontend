@@ -16,7 +16,7 @@ function Card(props: Internship) {
   };
 
   return (
-    <div className="current-card" onClick={handleClick}>
+    <div className="current-card">
       <div className="current-card__text">
         <div className="current-card__top">
           <div className="current-card__top__logo">
@@ -33,9 +33,7 @@ function Card(props: Internship) {
             src={like}
             alt="Избранное"
             onClick={() => {
-              if (!isAuth) {
-                navigate("/login");
-              }
+              console.log("Добавление в избранное");
             }}
           />
         </div>
@@ -64,13 +62,18 @@ function Card(props: Internship) {
           </div>
         </div>
         <div className="current-card__button">
-          <button className="button-respond" onClick={() => navigate("/login")}>
+          <button
+            className="button-respond"
+            onClick={(event) => {
+              if (!isAuth) {
+                event.stopPropagation();
+                navigate("/login");
+              }
+            }}
+          >
             Откликнуться
           </button>
-          <button
-            className="button-more"
-            onClick={() => navigate("/internships/")}
-          >
+          <button className="button-more" onClick={handleClick}>
             Подробнее
           </button>
         </div>

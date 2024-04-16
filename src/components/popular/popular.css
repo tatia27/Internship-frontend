@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
-  margin: 35px 0;
+  margin: 50px 0;
 }
 
 .popular__title h3 {
