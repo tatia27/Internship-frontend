@@ -4,8 +4,8 @@ import { CompanyContext } from "../../../context/companyContext";
 import currentCompany from "./../../../assets/icons/currentCompany.svg";
 import FullCard from "../../internships/fullCard/fullCard";
 import { Internship } from "../../internships/internship/internship";
+import axios, { AxiosError } from "axios";
 import "./profileCompany.css";
-import axios from "axios";
 
 function ProfileCompany() {
   let navigate = useNavigate();
@@ -23,7 +23,9 @@ function ProfileCompany() {
         });
       })
       .catch((error) => {
-        console.log(error);
+        if ((error as AxiosError).response?.status === 404) {
+          navigate('/profile-company/error');
+        }
       });
   }, [company, id, setCompany]);
 

@@ -14,8 +14,13 @@ function HeaderIntern() {
           <div className="header__nav__intern">
             <ul>
               <li>
-                <NavLink to="/internships" className="header__nav__item">
+                <NavLink to="/profile-intern/:id/internships" className="header__nav__item">
                   Стажировки
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/`} className="header__nav__item">
+                  Выйти
                 </NavLink>
               </li>
             </ul>

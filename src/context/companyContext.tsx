@@ -45,6 +45,6 @@ export function CompanyContextProvider({
   );
 
   return (
-    <CompanyContext.Provider value={value}>s{children}</CompanyContext.Provider>
+    <CompanyContext.Provider value={value}>{children}</CompanyContext.Provider>
   );
 }

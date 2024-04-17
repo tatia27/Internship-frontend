@@ -4,8 +4,8 @@ import iconStudent from "./../../../assets/images/student.png";
 import Favorite from "../../favorite/favorite";
 import { UserContext } from "../../../context/userContext";
 import { Cv } from "../../resume/resume";
+import axios, { AxiosError } from "axios";
 import "./profileIntern.css";
-import axios from "axios";
 
 interface IIntern {
   firstName: String;
@@ -34,6 +34,9 @@ function ProfileIntern() {
         setIntern(response.data);
       })
       .catch((error) => {
+        if ((error as AxiosError).response?.status === 404) {
+          navigate("/profile-intern/error");
+        }
         console.log(error);
       });
   }, []);
@@ -75,7 +78,7 @@ function ProfileIntern() {
           <div>
             <button
               className="button-resume"
-              onClick={() => navigate(`/profileIntern/${id}/resume`)}
+              onClick={() => navigate(`/profile-intern/${id}/resume`)}
             >
               Загрузить резюме
             </button>

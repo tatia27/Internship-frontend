@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
 import "./addInternship.css";
@@ -11,13 +11,14 @@ type InternshipForm = {
   schedule: String;
   typeOfEmployment: String;
   durationOfInternship: String;
-  salary: Number;
+  salary: Number | null;
   skills: String;
   conditions: String;
 };
 
 function AddInternship() {
   let navigate = useNavigate();
+  const { id } = useParams();
   const [internship, setInternship] = useState<InternshipForm>({
     title: "",
     company: "",
@@ -25,7 +26,7 @@ function AddInternship() {
     schedule: "",
     typeOfEmployment: "",
     durationOfInternship: "",
-    salary: 0,
+    salary: null,
     skills: "",
     conditions: "",
   });
@@ -56,7 +57,7 @@ function AddInternship() {
     }
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/v1/internships/`,
+        `${process.env.REACT_APP_API_URL}/v1/internships/${id}`,
         internship,
         {
           headers: {
@@ -66,7 +67,7 @@ function AddInternship() {
         }
       );
       console.log(data);
-      navigate("/internship/" + data.id);
+      navigate(`/profile-company/${id}`);
     } catch (error) {
       toast.error("Стажировка не создана");
     }

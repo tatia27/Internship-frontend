@@ -1,0 +1,42 @@
+.error__wrapper {
+  display: flex;
+  height: 410px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-message {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.error-button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.error-button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.error__wrapper__title {
+  font-size: 100px;
+  color: var(--primary-color);
+  font-family: "Gilroy-medium";
+}
+
+.error__wrapper__info {
+  font-size: 22px;
+  font-family: "Gilroy-semibold";
+  color: #363232;
+}
+
+.link {
+  color: var(--primary-color);
+}

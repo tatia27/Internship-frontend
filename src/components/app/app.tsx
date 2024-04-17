@@ -21,6 +21,7 @@ import Resume from "../resume/resume";
 import Authorization from "../authorization/authorization";
 import AddInternship from "../internships/addInternship/addInternship";
 import CompanyInfo from "../profile/companyInfo/companyInfo";
+import Error from "../error/error";
 import { CompanyContextProvider } from "../../context/companyContext";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.css";
@@ -32,10 +33,10 @@ function App() {
   const location = useLocation();
 
   React.useEffect(() => {
-    setComapny(location.pathname.includes("/profileCompany"));
+    setComapny(location.pathname.includes("/profile-company"));
   }, [location]);
   React.useEffect(() => {
-    setStudent(location.pathname.includes("/profileIntern"));
+    setStudent(location.pathname.includes("/profile-intern"));
   }, [location]);
 
   const renderHeader = () => {
@@ -110,25 +111,54 @@ function App() {
           element={<Authorization />}
         />
 
-        <Route path="/profileIntern/:id/resume" element={<Resume />} />
-        <Route path="/profileIntern/:id" element={<ProfileStudent />} />
+        <Route path="/profile-intern/:id" element={<ProfileStudent />} />
+        <Route path="/profile-intern/:id/resume" element={<Resume />} />
+        <Route path="/profile-intern/:id/internships" element={<Filter />} />
+        <Route path="/profile-intern/error" element={<Error />} />
+        <Route path="/profile-intern" element={<Error />} />
 
-        <Route path="/profileCompany" element={<ProfileCompany />} />
+        <Route path="/profile-company" element={<Error />} />
         <Route
-          path="/profileCompany/:id"
+          path="/profile-company/:id"
           element={
             <CompanyContextProvider>
               <ProfileCompany />
+              {/* <HeaderCompany /> */}
             </CompanyContextProvider>
           }
         />
         <Route
-          path="/profileCompany/:id/company-info"
+          path="/profile-company/:id/internships"
+          element={
+            <CompanyContextProvider>
+              <Filter />
+              {/* <HeaderCompany /> */}
+            </CompanyContextProvider>
+          }
+        />
+        <Route
+          path="/profile-company/:id/add-internship"
+          element={
+            <CompanyContextProvider>
+              <AddInternship />
+            </CompanyContextProvider>
+          }
+        />
+        <Route
+          path="/profile-company/:id/company-info"
           element={
             <CompanyContextProvider>
               <CompanyInfo />
             </CompanyContextProvider>
+          }/>
+         <Route
+          path="/profile-company/error"
+          element={
+            <CompanyContextProvider>
+              <Error />
+            </CompanyContextProvider>
           }
+          
         />
       </Routes>
       {renderFooter()}

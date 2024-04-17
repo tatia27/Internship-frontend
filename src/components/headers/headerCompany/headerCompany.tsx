@@ -1,9 +1,13 @@
-import { Link, Outlet, NavLink } from "react-router-dom";
+import { Link, Outlet, NavLink, useParams } from "react-router-dom";
 import logo from "./../../../assets/icons/logo.svg";
 import profile from "./../../../assets/icons/profileHeader.svg";
 import "./headerCompany.css";
 
-function Header() {
+function HeaderCompany() {
+  const { id } = useParams();
+
+  // console.log(id)
+
   return (
     <header className="header">
       <div className="container">
@@ -14,13 +18,24 @@ function Header() {
           <div className="header__nav__company">
             <ul>
               <li>
-                <NavLink to="/internships" className="header__nav__item">
+                <NavLink
+                  to={`/profile-company/${id}/add-internship`}
+                  className="header__nav__item"
+                >
+                  Разместить стажировку
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={`/profile-company/${id}/internships`}
+                  className="header__nav__item"
+                >
                   Стажировки
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/addInternship" className="header__nav__item">
-                  Разместить стажировку
+                <NavLink to={`/`} className="header__nav__item">
+                  Выйти
                 </NavLink>
               </li>
             </ul>
@@ -32,4 +47,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderCompany;

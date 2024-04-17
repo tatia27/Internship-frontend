@@ -5,6 +5,7 @@ import location from "./../../../assets/icons/location.svg";
 import { UserContext } from "../../../context/userContext";
 import { Internship } from "../internship/internship";
 import ActionForIntern from "../actionForIntern/actionForIntern";
+import ActionForCompany from "../actionForCompany/actionForCompany";
 import "./fullCard.css";
 
 function FullCard(props: Internship) {
@@ -25,6 +26,7 @@ function FullCard(props: Internship) {
               <h4>{props.company}</h4>
             </div>
             <ActionForIntern />
+            {/* <ActionForCompany /> */}
           </div>
         </div>
         <div>
