@@ -112,7 +112,7 @@ function SearchFilter({
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="focusOfInternship"
+            name="focusOfInternship2"
             value="Mobile developer"
             onChange={changeHandler}
           />

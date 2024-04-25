@@ -15,6 +15,9 @@ function Footer() {
                 <li>
                   <NavLink to="/internships">Стажировки</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/">Выйти</NavLink>
+                </li>
               </ul>
             </div>
           </div>

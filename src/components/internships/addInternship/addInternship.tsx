@@ -67,7 +67,7 @@ function AddInternship() {
         }
       );
       console.log(data);
-      navigate(`/profile-company/${id}`);
+      navigate(`/companies/${id}`);
     } catch (error) {
       toast.error("Стажировка не создана");
     }

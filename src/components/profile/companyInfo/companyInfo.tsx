@@ -32,7 +32,7 @@ function CompanyInfo() {
           withCredentials: true,
         }
       );
-      navigate(`/profileCompany/${id}`);
+      navigate(`/companies/${id}`);
     } catch (error) {
       toast.error("Стажировка не создана");
     }

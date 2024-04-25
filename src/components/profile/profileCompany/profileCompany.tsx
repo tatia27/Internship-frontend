@@ -1,21 +1,32 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
-import currentCompany from "./../../../assets/icons/currentCompany.svg";
+import currentCompany from "./../../../assets/images/student.png";
 import FullCard from "../../internships/fullCard/fullCard";
 import { Internship } from "../../internships/internship/internship";
 import axios, { AxiosError } from "axios";
+import { UserContext } from "../../../context/userContext";
 import "./profileCompany.css";
 
 function ProfileCompany() {
   let navigate = useNavigate();
   const { id } = useParams();
   const { company, setCompany } = useContext(CompanyContext);
+  const { isAuth } = useContext(UserContext);
   const [activeInternships, setActiveInternships] = useState<Internship[]>([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
     axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/company/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/v1/company/${id}`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setCompany({
           name: response.data.name,
@@ -24,10 +35,10 @@ function ProfileCompany() {
       })
       .catch((error) => {
         if ((error as AxiosError).response?.status === 404) {
-          navigate('/profile-company/error');
+          navigate("/companies/error");
         }
       });
-  }, [company, id, setCompany]);
+  }, [id]);
 
   useEffect(() => {
     axios
@@ -38,7 +49,13 @@ function ProfileCompany() {
       .catch((error) => {
         console.log(error);
       });
-  }, [activeInternships, id]);
+  }, [activeInternships]);
+
+  console.log(activeInternships);
+  // if (!isAuth || (user && user.role !== "company"))
+  // if (!isAuth) {
+  //   navigate("/login");
+  // }
 
   return (
     <div className="user-profile">
@@ -60,7 +77,7 @@ function ProfileCompany() {
           <div>
             <button
               className="button-resume"
-              onClick={() => navigate(`/profileCompany/${id}/company-info`)}
+              onClick={() => navigate(`/companies/${id}/company-info`)}
             >
               Добавить информацию
             </button>

@@ -1,9 +1,10 @@
-import { Link, Outlet, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import profile from "./../../../assets/icons/profileHeader.svg";
 import logo from "./../../../assets/icons/logo.svg";
 import "./headerIntern.css";
 
 function HeaderIntern() {
+  let navigate = useNavigate();
   return (
     <header className="header">
       <div className="container">
@@ -14,12 +15,25 @@ function HeaderIntern() {
           <div className="header__nav__intern">
             <ul>
               <li>
-                <NavLink to="/profile-intern/:id/internships" className="header__nav__item">
+                <NavLink
+                  to="/interns/:id/internships"
+                  className="header__nav__item"
+                >
                   Стажировки
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`/`} className="header__nav__item">
+                <NavLink
+                  to={`/`}
+                  className="header__nav__item"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    if (localStorage.getItem("token")) {
+                      localStorage.removeItem("token");
+                    }
+                    navigate("/");
+                  }}
+                >
                   Выйти
                 </NavLink>
               </li>

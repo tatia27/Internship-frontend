@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import like from "./../../../assets/icons/likeCard.svg";
-import company from "./../../../assets/icons/companyLogoSmall.svg";
+import company from "./../../../assets/icons/logoSmall.svg";
 import location from "./../../../assets/icons/location.svg";
 import { UserContext } from "../../../context/userContext";
 import { Internship } from "../../filter/filter/filter";
@@ -33,7 +33,9 @@ function Card(props: Internship) {
             src={like}
             alt="Избранное"
             onClick={() => {
-              console.log("Добавление в избранное");
+              if (!localStorage.getItem("token")) {
+                navigate("/login");
+              }
             }}
           />
         </div>

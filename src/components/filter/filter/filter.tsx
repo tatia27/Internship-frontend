@@ -17,6 +17,7 @@ export interface Internship {
   salary: number;
   skills: string;
   conditions: string;
+  isActive: boolean;
   onClick: () => void;
 }
 

@@ -17,6 +17,7 @@ export type Internship = {
   salary: Number;
   skills: String;
   conditions: String;
+  isActive: Boolean;
   onClick: () => void;
 };
 
@@ -81,20 +82,14 @@ function Internship() {
         <div className="internship__skills">
           <p className="internship__skills__title">Навыки</p>
           <ul>
-            <li>Владение Figma;</li>
-            <li>Базовые знания Photoshop и Illustrator;</li>
-            <li>Наличие портфолио;</li>
+            <li>{internship?.skills}</li>
           </ul>
         </div>
 
         <div className="internship__conditions">
           <p className="internship__skills__title">Условия</p>
           <ul>
-            <li>Студент очной формы обучения;</li>
-            <li>Интерес к сфере UX-исследований;</li>
-            <li>
-              Понимание основ по качественным и количественным исследованиям;
-            </li>
+            <li>{internship?.conditions}</li>
           </ul>
         </div>
         <button

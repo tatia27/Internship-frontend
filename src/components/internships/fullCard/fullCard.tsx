@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
-import companyLogo from "../../../assets/icons/companyLogo.svg";
+import companyLogo from "../../../assets/icons/logoFullCard2.svg";
 import location from "./../../../assets/icons/location.svg";
 import { UserContext } from "../../../context/userContext";
 import { Internship } from "../internship/internship";
@@ -25,8 +25,11 @@ function FullCard(props: Internship) {
               <img src={companyLogo} alt="Компания" />
               <h4>{props.company}</h4>
             </div>
-            <ActionForIntern />
-            {/* <ActionForCompany /> */}
+            {window.location.pathname.includes("/companies") ? (
+              <ActionForCompany {...props} />
+            ) : (
+              <ActionForIntern {...props} />
+            )}
           </div>
         </div>
         <div>

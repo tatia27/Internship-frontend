@@ -1,11 +1,37 @@
-import user from "./../../assets/icons/user.svg";
+import userIcon from "./../../../assets/icons/userCompany.svg";
+import { useEffect, useState } from "react";
 import "./user.css";
+import axios from "axios";
+import { IIntern } from "../../profile/profileIntern/profileIntern";
+import { CompanyContext } from "../../../context/companyContext";
 
-function User() {
+type userProps = {
+  user: String;
+};
+
+function User({ user }: userProps) {
+  const [intern, setIntern] = useState<IIntern>();
+
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/v1/intern/${user}/apply-to-internship`
+      )
+      .then((response) => {
+        setIntern(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(intern);
   return (
     <div className="user">
-      <img src={user} alt="Иконка пользователя"></img>
-      <span>Чепурная Татьяна</span>
+      <img src={userIcon} alt="Иконка пользователя"></img>
+      <span>
+        {intern?.firstName} {intern?.lastName}
+      </span>
     </div>
   );
 }

@@ -61,6 +61,7 @@
 .skills__hard-soft {
   font-family: "Gilroy-bold";
   font-size: 18px;
+  margin-bottom: 15px;
 }
 
 .button-resume {
@@ -87,4 +88,8 @@
 
 .user-profiles__student__person-info p:last-child {
   margin-bottom: 0;
+}
+
+.skills__description {
+  font-size: 18px;
 }

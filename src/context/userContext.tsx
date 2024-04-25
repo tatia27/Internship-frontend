@@ -27,13 +27,7 @@ export const UserContext = createContext<IContext>({ isAuth: false });
 export function UserConternProvider({ children }: IUserContextProviderProps) {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [user, setUser] = useState<User | undefined>();
-  // useEffect(() => {
-  //   if (!user) {
-  //     axios.get("http://localhost:8000/v1/auth/profile").then(({ data }) => {
-  //       setUser(data);
-  //     });
-  //   }
-  // }, [user]);
+
   return (
     <UserContext.Provider
       value={{

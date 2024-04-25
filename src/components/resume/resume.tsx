@@ -52,7 +52,7 @@ function Resume() {
           withCredentials: true,
         }
       );
-      navigate(`/profileIntern/${id}`);
+      navigate(`/intern/${id}`);
     } catch (error) {
       toast.error("Стажировка не создана");
     }
@@ -65,8 +65,6 @@ function Resume() {
   function changeSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     setResume({ ...resume, [event.target.name]: event.target.value });
   }
-
-  console.log(resume);
 
   return (
     <div className="resume">

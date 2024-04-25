@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
 import "./authorization.css";
+import { UserContext } from "../../context/userContext";
 // import { validateEmail } from "../registration/registrationIntern";
 
 type AuthorizationtState = { email: string; password: string };
@@ -13,6 +14,7 @@ function Authorization() {
     email: "",
     password: "",
   });
+  const { isAuth, setIsAuth } = useContext(UserContext);
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setFormAuth({ ...formAuth, [event.target.name]: event.target.value });
@@ -46,8 +48,11 @@ function Authorization() {
       // setPassword("");
       // setRole("");
       // setIsAuthorized(true);
+
       localStorage.setItem("token", data.token);
-      navigate("/profileIntern");
+      // setIsAuth(true);
+      navigate("/intern");
+      // navigate("/companies");
     } catch (error) {
       if ((error as AxiosError).response?.status === 401) {
         toast.error("Неверный пароль");
