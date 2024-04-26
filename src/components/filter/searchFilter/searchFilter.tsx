@@ -4,12 +4,12 @@ import { Internship } from "../filter/filter";
 import "../searchFilter/searchFilter.css";
 import axios from "axios";
 
-interface SearchFilterProps {
+type SearchFilterProps = {
   currentPage: number;
   internships: Internship[];
   setInternships: (internships: Internship[]) => void;
   setTotalDocuments: (page: number) => void;
-}
+};
 
 function SearchFilter({
   currentPage,
@@ -18,12 +18,17 @@ function SearchFilter({
   setTotalDocuments,
 }: SearchFilterProps) {
   const [focusOfInternship, setFocusOfInternship] = useState<String[]>([]);
-  const [shedule, setShedule] = useState<String[]>([]);
   const [typeOfEmployment, setTypeOfEmployment] = useState<String[]>([]);
+  const [shedule, setShedule] = useState<String[]>([]);
   const [salary, setSalary] = useState<String[]>([]);
+  const [checked, setChecked] = useState(false);
+
+  const url = `${
+    process.env.REACT_APP_API_URL
+  }/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value, checked } = event.target;
+    let { name, value, checked } = event.target;
 
     if (name === "focusOfInternship") {
       if (checked) {
@@ -57,10 +62,6 @@ function SearchFilter({
     }
   }
 
-  const url = `${
-    process.env.REACT_APP_API_URL
-  }/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
-
   useEffect(() => {
     axios
       .get(url)
@@ -81,11 +82,12 @@ function SearchFilter({
     url,
   ]);
 
-  function resetFilter() {
+  const resetFilter = () => {
     setFocusOfInternship([]);
     setShedule([]);
     setTypeOfEmployment([]);
-  }
+    setChecked(false);
+  };
 
   return (
     <div className="filter">
@@ -112,7 +114,7 @@ function SearchFilter({
         <div className="checkbox-filter">
           <input
             type="checkbox"
-            name="focusOfInternship2"
+            name="focusOfInternship"
             value="Mobile developer"
             onChange={changeHandler}
           />
@@ -254,7 +256,7 @@ function SearchFilter({
           <label>Частичная</label>
         </div>
       </form>
-      <a href="#" className="filter-reset" onClick={resetFilter}>
+      <a href="/internships" className="filter-reset" onClick={resetFilter}>
         Сбросить всё
       </a>
     </div>

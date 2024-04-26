@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import FullCard from "../../internships/fullCard/fullCard";
-import axios from "axios";
 import SearchFilter from "../searchFilter/searchFilter";
 import Pagination from "../pagination/pagination";
 import "../filter/filter.css";
+import axios from "axios";
 
 export interface Internship {
   _id: string;

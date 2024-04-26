@@ -58,13 +58,13 @@ function Resume() {
     }
   };
 
-  function changeInputHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setResume({ ...resume, [event.target.name]: event.target.value });
-  }
+  };
 
-  function changeSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+  const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setResume({ ...resume, [event.target.name]: event.target.value });
-  }
+  };
 
   return (
     <div className="resume">

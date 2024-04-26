@@ -32,13 +32,13 @@ function AddInternship() {
   });
   const [salaryActive, setSalaryActive] = useState<Boolean>(false);
 
-  function changeInputHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInternship({ ...internship, [event.target.name]: event.target.value });
-  }
+  };
 
-  function changeSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+  const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setInternship({ ...internship, [event.target.name]: event.target.value });
-  }
+  };
 
   const handleIntership = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import { validateEmail } from "../registrationIntern/registrationIntern";
-import "./registrationCompany.css";
 // import { UserContext } from "../../context/userContext";
+import "./registrationCompany.css";
 
 type FormCompanyState = {
   name: string;
@@ -24,13 +24,13 @@ function RegistrationCompany() {
     conditions: false,
   });
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value =
       event.target.type === "checkbox"
         ? event.target.checked
         : event.target.value;
     setForm({ ...form, [event.target.name]: value });
-  }
+  };
 
   console.log(form);
 
@@ -114,7 +114,7 @@ function RegistrationCompany() {
               onChange={changeHandler}
             />
             <label>
-              Я принимаю условия соглашения и ознакомился  политикой
+              Я принимаю условия соглашения и ознакомился c политикой
               конфиденциальности
             </label>
           </div>

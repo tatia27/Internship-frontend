@@ -74,7 +74,6 @@ function ProfileIntern() {
     // }
   }, []);
 
-  // console.log(favorites);
   return (
     <div className="user-profile">
       <div className="container">

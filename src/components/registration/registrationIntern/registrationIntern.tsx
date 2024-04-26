@@ -30,17 +30,16 @@ function RegistrationIntern() {
     conditions: false,
   });
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value =
       event.target.type === "checkbox"
         ? event.target.checked
         : event.target.value;
     setForm({ ...form, [event.target.name]: value });
-  }
+  };
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (
       !form.firstName ||
       !form.middleName ||
@@ -137,7 +136,7 @@ function RegistrationIntern() {
               onChange={changeHandler}
             />
             <label>
-              Я принимаю условия соглашения и ознакомился с политикой
+              Я принимаю условия соглашения и ознакомился с политикой
               конфиденциальности
             </label>
           </div>

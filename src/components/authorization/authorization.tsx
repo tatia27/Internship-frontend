@@ -14,11 +14,11 @@ function Authorization() {
     email: "",
     password: "",
   });
-  const { isAuth, setIsAuth } = useContext(UserContext);
+  // const { user, setIsAuth } = useContext(UserContext);
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormAuth({ ...formAuth, [event.target.name]: event.target.value });
-  }
+  };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,16 +43,15 @@ function Authorization() {
           withCredentials: true,
         }
       );
-      console.log(data);
+
       // setEmail("");
       // setPassword("");
       // setRole("");
       // setIsAuthorized(true);
 
       localStorage.setItem("token", data.token);
-      // setIsAuth(true);
-      navigate("/intern");
-      // navigate("/companies");
+      // navigate("/intern");
+      navigate("/companies");
     } catch (error) {
       if ((error as AxiosError).response?.status === 401) {
         toast.error("Неверный пароль");
@@ -71,22 +70,20 @@ function Authorization() {
           onSubmit={handleLogin}
         >
           <h1>Добро пожаловать в Internship</h1>
-          <fieldset>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="authorization-input"
-              onChange={changeHandler}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Пароль"
-              className="authorization-input"
-              onChange={changeHandler}
-            />
-          </fieldset>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="authorization-input"
+            onChange={changeHandler}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Пароль"
+            className="authorization-input"
+            onChange={changeHandler}
+          />
           <div className="registration-intern__wrapper">
             <button type="submit" className="registration-intern__button">
               Войти

@@ -1,6 +1,6 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import companyLogo from "../../../assets/icons/logoFullCard2.svg";
+import companyLogo from "../../../assets/icons/fullCardLogo.svg";
 import location from "./../../../assets/icons/location.svg";
 import { UserContext } from "../../../context/userContext";
 import { Internship } from "../internship/internship";
