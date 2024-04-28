@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import { validateEmail } from "../registrationIntern/registrationIntern";
-// import { UserContext } from "../../context/userContext";
 import "./registrationCompany.css";
 
 type FormCompanyState = {
@@ -16,7 +15,6 @@ type FormCompanyState = {
 
 function RegistrationCompany() {
   let navigate = useNavigate();
-  // const { isAuth, setIsAuth, user, setUser } = useContext(UserContext);
   const [form, setForm] = useState<FormCompanyState>({
     name: "",
     email: "",
@@ -31,8 +29,6 @@ function RegistrationCompany() {
         : event.target.value;
     setForm({ ...form, [event.target.name]: value });
   };
-
-  console.log(form);
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,7 +52,7 @@ function RegistrationCompany() {
           headers: {
             "Content-type": "application/json",
           },
-        }
+        },
       );
       navigate("/");
     } catch (error) {
@@ -69,10 +65,6 @@ function RegistrationCompany() {
       }
     }
   };
-
-  // if (isAuthorized) {
-  //   return <Navigate to={"/"} />;
-  // }
 
   return (
     <div className="registration-company">

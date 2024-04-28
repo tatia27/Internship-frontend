@@ -2,9 +2,9 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
-import "./authorization.css";
 import { UserContext } from "../../context/userContext";
 // import { validateEmail } from "../registration/registrationIntern";
+import "./authorization.css";
 
 type AuthorizationtState = { email: string; password: string };
 

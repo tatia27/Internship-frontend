@@ -24,7 +24,7 @@ function ActionForIntern(props: Internship) {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
@@ -49,7 +49,7 @@ function ActionForIntern(props: Internship) {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {

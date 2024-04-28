@@ -64,7 +64,7 @@ function AddInternship() {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        }
+        },
       );
       console.log(data);
       navigate(`/companies/${id}`);

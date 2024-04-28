@@ -41,7 +41,7 @@ export function CompanyContextProvider({
       company,
       setCompany,
     }),
-    [company]
+    [company],
   );
 
   return (

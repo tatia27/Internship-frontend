@@ -1,9 +1,9 @@
 import userIcon from "./../../../assets/icons/userCompany.svg";
 import { useEffect, useState } from "react";
-import "./user.css";
-import axios from "axios";
 import { IIntern } from "../../profile/profileIntern/profileIntern";
 import { CompanyContext } from "../../../context/companyContext";
+import axios from "axios";
+import "./user.css";
 
 type userProps = {
   user: String;
@@ -15,7 +15,7 @@ function User({ user }: userProps) {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/v1/intern/${user}/apply-to-internship`
+        `${process.env.REACT_APP_API_URL}/v1/intern/${user}/apply-to-internship`,
       )
       .then((response) => {
         setIntern(response.data);
@@ -23,7 +23,7 @@ function User({ user }: userProps) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [user]);
 
   console.log(intern);
   return (

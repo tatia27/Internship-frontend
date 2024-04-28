@@ -50,7 +50,7 @@ function Resume() {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        }
+        },
       );
       navigate(`/intern/${id}`);
     } catch (error) {

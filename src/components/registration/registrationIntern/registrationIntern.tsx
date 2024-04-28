@@ -65,7 +65,7 @@ function RegistrationIntern() {
           headers: {
             "Content-type": "application/json",
           },
-        }
+        },
       );
       navigate("/");
     } catch (error) {
@@ -78,10 +78,6 @@ function RegistrationIntern() {
       }
     }
   };
-
-  // if (isAuthorized) {
-  //   return <Navigate to={"/"} />;
-  // }
 
   return (
     <div className="registration-intern">

@@ -30,7 +30,7 @@ function CompanyInfo() {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        }
+        },
       );
       navigate(`/companies/${id}`);
     } catch (error) {

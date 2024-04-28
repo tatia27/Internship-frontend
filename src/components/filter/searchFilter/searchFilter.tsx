@@ -27,7 +27,7 @@ function SearchFilter({
     process.env.REACT_APP_API_URL
   }/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value, checked } = event.target;
 
     if (name === "focusOfInternship") {
@@ -35,7 +35,7 @@ function SearchFilter({
         setFocusOfInternship([...focusOfInternship, value]);
       } else {
         setFocusOfInternship(
-          focusOfInternship.filter((item) => item !== value)
+          focusOfInternship.filter((item) => item !== value),
         );
       }
     }
@@ -60,7 +60,7 @@ function SearchFilter({
         setSalary(salary.filter((item) => item !== value));
       }
     }
-  }
+  };
 
   useEffect(() => {
     axios

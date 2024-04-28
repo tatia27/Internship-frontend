@@ -29,7 +29,7 @@ function Filter() {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/v1/internships?page=${currentPage}`
+        `${process.env.REACT_APP_API_URL}/v1/internships?page=${currentPage}`,
       )
       .then((response) => {
         setInternships(response.data.internships);
@@ -38,7 +38,7 @@ function Filter() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="internship-filter">

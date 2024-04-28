@@ -16,7 +16,7 @@ function AllUsers() {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/v1/internships/${idIntenship}/participants`
+        `${process.env.REACT_APP_API_URL}/v1/internships/${idIntenship}/participants`,
       )
       .then((response) => {
         setInterns(response.data);

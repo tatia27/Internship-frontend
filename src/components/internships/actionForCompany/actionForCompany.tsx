@@ -19,7 +19,7 @@ function ActionForCompany(props: Internship) {
         null,
         {
           withCredentials: true,
-        }
+        },
       );
     } catch (error) {
       toast.error("Ошибка при деактивации стажировки");
