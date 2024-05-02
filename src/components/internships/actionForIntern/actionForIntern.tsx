@@ -1,16 +1,16 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { useContext } from "react";
 import like from "./../../../assets/icons/like.svg";
 import { Internship } from "../internship/internship";
-import "./actionForIntern.css";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import "./actionForIntern.css";
 
 function ActionForIntern(props: Internship) {
-  const { isAuth } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   let navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const applyForInternship = async (internshipId: string) => {
     try {
@@ -18,13 +18,13 @@ function ActionForIntern(props: Internship) {
       console.log(internshipId);
       await axios.patch(
         `${process.env.REACT_APP_API_URL}/v1/internships/${internshipId}/apply`,
-        { id },
+        { id: user?.id },
         {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
@@ -43,13 +43,13 @@ function ActionForIntern(props: Internship) {
       console.log(internshipId);
       await axios.patch(
         `${process.env.REACT_APP_API_URL}/v1/intern/${internshipId}/add-to-favorites`,
-        { id },
+        { id: user?.id },
         {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {

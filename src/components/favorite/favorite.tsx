@@ -1,6 +1,7 @@
 import left from "./../../assets/icons/left.svg";
 import right from "./../../assets/icons/right.svg";
 import Card from "../internships/card/card";
+import { Internship } from "../filter/filter/filter";
 import "./favorite.css";
 
 type FavoriteProps = {
@@ -15,9 +16,9 @@ function Favorite({ favorites }: FavoriteProps) {
         Избранные стажировки
       </h3>
       <div className="favorite__interns__card">
-        {/* {favorites.map((item) => {
-          return <Card key={item._id} />;
-        })} */}
+        {favorites.map((item: any) => {
+          return <Card key={item._id} {...item} />;
+        })}
       </div>
       <div className="favorite__interns__more">
         <div className="favorite__interns__more__item">

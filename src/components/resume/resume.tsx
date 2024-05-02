@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import axios, { AxiosError } from "axios";
+import { UserContext } from "../../context/userContext";
 import "./resume.css";
 
 export type Cv = {
@@ -16,7 +17,7 @@ export type Cv = {
 
 function Resume() {
   let navigate = useNavigate();
-  const { id } = useParams();
+  const { user } = useContext(UserContext);
   const [resume, setResume] = useState<Cv>({
     age: null,
     location: "",
@@ -43,16 +44,16 @@ function Resume() {
         return;
       }
       const { data } = await axios.put(
-        `${process.env.REACT_APP_API_URL}/v1/intern/${id}/resume`,
+        `${process.env.REACT_APP_API_URL}/v1/intern/${user?.id}/resume`,
         resume,
         {
           headers: {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        },
+        }
       );
-      navigate(`/intern/${id}`);
+      navigate(`/intern/profile`);
     } catch (error) {
       toast.error("Стажировка не создана");
     }

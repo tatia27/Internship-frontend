@@ -7,9 +7,10 @@ import { Internship } from "../internship/internship";
 import ActionForIntern from "../actionForIntern/actionForIntern";
 import ActionForCompany from "../actionForCompany/actionForCompany";
 import "./fullCard.css";
+import AllUsers from "../../users/allUsers/allUsers";
 
 function FullCard(props: Internship) {
-  const { isAuth } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   let navigate = useNavigate();
 
   const handleClick = () => {
@@ -25,7 +26,7 @@ function FullCard(props: Internship) {
               <img src={companyLogo} alt="Компания" />
               <h4>{props.company}</h4>
             </div>
-            {window.location.pathname.includes("/companies") ? (
+            {user?.role === "company" ? (
               <ActionForCompany {...props} />
             ) : (
               <ActionForIntern {...props} />

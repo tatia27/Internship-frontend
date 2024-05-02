@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Routes, Route, useLocation, useParams } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
 import Header from "../headers/header/header";
 import HeaderIntern from "../headers/headerIntern/headerIntern";
@@ -15,7 +15,7 @@ import RegistrationCompany from "../registration/registrationCompany/registratio
 import ProfileCompany from "../profile/profileCompany/profileCompany";
 import Filter from "../filter/filter/filter";
 import Popular from "../popular/popular";
-import ProfileStudent from "../profile/profileIntern/profileIntern";
+import ProfileIntern from "../profile/profileIntern/profileIntern";
 import Internship from "../internships/internship/internship";
 import Resume from "../resume/resume";
 import Authorization from "../authorization/authorization";
@@ -26,43 +26,59 @@ import { CompanyContextProvider } from "../../context/companyContext";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.css";
 import AllUsers from "../users/allUsers/allUsers";
-// import { UserConternProvider } from "../../context/userContext";
+import { authService } from "../../services";
+import { UserContext } from "../../context/userContext";
+import { type User } from "../../context/userContext";
+import Test from "../test/test";
+import axios from "axios";
 
 function App() {
-  const [isStudent, setStudent] = useState(false);
-  const [isCompany, setComapny] = useState(false);
-  const location = useLocation();
+  const { user, setUser } = useContext(UserContext);
 
-  React.useEffect(() => {
-    setComapny(location.pathname.includes("/companies"));
-  }, [location]);
-  React.useEffect(() => {
-    setStudent(location.pathname.includes("/intern"));
-  }, [location]);
+  useEffect(() => {
+    async function load() {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const response = await authService.getAuth();
+        // console.log(response);
+        if (setUser && response && response.data) {
+          const { role, id } = response.data;
+
+          const userData: User = {
+            role,
+            id,
+          };
+          debugger;
+          setUser(userData);
+        }
+      }
+    }
+    load();
+  }, [setUser]);
 
   const renderHeader = () => {
-    if (isStudent) {
-      return <HeaderIntern />;
-    } else if (isCompany) {
-      return <HeaderCompany />;
+    if (user?.role === "intern") {
+      return <HeaderIntern key={user?.role} />;
+    } else if (user?.role === "company") {
+      return <HeaderCompany key={user?.role} />;
     } else {
       return <Header />;
     }
   };
 
   const renderFooter = () => {
-    if (isStudent) {
+    if (user?.role === "intern") {
       return <FooterIntern />;
-    } else if (isCompany) {
+    } else if (user?.role === "company") {
       return <FooterCompany />;
     } else {
       return <Footer />;
     }
   };
 
+  console.log(user);
   return (
     <div className="App">
-      {/* <UserConternProvider> */}
       {renderHeader()}
       <ToastContainer
         position="bottom-right"
@@ -112,9 +128,9 @@ function App() {
           element={<Authorization />}
         />
 
-        <Route path="/intern/:id" element={<ProfileStudent />} />
-        <Route path="/intern/:id/resume" element={<Resume />} />
-        <Route path="/intern/:id/internships" element={<Filter />} />
+        <Route path="/intern/profile" element={<ProfileIntern />} />
+        <Route path="/intern/profile/resume" element={<Resume />} />
+        <Route path="/intern/internships" element={<Filter />} />
         <Route path="/intern/error" element={<Error />} />
         <Route
           path="/intern"
@@ -128,7 +144,7 @@ function App() {
         />
 
         <Route
-          path="/companies"
+          path="/company"
           element={
             <>
               <Main />
@@ -138,25 +154,23 @@ function App() {
           }
         />
         <Route
-          path="/companies/:id"
+          path="/company/profile"
           element={
             <CompanyContextProvider>
               <ProfileCompany />
-              {/* <HeaderCompany /> */}
             </CompanyContextProvider>
           }
         />
-        <Route
-          path="/companies/:id/internships"
+        {/* <Route
+          path="/companies/internships"
           element={
             <CompanyContextProvider>
               <Filter />
-              {/* <HeaderCompany /> */}
             </CompanyContextProvider>
           }
-        />
+        /> */}
         <Route
-          path="/companies/:id/add-internship"
+          path="/company/add-internship"
           element={
             <CompanyContextProvider>
               <AddInternship />
@@ -164,7 +178,7 @@ function App() {
           }
         />
         <Route
-          path="/companies/:id/company-info"
+          path="/company/company-info"
           element={
             <CompanyContextProvider>
               <CompanyInfo />
@@ -172,11 +186,11 @@ function App() {
           }
         />
         <Route
-          path="/companies/:id/participants"
+          path="/company/:id/participants"
           element={
             <CompanyContextProvider>
-              <AllUsers />
-              {/* <HeaderCompany /> */}
+              <Test id={""} title={""} />
+              <AllUsers id={""} title={""} />
             </CompanyContextProvider>
           }
         />

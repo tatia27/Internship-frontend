@@ -1,14 +1,18 @@
 import { Link, NavLink, useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
 import logo from "./../../../assets/icons/logo.svg";
 import profile from "./../../../assets/icons/profileHeader.svg";
+import { UserContext } from "../../../context/userContext";
 import "./headerCompany.css";
 
 function HeaderCompany() {
-  const { id } = useParams();
+  // const { id } = useParams();
   let navigate = useNavigate();
-
+  const { setUser } = useContext(UserContext);
   // console.log(id)
-
+  const navigateToProfile = () => {
+    navigate("/company/profile");
+  };
   return (
     <header className="header">
       <div className="container">
@@ -20,20 +24,17 @@ function HeaderCompany() {
             <ul>
               <li>
                 <NavLink
-                  to={`/companies/${id}/add-internship`}
+                  to={`/company/add-internship`}
                   className="header__nav__item"
                 >
                   Разместить стажировку
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to={`/companies/${id}/internships`}
-                  className="header__nav__item"
-                >
+              {/* <li>
+                <NavLink to={`/internships`} className="header__nav__item">
                   Стажировки
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink
                   to={`/`}
@@ -43,6 +44,9 @@ function HeaderCompany() {
                     if (localStorage.getItem("token")) {
                       localStorage.removeItem("token");
                     }
+                    if (setUser) {
+                      setUser(null);
+                    }
                     navigate("/");
                   }}
                 >
@@ -50,7 +54,7 @@ function HeaderCompany() {
                 </NavLink>
               </li>
             </ul>
-            <img src={profile} alt="Профиль"></img>
+            <img src={profile} alt="Профиль" onClick={navigateToProfile}></img>
           </div>
         </div>
       </div>

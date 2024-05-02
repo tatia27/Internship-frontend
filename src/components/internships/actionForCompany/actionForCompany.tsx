@@ -6,11 +6,23 @@ import deleteInternship from "./../../../assets/icons/delete.svg";
 import { toast } from "react-toastify";
 import "./actionForCompany.css";
 import axios from "axios";
+import AllUsers from "../../users/allUsers/allUsers";
+import Test from "../../test/test";
 
 function ActionForCompany(props: Internship) {
-  const { id } = useParams();
-  const { isAuth } = useContext(UserContext);
   let navigate = useNavigate();
+  const getIdInternship = (id: string): string => {
+    return String(id);
+  };
+
+  const handleButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    id: string
+  ): void => {
+    event.stopPropagation();
+    <Test id={id} title={props.title} />;
+    navigate(`/company/${id}/participants`);
+  };
 
   const handleCardClick = async (id: string) => {
     try {
@@ -19,42 +31,19 @@ function ActionForCompany(props: Internship) {
         null,
         {
           withCredentials: true,
-        },
+        }
       );
     } catch (error) {
       toast.error("Ошибка при деактивации стажировки");
     }
   };
 
-  // const showInters = async (internshipId: string) => {
-  //   try {
-  //     await axios.patch(
-  //       `${process.env.REACT_APP_API_URL}/v1/company/${internshipId}/interns`,
-  //       { userId },
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     );
-  //   } catch (error) {
-  //     if ((error as AxiosError).response?.status === 400) {
-  //       toast.error("Заявка уже подана");
-  //     } else {
-  //       toast.error("Упс, что-то пошло не так");
-  //     }
-  //   }
-  // };
   return (
     <div className="full-current-card__top__action">
       <button
         className="full-current-card__top__button-respond"
-        onClick={(event) => {
-          // if (!isAuth) {
-          //   event.stopPropagation();
-          //   navigate("/login");
-          // }
-          event.stopPropagation();
-          navigate(`/companies/${id}/participants`);
-        }}
+        // onClick={handleButtonClick}
+        onClick={(event) => handleButtonClick(event, props._id.toString())}
       >
         Посмотреть участников
       </button>

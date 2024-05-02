@@ -6,25 +6,26 @@ import "./internship.css";
 // import { Internship } from "../../filter/filter/filter";
 
 export type Internship = {
-  _id: String;
-  title: String;
-  company: String;
-  focusOfInternship: String;
-  typeOfInternship: String;
-  schedule: String;
-  typeOfEmployment: String;
-  durationOfInternship: String;
-  salary: Number;
-  skills: String;
-  conditions: String;
-  isActive: Boolean;
+  _id: string;
+  title: string;
+  company: string;
+  focusOfInternship: string;
+  typeOfInternship: string;
+  schedule: string;
+  typeOfEmployment: string;
+  durationOfInternship: string;
+  salary: number;
+  skills: string;
+  conditions: string;
+  isActive: boolean;
   onClick: () => void;
 };
 
 function Internship() {
   const { id } = useParams();
   const [internship, setInternship] = useState<Internship>();
-  const { isAuth } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function Internship() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="container">
@@ -95,7 +96,7 @@ function Internship() {
         <button
           className="internship__button"
           onClick={() => {
-            if (!isAuth) {
+            if (!user) {
               navigate("/login");
             }
           }}

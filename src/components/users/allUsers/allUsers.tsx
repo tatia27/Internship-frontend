@@ -1,23 +1,22 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import currentCompany from "./../../../assets/images/student.png";
 import { CompanyContext } from "../../../context/companyContext";
 import User from "../user/user";
-import "./allUsers.css";
 import axios from "axios";
+import "./allUsers.css";
+import { type TestProps } from "../../test/test";
 
-function AllUsers() {
+function AllUsers({ id, title }: TestProps) {
   let navigate = useNavigate();
   const [interns, setInterns] = useState<String[]>([]);
-  const { company, setCompany } = useContext(CompanyContext);
-  const idIntenship = "66257f1394009d339b26121b";
-  const { id } = useParams();
+  const { company } = useContext(CompanyContext);
+  // const idIntenship = "66257f1394009d339b26121b";
+  // const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/v1/internships/${idIntenship}/participants`,
-      )
+      .get(`${process.env.REACT_APP_API_URL}/v1/internships/${id}/participants`)
       .then((response) => {
         setInterns(response.data);
       })
@@ -25,7 +24,7 @@ function AllUsers() {
         console.log(error);
       });
     navigate(`/companies/${id}/participants`);
-  }, [interns]);
+  }, [id, interns, navigate]);
 
   // console.log(interns);
   return (
@@ -38,14 +37,12 @@ function AllUsers() {
           <div>
             <div className="user-profiles__company">
               <h2 className="user-profiles__company__title">{company?.name}</h2>
-              <h3 className="user-profiles__company__internship">
-                Frontend-разработчик
-              </h3>
+              <h3 className="user-profiles__company__internship">{title}</h3>
             </div>
             <div className="user-profiles__all">
-              {interns.map((item) => {
+              {/* {interns.map((item) => {
                 return <User user={item} />;
-              })}
+              })} */}
             </div>
           </div>
         </div>

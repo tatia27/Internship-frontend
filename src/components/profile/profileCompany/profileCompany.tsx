@@ -11,8 +11,9 @@ import "./profileCompany.css";
 function ProfileCompany() {
   let navigate = useNavigate();
   const { id } = useParams();
+  const { user } = useContext(UserContext);
   const { company, setCompany } = useContext(CompanyContext);
-  const { isAuth } = useContext(UserContext);
+
   const [activeInternships, setActiveInternships] = useState<Internship[]>([]);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function ProfileCompany() {
       navigate("/login");
     }
     axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/company/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/v1/company/${user?.id}`, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -38,18 +39,18 @@ function ProfileCompany() {
           navigate("/companies/error");
         }
       });
-  }, [id]);
+  }, [id, navigate, setCompany, user?.id]);
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/internships/${id}/active`)
+      .get(`${process.env.REACT_APP_API_URL}/v1/internships/${user?.id}/active`)
       .then((response) => {
         setActiveInternships(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [activeInternships]);
+  }, [activeInternships, user?.id]);
 
   console.log(activeInternships);
   // if (!isAuth || (user && user.role !== "company"))
@@ -77,7 +78,7 @@ function ProfileCompany() {
           <div>
             <button
               className="button-resume"
-              onClick={() => navigate(`/companies/${id}/company-info`)}
+              onClick={() => navigate(`/company/company-info`)}
             >
               Добавить информацию
             </button>

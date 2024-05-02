@@ -5,6 +5,7 @@ import Favorite from "../../favorite/favorite";
 import { UserContext } from "../../../context/userContext";
 import { Cv } from "../../resume/resume";
 import axios, { AxiosError } from "axios";
+
 import "./profileIntern.css";
 
 export interface IIntern {
@@ -21,9 +22,9 @@ export interface IIntern {
 function ProfileIntern() {
   const [intern, setIntern] = useState<IIntern>();
   const [favorites, setFavorites] = useState<string[]>([]);
-  const { isAuth } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   let navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
 
   // const { isAuth } = useContext(UserContext);
   // if (!isAuth) {
@@ -37,7 +38,7 @@ function ProfileIntern() {
 
     if (token) {
       axios
-        .get(`${process.env.REACT_APP_API_URL}/v1/intern/${id}`, {
+        .get(`${process.env.REACT_APP_API_URL}/v1/intern/${user?.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,11 +54,14 @@ function ProfileIntern() {
         });
 
       axios
-        .get(`${process.env.REACT_APP_API_URL}/v1/intern/${id}/favorites`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(
+          `${process.env.REACT_APP_API_URL}/v1/intern/${user?.id}/favorites`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
           setFavorites(response.data.favoriteInternshipIds);
         });
@@ -72,7 +76,7 @@ function ProfileIntern() {
     //   // Например, перенаправление на страницу входа
     //   navigate("/login");
     // }
-  }, []);
+  }, [navigate, user?.id]);
 
   return (
     <div className="user-profile">
@@ -111,7 +115,7 @@ function ProfileIntern() {
           <div>
             <button
               className="button-resume"
-              onClick={() => navigate(`/intern/${id}/resume`)}
+              onClick={() => navigate(`/intern/profile/resume`)}
             >
               Загрузить резюме
             </button>

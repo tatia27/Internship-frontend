@@ -9,7 +9,7 @@ import "./card.css";
 
 function Card(props: Internship) {
   let navigate = useNavigate();
-  const { isAuth } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const handleClick = () => {
     navigate(`/internships/${props._id}`);
@@ -66,9 +66,8 @@ function Card(props: Internship) {
         <div className="current-card__button">
           <button
             className="button-respond"
-            onClick={(event) => {
-              if (!isAuth) {
-                event.stopPropagation();
+            onClick={() => {
+              if (!user) {
                 navigate("/login");
               }
             }}

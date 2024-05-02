@@ -7,32 +7,27 @@ import {
   SetStateAction,
 } from "react";
 
-type User = {
+export type User = {
   role: string;
-  name: string;
+  id: string;
 };
 
 interface IContext {
-  isAuth: Boolean;
-  setIsAuth?: Dispatch<SetStateAction<boolean>>;
-  user?: User | undefined;
-  setUser?: Dispatch<SetStateAction<User | undefined>>;
+  user?: User | null;
+  setUser?: Dispatch<SetStateAction<User | null>>;
 }
 
 interface IUserContextProviderProps {
   children: ReactNode;
 }
-export const UserContext = createContext<IContext>({ isAuth: false });
+export const UserContext = createContext<IContext>({});
 
-export function UserConternProvider({ children }: IUserContextProviderProps) {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
-  const [user, setUser] = useState<User | undefined>();
+export function UserContextProvider({ children }: IUserContextProviderProps) {
+  const [user, setUser] = useState<User | null>(null);
 
   return (
     <UserContext.Provider
       value={{
-        isAuth,
-        setIsAuth,
         user,
         setUser,
       }}
