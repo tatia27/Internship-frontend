@@ -1,26 +1,25 @@
 import { useState, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
 import { UserContext } from "../../../context/userContext";
 import "./addInternship.css";
 
 type InternshipForm = {
-  title: String;
-  company: String;
-  focusOfInternship: String;
-  schedule: String;
-  typeOfEmployment: String;
-  durationOfInternship: String;
-  salary: Number | null;
-  skills: String;
-  conditions: String;
+  title: string;
+  company: string;
+  focusOfInternship: string;
+  schedule: string;
+  typeOfEmployment: string;
+  durationOfInternship: string;
+  salary: number | null;
+  skills: string;
+  conditions: string;
 };
 
 function AddInternship() {
   let navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { id } = useParams();
   const [internship, setInternship] = useState<InternshipForm>({
     title: "",
     company: "",
@@ -75,7 +74,7 @@ function AddInternship() {
     }
   };
 
-  // if (role !== "Company") {
+  // if (role !== "сompany") {
   //   navigate("/main");
   // }
 

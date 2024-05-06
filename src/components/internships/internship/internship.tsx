@@ -1,32 +1,15 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios, { AxiosError } from "axios";
+import { toast } from "react-toastify";
 import { UserContext } from "../../../context/userContext";
-import axios from "axios";
+import { type IInternship } from "../../filter/filter/filter";
 import "./internship.css";
-// import { Internship } from "../../filter/filter/filter";
-
-export type Internship = {
-  _id: string;
-  title: string;
-  company: string;
-  focusOfInternship: string;
-  typeOfInternship: string;
-  schedule: string;
-  typeOfEmployment: string;
-  durationOfInternship: string;
-  salary: number;
-  skills: string;
-  conditions: string;
-  isActive: boolean;
-  onClick: () => void;
-};
 
 function Internship() {
-  const { id } = useParams();
-  const [internship, setInternship] = useState<Internship>();
+  const [internship, setInternship] = useState<IInternship>();
   const { user } = useContext(UserContext);
-
-  let navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     axios
@@ -38,6 +21,31 @@ function Internship() {
         console.log(error);
       });
   }, [id]);
+
+  const applyForInternship = async (internshipId: string) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      await axios.patch(
+        `${process.env.REACT_APP_API_URL}/v1/internships/${internshipId}/apply`,
+        { id: user?.id },
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      if ((error as AxiosError).response?.status === 400) {
+        toast.error("Заявка уже подана");
+      } else if ((error as AxiosError).response?.status === 401) {
+        toast.error("Авторизуйтесь в приложении");
+      } else {
+        toast.error("Упс, что-то пошло не так");
+      }
+    }
+  };
 
   return (
     <div className="container">
@@ -79,30 +87,31 @@ function Internship() {
             </span>
           </div>
         </div>
-
         <div className="internship__skills">
           <p className="internship__skills__title">Навыки</p>
           <ul>
             <li>{internship?.skills}</li>
           </ul>
         </div>
-
         <div className="internship__conditions">
           <p className="internship__skills__title">Условия</p>
           <ul>
             <li>{internship?.conditions}</li>
           </ul>
         </div>
-        <button
-          className="internship__button"
-          onClick={() => {
-            if (!user) {
-              navigate("/login");
-            }
-          }}
-        >
-          Подать заявку
-        </button>
+        {user && user?.role === "intern" ? (
+          <button
+            className="internship__button"
+            onClick={(event) => {
+              event.stopPropagation();
+              // applyForInternship(internship?._id.toString());
+            }}
+          >
+            Подать заявку
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

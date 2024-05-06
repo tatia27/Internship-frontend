@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/userContext";
 import "./main.css";
 
 function Main() {
   let navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   return (
     <div className="main_part">

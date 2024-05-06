@@ -1,9 +1,24 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/userContext";
 import FooterContacts from "../footerContacts/footerContacts";
 import FooterLogo from "../footerLogo/footerLogo";
 import "./footerIntern.css";
 
-function Footer() {
+function FooterIntern() {
+  let navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
+
+  const logout = () => {
+    if (localStorage.getItem("token")) {
+      localStorage.removeItem("token");
+    }
+    if (setUser) {
+      setUser(null);
+    }
+    navigate("/");
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -16,7 +31,9 @@ function Footer() {
                   <NavLink to="/internships">Стажировки</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">Выйти</NavLink>
+                  <NavLink to="/" onClick={logout}>
+                    Выйти
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -29,4 +46,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterIntern;

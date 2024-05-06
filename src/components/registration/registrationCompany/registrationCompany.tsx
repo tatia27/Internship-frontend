@@ -52,9 +52,12 @@ function RegistrationCompany() {
           headers: {
             "Content-type": "application/json",
           },
-        },
+        }
       );
       navigate("/");
+      toast.info(
+        "Вы зерегистрированы, войдите в приложение со своими учетными данными"
+      );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
         toast.error("Email уже зарегистрирован, используйте другой");

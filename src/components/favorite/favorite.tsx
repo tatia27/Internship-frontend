@@ -1,7 +1,7 @@
 import left from "./../../assets/icons/left.svg";
 import right from "./../../assets/icons/right.svg";
 import Card from "../internships/card/card";
-import { Internship } from "../filter/filter/filter";
+import { Carousel } from "primereact/carousel";
 import "./favorite.css";
 
 type FavoriteProps = {
@@ -9,16 +9,24 @@ type FavoriteProps = {
 };
 
 function Favorite({ favorites }: FavoriteProps) {
-  console.log(favorites);
   return (
     <div className="favorite__interns">
       <h3 className="user-profiles__favorite-internhip">
         Избранные стажировки
       </h3>
       <div className="favorite__interns__card">
-        {favorites.map((item: any) => {
-          return <Card key={item._id} {...item} />;
+        {/* <Carousel
+          value={favorites}
+          numVisible={2}
+          numScroll={1}
+          responsiveOptions={responsiveOptions}
+          itemTemplate={productTemplate}
+        > */}
+        {favorites.map((item) => {
+          // return <Card key={item} id={item} />;
+          return <Card key={item} id={item} />;
         })}
+        {/* </Carousel> */}
       </div>
       <div className="favorite__interns__more">
         <div className="favorite__interns__more__item">

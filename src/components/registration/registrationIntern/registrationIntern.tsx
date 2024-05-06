@@ -10,7 +10,7 @@ export const validateEmail = (email: string): boolean => {
   return regExp.test(email);
 };
 
-type FormInternState = {
+type InternState = {
   firstName: string;
   middleName: string;
   lastName: string;
@@ -21,7 +21,7 @@ type FormInternState = {
 
 function RegistrationIntern() {
   let navigate = useNavigate();
-  const [form, setForm] = useState<FormInternState>({
+  const [form, setForm] = useState<InternState>({
     firstName: "",
     middleName: "",
     lastName: "",
@@ -40,6 +40,7 @@ function RegistrationIntern() {
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (
       !form.firstName ||
       !form.middleName ||
@@ -65,9 +66,13 @@ function RegistrationIntern() {
           headers: {
             "Content-type": "application/json",
           },
-        },
+        }
       );
+
       navigate("/");
+      toast.info(
+        "Вы зерегистрированы, войдите в приложение со своими учетными данными"
+      );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
         toast.error("Email уже зарегистрирован, используйте другой");

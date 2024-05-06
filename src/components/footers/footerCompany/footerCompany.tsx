@@ -1,9 +1,24 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/userContext";
 import FooterContacts from "../footerContacts/footerContacts";
 import FooterLogo from "../footerLogo/footerLogo";
 import "./footerCompany.css";
 
 function FooterComapny() {
+  let navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
+
+  const logout = () => {
+    if (localStorage.getItem("token")) {
+      localStorage.removeItem("token");
+    }
+    if (setUser) {
+      setUser(null);
+    }
+    navigate("/");
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -12,6 +27,11 @@ function FooterComapny() {
             <FooterLogo />
             <div className="footer__menu">
               <ul>
+                <li>
+                  <NavLink to={`/`} onClick={logout}>
+                    Выйти
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink to="/internships">Стажировки</NavLink>
                 </li>

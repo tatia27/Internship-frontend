@@ -1,18 +1,18 @@
 import { useState, useContext } from "react";
-import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
+import { toast } from "react-toastify";
 import { UserContext } from "../../context/userContext";
 import "./resume.css";
 
 export type Cv = {
-  age: Number | null;
-  location: String;
-  levelOfEducation: String;
-  educationalInstitution: String;
-  specialization: String;
-  hardSkills: String;
-  softSkills: String;
+  age: number | null;
+  location: string;
+  levelOfEducation: string;
+  educationalInstitution: string;
+  specialization: string;
+  hardSkills: string;
+  softSkills: string;
 };
 
 function Resume() {
@@ -116,7 +116,6 @@ function Resume() {
           />
           <input
             type="text"
-            id="hard"
             name="hardSkills"
             placeholder="Hard skills"
             className="resume-input"
@@ -124,7 +123,6 @@ function Resume() {
           />
           <input
             type="text"
-            id="soft_skills"
             name="softSkills"
             placeholder="Soft skills"
             className="resume-input"

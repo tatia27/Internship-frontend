@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
 import currentCompany from "./../../../assets/images/student.png";
 import FullCard from "../../internships/fullCard/fullCard";
-import { Internship } from "../../internships/internship/internship";
+import { type IInternship } from "../../filter/filter/filter";
 import axios, { AxiosError } from "axios";
 import { UserContext } from "../../../context/userContext";
 import "./profileCompany.css";
@@ -14,7 +14,7 @@ function ProfileCompany() {
   const { user } = useContext(UserContext);
   const { company, setCompany } = useContext(CompanyContext);
 
-  const [activeInternships, setActiveInternships] = useState<Internship[]>([]);
+  const [activeInternships, setActiveInternships] = useState<IInternship[]>([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -51,12 +51,6 @@ function ProfileCompany() {
         console.log(error);
       });
   }, [activeInternships, user?.id]);
-
-  console.log(activeInternships);
-  // if (!isAuth || (user && user.role !== "company"))
-  // if (!isAuth) {
-  //   navigate("/login");
-  // }
 
   return (
     <div className="user-profile">
@@ -102,21 +96,3 @@ function ProfileCompany() {
 }
 
 export default ProfileCompany;
-
-// const logout = async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-//   e.preventDefault();
-//   try {
-//     const { data } = await axios.get("http://localhost:8000/v1/auth/logout", {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       withCredentials: true,
-//     });
-//     localStorage.clear();
-//     navigate("/");
-//   } catch (error) {
-//     toast.error("Пользователь не был авторизован", {
-//       position: "bottom-right",
-//     });
-//   }
-// };

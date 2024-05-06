@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Routes, Route, useLocation, useParams } from "react-router-dom";
+import { useEffect, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
 import Header from "../headers/header/header";
 import HeaderIntern from "../headers/headerIntern/headerIntern";
@@ -22,15 +22,14 @@ import Authorization from "../authorization/authorization";
 import AddInternship from "../internships/addInternship/addInternship";
 import CompanyInfo from "../profile/companyInfo/companyInfo";
 import Error from "../error/error";
-import { CompanyContextProvider } from "../../context/companyContext";
-import "react-toastify/dist/ReactToastify.css";
-import "./app.css";
+import Test from "../test/test";
 import AllUsers from "../users/allUsers/allUsers";
+import { CompanyContextProvider } from "../../context/companyContext";
 import { authService } from "../../services";
 import { UserContext } from "../../context/userContext";
 import { type User } from "../../context/userContext";
-import Test from "../test/test";
-import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import "./app.css";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -38,9 +37,10 @@ function App() {
   useEffect(() => {
     async function load() {
       const token = localStorage.getItem("token");
+
       if (token) {
         const response = await authService.getAuth();
-        // console.log(response);
+
         if (setUser && response && response.data) {
           const { role, id } = response.data;
 
@@ -48,7 +48,7 @@ function App() {
             role,
             id,
           };
-          debugger;
+
           setUser(userData);
         }
       }
@@ -58,9 +58,9 @@ function App() {
 
   const renderHeader = () => {
     if (user?.role === "intern") {
-      return <HeaderIntern key={user?.role} />;
+      return <HeaderIntern />;
     } else if (user?.role === "company") {
-      return <HeaderCompany key={user?.role} />;
+      return <HeaderCompany />;
     } else {
       return <Header />;
     }
@@ -76,7 +76,6 @@ function App() {
     }
   };
 
-  console.log(user);
   return (
     <div className="App">
       {renderHeader()}
@@ -99,16 +98,14 @@ function App() {
           element={
             <>
               <Main />
-              <Instructions />
-              <Popular />
+              {user?.role !== "company" ? <Instructions /> : <></>}
+              {user?.role !== "company" ? <Popular /> : <></>}
             </>
           }
         />
-
         <Route path="/internships" element={<Filter />} />
         <Route path="/internships/:id" element={<Internship />} />
         <Route path="/addInternship" element={<AddInternship />} />
-
         <Route path="/registration" element={<Registration />} />
         <Route
           path="/registration/registation-intern"
@@ -127,7 +124,6 @@ function App() {
           path="/registration/registartion-intern"
           element={<Authorization />}
         />
-
         <Route path="/intern/profile" element={<ProfileIntern />} />
         <Route path="/intern/profile/resume" element={<Resume />} />
         <Route path="/intern/internships" element={<Filter />} />
@@ -142,7 +138,6 @@ function App() {
             </>
           }
         />
-
         <Route
           path="/company"
           element={
@@ -169,6 +164,7 @@ function App() {
             </CompanyContextProvider>
           }
         /> */}
+        <Route path="/company/internships" element={<Filter />} />
         <Route
           path="/company/add-internship"
           element={
@@ -185,11 +181,19 @@ function App() {
             </CompanyContextProvider>
           }
         />
-        <Route
+        {/* <Route
           path="/company/:id/participants"
           element={
             <CompanyContextProvider>
               <Test id={""} title={""} />
+              <AllUsers id={""} title={""} />
+            </CompanyContextProvider>
+          }
+        /> */}
+        <Route
+          path="/company/profile/participants"
+          element={
+            <CompanyContextProvider>
               <AllUsers id={""} title={""} />
             </CompanyContextProvider>
           }

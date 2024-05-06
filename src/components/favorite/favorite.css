@@ -12,6 +12,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  column-gap: 35px;
 }
 
 .favorite__interns__more__item {

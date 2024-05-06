@@ -2,13 +2,12 @@ import arrow from "./../../assets/icons/arrow.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Card from "../internships/card/card";
-import { Internship } from "../../components/filter/filter/filter";
 import axios from "axios";
 import "./popular.css";
 
 function Popular() {
   let navigate = useNavigate();
-  const [internships, setInternships] = useState<Internship[]>([]);
+  const [internships, setInternships] = useState<[]>([]);
 
   useEffect(() => {
     axios
@@ -30,7 +29,7 @@ function Popular() {
         </div>
         <div className="popular__interns">
           {internships.map((item) => {
-            return <Card key={item._id.toString()} {...item} />;
+            return <Card key={item} id={item} />;
           })}
         </div>
         <button

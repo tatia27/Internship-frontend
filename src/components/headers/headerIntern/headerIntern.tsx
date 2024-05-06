@@ -1,16 +1,15 @@
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/userContext";
 import profile from "./../../../assets/icons/profileHeader.svg";
 import logo from "./../../../assets/icons/logo.svg";
-import { UserContext } from "../../../context/userContext";
 import "./headerIntern.css";
 
 function HeaderIntern() {
   let navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
-  const logout = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
+  const logout = () => {
     if (localStorage.getItem("token")) {
       localStorage.removeItem("token");
     }
@@ -39,13 +38,9 @@ function HeaderIntern() {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to={`/`}
-                  className="header__nav__item"
-                  onClick={logout}
-                >
+                <Link to={`/`} className="header__nav__item" onClick={logout}>
                   Выйти
-                </NavLink>
+                </Link>
               </li>
             </ul>
             <img src={profile} alt="Профиль" onClick={navigateToProfile}></img>

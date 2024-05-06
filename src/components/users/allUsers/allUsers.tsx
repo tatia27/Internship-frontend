@@ -14,17 +14,17 @@ function AllUsers({ id, title }: TestProps) {
   // const idIntenship = "66257f1394009d339b26121b";
   // const { id } = useParams();
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/internships/${id}/participants`)
-      .then((response) => {
-        setInterns(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    navigate(`/companies/${id}/participants`);
-  }, [id, interns, navigate]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/v1/internships/${id}/participants`)
+  //     .then((response) => {
+  //       setInterns(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  //   navigate(`/companies/${id}/participants`);
+  // }, [id, interns, navigate]);
 
   // console.log(interns);
   return (
@@ -43,6 +43,7 @@ function AllUsers({ id, title }: TestProps) {
               {/* {interns.map((item) => {
                 return <User user={item} />;
               })} */}
+              <User />;
             </div>
           </div>
         </div>

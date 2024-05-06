@@ -1,20 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios, { AxiosError } from "axios";
 import iconStudent from "./../../../assets/images/student.png";
 import Favorite from "../../favorite/favorite";
 import { UserContext } from "../../../context/userContext";
 import { Cv } from "../../resume/resume";
-import axios, { AxiosError } from "axios";
-
 import "./profileIntern.css";
 
 export interface IIntern {
-  firstName: String;
-  middleName: String;
-  lastName: String;
-  email: String;
-  role: String;
-  description: String;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  role: string;
+  description: string;
   favorites: [];
   cv: Cv;
 }
@@ -24,12 +23,7 @@ function ProfileIntern() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const { user } = useContext(UserContext);
   let navigate = useNavigate();
-  // const { id } = useParams();
 
-  // const { isAuth } = useContext(UserContext);
-  // if (!isAuth) {
-  //   return navigate("/login");
-  // console.log(id);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -71,11 +65,6 @@ function ProfileIntern() {
       //   }
       // });
     }
-    // } else {
-    //   // Обработка сценария, когда пользователь не авторизован
-    //   // Например, перенаправление на страницу входа
-    //   navigate("/login");
-    // }
   }, [navigate, user?.id]);
 
   return (
@@ -129,7 +118,6 @@ function ProfileIntern() {
             <p className="skills__description">{intern?.cv.softSkills}</p>
           </div>
         </div>
-
         <Favorite favorites={favorites}></Favorite>
       </div>
     </div>

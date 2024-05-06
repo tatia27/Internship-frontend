@@ -1,15 +1,15 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { UserContext } from "../../../context/userContext";
 import { useContext } from "react";
-import { Internship } from "../internship/internship";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/userContext";
 import deleteInternship from "./../../../assets/icons/delete.svg";
 import { toast } from "react-toastify";
 import "./actionForCompany.css";
+import { type IInternship } from "../../filter/filter/filter";
 import axios from "axios";
 import AllUsers from "../../users/allUsers/allUsers";
 import Test from "../../test/test";
 
-function ActionForCompany(props: Internship) {
+function ActionForCompany(props: IInternship) {
   let navigate = useNavigate();
   const getIdInternship = (id: string): string => {
     return String(id);
@@ -20,8 +20,8 @@ function ActionForCompany(props: Internship) {
     id: string
   ): void => {
     event.stopPropagation();
-    <Test id={id} title={props.title} />;
-    navigate(`/company/${id}/participants`);
+    // <Test id={id} title={props.title} />;
+    navigate(`/company/profile/participants`);
   };
 
   const handleCardClick = async (id: string) => {

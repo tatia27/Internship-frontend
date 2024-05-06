@@ -1,21 +1,20 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
-import { useContext } from "react";
-import like from "./../../../assets/icons/like.svg";
-import { Internship } from "../internship/internship";
-import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import { type IInternship } from "../../filter/filter/filter";
+import axios, { AxiosError } from "axios";
+import like from "./../../../assets/icons/like.svg";
 import "./actionForIntern.css";
 
-function ActionForIntern(props: Internship) {
+function ActionForIntern(props: IInternship) {
   const { user } = useContext(UserContext);
   let navigate = useNavigate();
-  // const { id } = useParams();
 
   const applyForInternship = async (internshipId: string) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(internshipId);
+
       await axios.patch(
         `${process.env.REACT_APP_API_URL}/v1/internships/${internshipId}/apply`,
         { id: user?.id },
@@ -40,7 +39,7 @@ function ActionForIntern(props: Internship) {
   const addToFavorite = async (internshipId: string) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(internshipId);
+
       await axios.patch(
         `${process.env.REACT_APP_API_URL}/v1/intern/${internshipId}/add-to-favorites`,
         { id: user?.id },
@@ -78,7 +77,7 @@ function ActionForIntern(props: Internship) {
       <button
         className="full-current-card__top__button-respond"
         onClick={(event) => {
-          if (!localStorage.getItem("token")) {
+          if (!user) {
             navigate("/login");
           }
           event.stopPropagation();

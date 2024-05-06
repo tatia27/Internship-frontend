@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Internship } from "../filter/filter";
+import { IInternship } from "../filter/filter";
 import "../searchFilter/searchFilter.css";
 import axios from "axios";
 
 type SearchFilterProps = {
   currentPage: number;
-  internships: Internship[];
-  setInternships: (internships: Internship[]) => void;
+  internships: IInternship[];
+  setInternships: (internships: IInternship[]) => void;
   setTotalDocuments: (page: number) => void;
 };
 
@@ -27,6 +27,26 @@ function SearchFilter({
     process.env.REACT_APP_API_URL
   }/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
 
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((response) => {
+        setInternships(response.data.internships);
+        setTotalDocuments(response.data.numberOfPages);
+      })
+      .catch((error) => {
+        toast.error("Упс, не удалось выполнить запрос...");
+      });
+  }, [
+    setTotalDocuments,
+    setInternships,
+    currentPage,
+    focusOfInternship,
+    shedule,
+    typeOfEmployment,
+    url,
+  ]);
+
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value, checked } = event.target;
 
@@ -35,7 +55,7 @@ function SearchFilter({
         setFocusOfInternship([...focusOfInternship, value]);
       } else {
         setFocusOfInternship(
-          focusOfInternship.filter((item) => item !== value),
+          focusOfInternship.filter((item) => item !== value)
         );
       }
     }
@@ -61,26 +81,6 @@ function SearchFilter({
       }
     }
   };
-
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        setInternships(response.data.internships);
-        setTotalDocuments(response.data.numberOfPages);
-      })
-      .catch((error) => {
-        toast.error("Упс, не удалось выполнить запрос...");
-      });
-  }, [
-    setTotalDocuments,
-    setInternships,
-    currentPage,
-    focusOfInternship,
-    shedule,
-    typeOfEmployment,
-    url,
-  ]);
 
   const resetFilter = () => {
     setFocusOfInternship([]);

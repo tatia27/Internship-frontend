@@ -9,28 +9,29 @@ type userProps = {
   user: String;
 };
 
-function User({ user }: userProps) {
+// { user }: userProps
+function User() {
   const [intern, setIntern] = useState<IIntern>();
 
-  useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/v1/intern/${user}/apply-to-internship`,
-      )
-      .then((response) => {
-        setIntern(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [user]);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `${process.env.REACT_APP_API_URL}/v1/intern/${user}/apply-to-internship`
+  //     )
+  //     .then((response) => {
+  //       setIntern(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [user]);
 
   console.log(intern);
   return (
     <div className="user">
       <img src={userIcon} alt="Иконка пользователя"></img>
       <span>
-        {intern?.firstName} {intern?.lastName}
+        {/* {intern?.firstName} {intern?.lastName} */}Чепурная Татьяна
       </span>
     </div>
   );

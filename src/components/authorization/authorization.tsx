@@ -5,7 +5,7 @@ import axios, { AxiosError } from "axios";
 import { UserContext } from "../../context/userContext";
 // import { validateEmail } from "../registration/registrationIntern";
 import { authService } from "../../services";
-import { User } from "../../context/userContext";
+import { type User } from "../../context/userContext";
 import "./authorization.css";
 
 type AuthorizationtState = { email: string; password: string };
@@ -24,11 +24,12 @@ function Authorization() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     async function load() {
       const token = localStorage.getItem("token");
       if (token) {
         const response = await authService.getAuth();
-        // console.log(response);
+
         if (setUser && response && response.data) {
           const { role, id } = response.data;
 
@@ -41,6 +42,7 @@ function Authorization() {
         }
       }
     }
+
     if (!formAuth.email || !formAuth.password) {
       toast.info("Заполните все поля формы");
       return;

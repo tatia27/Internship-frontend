@@ -5,7 +5,7 @@ import Pagination from "../pagination/pagination";
 import "../filter/filter.css";
 import axios from "axios";
 
-export interface Internship {
+export interface IInternship {
   _id: string;
   title: string;
   company: string;
@@ -22,14 +22,14 @@ export interface Internship {
 }
 
 function Filter() {
-  const [internships, setInternships] = useState<Internship[]>([]);
+  const [internships, setInternships] = useState<IInternship[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalDocuments, setTotalDocuments] = useState<number>(0);
 
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/v1/internships?page=${currentPage}`,
+        `${process.env.REACT_APP_API_URL}/v1/internships?page=${currentPage}`
       )
       .then((response) => {
         setInternships(response.data.internships);
