@@ -30,7 +30,7 @@ function AllUsers({ id, title }: TestProps) {
   return (
     <div className="user-profiles">
       <div className="container">
-        <div className="user-profiles__info">
+        <div className="user-profiles__information">
           <div>
             <img src={currentCompany} alt="Логотип компании"></img>
           </div>

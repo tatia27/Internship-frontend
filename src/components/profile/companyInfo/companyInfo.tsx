@@ -36,7 +36,7 @@ function CompanyInfo() {
       );
       navigate(`/company/profile`);
     } catch (error) {
-      toast.error("Стажировка не создана");
+      toast.error("Информация не обновлена");
     }
   };
 

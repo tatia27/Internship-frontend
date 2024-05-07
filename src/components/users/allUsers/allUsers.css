@@ -1,7 +1,7 @@
-.user-profiles__info {
+.user-profiles__information {
   display: flex;
   column-gap: 24px;
-  padding: 40px 0;
+  margin: 50px 0 70px 0;
 }
 
 .user-profiles__all {

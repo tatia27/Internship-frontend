@@ -118,7 +118,11 @@ function ProfileIntern() {
             <p className="skills__description">{intern?.cv.softSkills}</p>
           </div>
         </div>
-        <Favorite favorites={favorites}></Favorite>
+        {favorites.length !== 0 ? (
+          <Favorite favorites={favorites}></Favorite>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

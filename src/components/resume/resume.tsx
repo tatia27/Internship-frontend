@@ -21,7 +21,7 @@ function Resume() {
   const [resume, setResume] = useState<Cv>({
     age: null,
     location: "",
-    levelOfEducation: "Bachelor",
+    levelOfEducation: "Бакалавриат",
     educationalInstitution: "",
     specialization: "",
     hardSkills: "",
@@ -94,11 +94,11 @@ function Resume() {
             name="levelOfEducation"
             className="resume-input"
             onChange={changeSelectHandler}
-            defaultValue="Bachelor"
+            defaultValue="Бакалавриат"
           >
-            <option value="Bachelor">Бакалавриат</option>
-            <option value="Master">Специалитет</option>
-            <option value="Specialist">Магистратура</option>
+            <option value="Бакалавриат">Бакалавриат</option>
+            <option value="Специалитет">Специалитет</option>
+            <option value="Магистратура">Магистратура</option>
           </select>
           <input
             type="text"

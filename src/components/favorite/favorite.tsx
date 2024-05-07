@@ -1,7 +1,5 @@
-import left from "./../../assets/icons/left.svg";
-import right from "./../../assets/icons/right.svg";
-import Card from "../internships/card/card";
 import { Carousel } from "primereact/carousel";
+import Card from "../internships/card/card";
 import "./favorite.css";
 
 type FavoriteProps = {
@@ -9,33 +7,19 @@ type FavoriteProps = {
 };
 
 function Favorite({ favorites }: FavoriteProps) {
+  const itemTemplate = (item: null) => {
+    return <Card id={String(item)} />;
+  };
+
   return (
-    <div className="favorite__interns">
-      <h3 className="user-profiles__favorite-internhip">
-        Избранные стажировки
-      </h3>
-      <div className="favorite__interns__card">
-        {/* <Carousel
-          value={favorites}
-          numVisible={2}
-          numScroll={1}
-          responsiveOptions={responsiveOptions}
-          itemTemplate={productTemplate}
-        > */}
-        {favorites.map((item) => {
-          // return <Card key={item} id={item} />;
-          return <Card key={item} id={item} />;
-        })}
-        {/* </Carousel> */}
-      </div>
-      <div className="favorite__interns__more">
-        <div className="favorite__interns__more__item">
-          <img src={left} alt="Стрелка влево"></img>
-        </div>
-        <div className="favorite__interns__more__item">
-          <img src={right} alt="Стрелка вправо"></img>
-        </div>
-      </div>
+    <div className="favorite-internships">
+      <h3 className="favorite-internships__title">Избранные стажировки</h3>
+      <Carousel
+        value={favorites}
+        numVisible={2}
+        numScroll={1}
+        itemTemplate={itemTemplate}
+      ></Carousel>
     </div>
   );
 }

@@ -33,6 +33,14 @@ function HeaderIntern() {
           <div className="header__nav__intern">
             <ul>
               <li>
+                <NavLink
+                  to="/intern/my-applications"
+                  className="header__nav__item"
+                >
+                  Мои заявки
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/intern/internships" className="header__nav__item">
                   Стажировки
                 </NavLink>

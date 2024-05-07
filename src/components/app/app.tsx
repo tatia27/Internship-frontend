@@ -30,6 +30,7 @@ import { UserContext } from "../../context/userContext";
 import { type User } from "../../context/userContext";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.css";
+import Applications from "../applications/applications";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -98,8 +99,14 @@ function App() {
           element={
             <>
               <Main />
-              {user?.role !== "company" ? <Instructions /> : <></>}
-              {user?.role !== "company" ? <Popular /> : <></>}
+              {user?.role !== "company" ? (
+                <>
+                  <Instructions /> <Popular />
+                </>
+              ) : (
+                <></>
+              )}
+              {/* {user?.role !== "company" ? <Popular /> : <></>} */}
             </>
           }
         />
@@ -127,6 +134,7 @@ function App() {
         <Route path="/intern/profile" element={<ProfileIntern />} />
         <Route path="/intern/profile/resume" element={<Resume />} />
         <Route path="/intern/internships" element={<Filter />} />
+        <Route path="/intern/my-applications" element={<Applications />} />
         <Route path="/intern/error" element={<Error />} />
         <Route
           path="/intern"
