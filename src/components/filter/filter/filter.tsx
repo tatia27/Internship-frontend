@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import FullCard from "../../internships/fullCard/fullCard";
 import SearchFilter from "../searchFilter/searchFilter";
 import Pagination from "../pagination/pagination";
+import { internshipService } from "../../../services/internship";
+import { toast } from "react-toastify";
 import "../filter/filter.css";
-import axios from "axios";
 
 export interface IInternship {
   _id: string;
@@ -15,6 +16,7 @@ export interface IInternship {
   typeOfEmployment: string;
   durationOfInternship: string;
   salary: number;
+  participants?: string[];
   skills: string;
   conditions: string;
   isActive: boolean;
@@ -27,17 +29,19 @@ function Filter() {
   const [totalDocuments, setTotalDocuments] = useState<number>(0);
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/v1/internships?page=${currentPage}`
-      )
-      .then((response) => {
+    async function loadFilteredInternships() {
+      try {
+        const response = await internshipService.getFilteredInternships(
+          currentPage
+        );
+
         setInternships(response.data.internships);
         setTotalDocuments(response.data.numberOfPages);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      } catch {
+        toast.error("Упс, что-то пошло не так...");
+      }
+    }
+    loadFilteredInternships();
   }, [currentPage]);
 
   return (

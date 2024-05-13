@@ -4,21 +4,12 @@ import { UserContext } from "../../../context/userContext";
 import profile from "./../../../assets/icons/profileHeader.svg";
 import logo from "./../../../assets/icons/logo.svg";
 import "./headerIntern.css";
+import { useLogout } from "../../../hooks";
 
 function HeaderIntern() {
-  let navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const logout = () => {
-    if (localStorage.getItem("token")) {
-      localStorage.removeItem("token");
-    }
-    if (setUser) {
-      setUser(null);
-    }
-    navigate("/");
-  };
-
+  const logout = useLogout();
   const navigateToProfile = () => {
     navigate("/intern/profile");
   };
@@ -46,12 +37,17 @@ function HeaderIntern() {
                 </NavLink>
               </li>
               <li>
-                <Link to={`/`} className="header__nav__item" onClick={logout}>
+                <Link to="/" className="header__nav__item" onClick={logout}>
                   Выйти
                 </Link>
               </li>
             </ul>
-            <img src={profile} alt="Профиль" onClick={navigateToProfile}></img>
+            <img
+              src={profile}
+              alt="Профиль"
+              onClick={navigateToProfile}
+              className="header__nav__profile"
+            ></img>
           </div>
         </div>
       </div>

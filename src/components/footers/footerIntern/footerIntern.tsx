@@ -1,23 +1,11 @@
-import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { UserContext } from "../../../context/userContext";
+import { NavLink } from "react-router-dom";
 import FooterContacts from "../footerContacts/footerContacts";
 import FooterLogo from "../footerLogo/footerLogo";
+import { useLogout } from "../../../hooks";
 import "./footerIntern.css";
 
 function FooterIntern() {
-  let navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
-
-  const logout = () => {
-    if (localStorage.getItem("token")) {
-      localStorage.removeItem("token");
-    }
-    if (setUser) {
-      setUser(null);
-    }
-    navigate("/");
-  };
+  const logout = useLogout();
 
   return (
     <footer className="footer">

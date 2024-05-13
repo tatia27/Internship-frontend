@@ -15,6 +15,8 @@ type Company = {
 interface ICompany {
   company: Company;
   setCompany: Dispatch<SetStateAction<Company>>;
+  internshipId: string | null;
+  setInternshipId: Dispatch<SetStateAction<string | null>>;
 }
 
 interface ICompanyContextProviderProps {
@@ -24,6 +26,8 @@ interface ICompanyContextProviderProps {
 export const defaultState = {
   company: { name: "", description: "" },
   setCompany: () => {},
+  internshipId: null,
+  setInternshipId: () => {},
 };
 
 export const CompanyContext = createContext<ICompany>(defaultState);
@@ -35,13 +39,16 @@ export function CompanyContextProvider({
     name: "",
     description: "",
   });
+  const [internshipId, setInternshipId] = useState<string | null>(null);
 
   const value = useMemo(
     () => ({
       company,
       setCompany,
+      internshipId,
+      setInternshipId,
     }),
-    [company],
+    [company, internshipId]
   );
 
   return (

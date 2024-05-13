@@ -22,15 +22,15 @@ import Authorization from "../authorization/authorization";
 import AddInternship from "../internships/addInternship/addInternship";
 import CompanyInfo from "../profile/companyInfo/companyInfo";
 import Error from "../error/error";
-import Test from "../test/test";
 import AllUsers from "../users/allUsers/allUsers";
 import { CompanyContextProvider } from "../../context/companyContext";
-import { authService } from "../../services";
+import { FavoritesContextProvider } from "../../context/favoritesContext";
 import { UserContext } from "../../context/userContext";
 import { type User } from "../../context/userContext";
 import "react-toastify/dist/ReactToastify.css";
-import "./app.css";
 import Applications from "../applications/applications";
+import { authService } from "../../services/auth";
+import "./app.css";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -106,7 +106,6 @@ function App() {
               ) : (
                 <></>
               )}
-              {/* {user?.role !== "company" ? <Popular /> : <></>} */}
             </>
           }
         />
@@ -131,7 +130,14 @@ function App() {
           path="/registration/registartion-intern"
           element={<Authorization />}
         />
-        <Route path="/intern/profile" element={<ProfileIntern />} />
+        <Route
+          path="/intern/profile"
+          element={
+            <FavoritesContextProvider>
+              <ProfileIntern />
+            </FavoritesContextProvider>
+          }
+        />
         <Route path="/intern/profile/resume" element={<Resume />} />
         <Route path="/intern/internships" element={<Filter />} />
         <Route path="/intern/my-applications" element={<Applications />} />
@@ -189,23 +195,22 @@ function App() {
             </CompanyContextProvider>
           }
         />
-        {/* <Route
-          path="/company/:id/participants"
-          element={
-            <CompanyContextProvider>
-              <Test id={""} title={""} />
-              <AllUsers id={""} title={""} />
-            </CompanyContextProvider>
-          }
-        /> */}
         <Route
           path="/company/profile/participants"
           element={
             <CompanyContextProvider>
-              <AllUsers id={""} title={""} />
+              <AllUsers />
             </CompanyContextProvider>
           }
         />
+        {/* <Route
+          path="/company/profile/participants"
+          element={
+            <CompanyContextProvider>
+              <AllUsers />
+            </CompanyContextProvider>
+          }
+        /> */}
         <Route
           path="/companies/error"
           element={

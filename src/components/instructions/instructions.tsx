@@ -22,7 +22,7 @@ function Instructions() {
           <div className="instructions__block__item">
             <img src={resume} alt="Резюме" />
             <span className="instructions__block__item__text">
-              Загрузи резюме
+              Подай резюме
             </span>
           </div>
           <hr />

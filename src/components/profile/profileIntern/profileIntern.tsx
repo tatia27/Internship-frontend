@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import iconStudent from "./../../../assets/images/student.png";
 import Favorite from "../../favorite/favorite";
 import { UserContext } from "../../../context/userContext";
-import { Cv } from "../../resume/resume";
+import { type Cv } from "../../resume/resume";
+import { FavoritesContext } from "../../../context/favoritesContext";
+import { internService } from "../../../services/intern";
 import "./profileIntern.css";
 
 export interface IIntern {
@@ -20,9 +22,9 @@ export interface IIntern {
 
 function ProfileIntern() {
   const [intern, setIntern] = useState<IIntern>();
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const { favorites, setFavorites } = useContext(FavoritesContext);
   const { user } = useContext(UserContext);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,42 +32,37 @@ function ProfileIntern() {
       navigate("/login");
     }
 
-    if (token) {
-      axios
-        .get(`${process.env.REACT_APP_API_URL}/v1/intern/${user?.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
+    async function loadIntern() {
+      try {
+        if (user?.id) {
+          const response = await internService.getIntern(user?.id);
           setIntern(response.data);
-        })
-        .catch((error) => {
-          if ((error as AxiosError).response?.status === 404) {
-            navigate("/intern/error");
-          }
-          console.log(error);
-        });
-
-      axios
-        .get(
-          `${process.env.REACT_APP_API_URL}/v1/intern/${user?.id}/favorites`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          setFavorites(response.data.favoriteInternshipIds);
-        });
-      // .catch((error) => {
-      //   if ((error as AxiosError).response?.status === 404) {
-      //     navigate("/intern/error");
-      //   }
-      // });
+        }
+      } catch (error) {
+        if ((error as AxiosError).response?.status === 404) {
+          navigate("/intern/error");
+        }
+      }
     }
-  }, [navigate, user?.id]);
+
+    async function loadFavorites() {
+      try {
+        if (user?.id) {
+          const response = await internService.getFavoritesInternship(user?.id);
+          if (setFavorites) {
+            setFavorites(response.data.favoriteInternshipIds);
+          }
+        }
+      } catch (error) {
+        if ((error as AxiosError).response?.status === 404) {
+          navigate("/intern/error");
+        }
+      }
+    }
+
+    loadIntern();
+    loadFavorites();
+  }, [navigate, setFavorites, user?.id]);
 
   return (
     <div className="user-profile">
@@ -106,7 +103,7 @@ function ProfileIntern() {
               className="button-resume"
               onClick={() => navigate(`/intern/profile/resume`)}
             >
-              Загрузить резюме
+              Добавить резюме
             </button>
           </div>
           <div className="skills">
@@ -118,11 +115,7 @@ function ProfileIntern() {
             <p className="skills__description">{intern?.cv.softSkills}</p>
           </div>
         </div>
-        {favorites.length !== 0 ? (
-          <Favorite favorites={favorites}></Favorite>
-        ) : (
-          <></>
-        )}
+        <Favorite favorites={favorites} />
       </div>
     </div>
   );

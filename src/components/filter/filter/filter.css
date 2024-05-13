@@ -1,5 +1,5 @@
 .internship-filter {
-  padding: 40px;
+  margin: 40px;
 }
 
 .internship-filter__items {
@@ -46,7 +46,7 @@
 
 .filter-reset {
   font-size: 18px;
-  color: #363232;
+  color: var(--color-title);
 }
 
 .checkbox-filter {

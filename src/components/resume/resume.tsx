@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/userContext";
+import { internService } from "../../services/intern";
 import "./resume.css";
 
 export type Cv = {
@@ -16,7 +16,7 @@ export type Cv = {
 };
 
 function Resume() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [resume, setResume] = useState<Cv>({
     age: null,
@@ -30,33 +30,35 @@ function Resume() {
 
   const handleResume = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      if (
-        !resume.age ||
-        !resume.location ||
-        !resume.levelOfEducation ||
-        !resume.educationalInstitution ||
-        !resume.specialization ||
-        !resume.hardSkills ||
-        !resume.softSkills
-      ) {
-        toast.info("Заполните все поля формы");
-        return;
-      }
-      const { data } = await axios.put(
-        `${process.env.REACT_APP_API_URL}/v1/intern/${user?.id}/resume`,
-        resume,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-      navigate(`/intern/profile`);
-    } catch (error) {
-      toast.error("Стажировка не создана");
+
+    if (
+      !resume.age ||
+      !resume.location ||
+      !resume.levelOfEducation ||
+      !resume.educationalInstitution ||
+      !resume.specialization ||
+      !resume.hardSkills ||
+      !resume.softSkills
+    ) {
+      toast.info("Заполните все поля формы");
     }
+
+    async function loadResume() {
+      try {
+        const token = localStorage.getItem("token");
+        if (token) {
+          if (user) {
+            await internService.createResume(user?.id, resume);
+          }
+
+          navigate(`/intern/profile`);
+        }
+      } catch (error) {
+        toast.error("Стажировка не создана");
+      }
+    }
+
+    loadResume();
   };
 
   const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -3,23 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import arrow from "./../../assets/icons/arrow.svg";
 import Card from "../internships/card/card";
-import axios from "axios";
+import { internshipService } from "../../services/internship";
 import "./popular.css";
 
 function Popular() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [internships, setInternships] = useState<[]>([]);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/internships/popular`)
-      .then((response) => {
+    async function loadPopular() {
+      const response = await internshipService.getPopularInternships();
+
+      if (setInternships) {
         setInternships(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      }
+    }
+    loadPopular();
   }, []);
 
   return (

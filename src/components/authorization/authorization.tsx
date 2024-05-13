@@ -1,22 +1,29 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { UserContext } from "../../context/userContext";
 // import { validateEmail } from "../registration/registrationIntern";
-import { authService } from "../../services";
 import { type User } from "../../context/userContext";
+import { authService } from "../../services/auth";
 import "./authorization.css";
 
-type AuthorizationtState = { email: string; password: string };
+export type AuthorizationTypes = { email: string; password: string };
 
 function Authorization() {
-  let navigate = useNavigate();
-  const [formAuth, setFormAuth] = useState<AuthorizationtState>({
+  const navigate = useNavigate();
+  const [formAuth, setFormAuth] = useState<AuthorizationTypes>({
     email: "",
     password: "",
   });
   const { setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, []);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormAuth({ ...formAuth, [event.target.name]: event.target.value });
@@ -24,9 +31,18 @@ function Authorization() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formAuth.email || !formAuth.password) {
+      toast.info("Заполните все поля формы");
+      return;
+    }
+    // else if (validateEmail(formAuth.email) === false) {
+    //   toast.info("Email должен содержать специальные символы @ .");
+    //   return;
+    // }
 
     async function load() {
       const token = localStorage.getItem("token");
+
       if (token) {
         const response = await authService.getAuth();
 
@@ -37,44 +53,30 @@ function Authorization() {
             role,
             id,
           };
-          debugger;
           setUser(userData);
         }
       }
     }
 
-    if (!formAuth.email || !formAuth.password) {
-      toast.info("Заполните все поля формы");
-      return;
-    }
-    //  else if (validateEmail(formAuth.email) === false) {
-    //   toast.info("Email должен содержать специальные символы @ .");
-    //   return;
-    // }
+    async function login() {
+      try {
+        const { data } = await authService.login(formAuth);
 
-    try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/v1/auth/login`,
-        formAuth,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
+        localStorage.setItem("token", data.token);
+
+        await load();
+
+        navigate("/");
+      } catch (error) {
+        if ((error as AxiosError).response?.status === 401) {
+          toast.error("Неверный пароль");
+        } else {
+          toast.error("Пользователь не найден");
         }
-      );
-
-      localStorage.setItem("token", data.token);
-
-      await load();
-      navigate("/");
-    } catch (error) {
-      if ((error as AxiosError).response?.status === 401) {
-        toast.error("Неверный пароль");
-      } else {
-        toast.error("Пользователь не найден");
       }
     }
+
+    login();
   };
 
   return (

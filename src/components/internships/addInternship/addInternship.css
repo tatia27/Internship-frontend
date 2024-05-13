@@ -1,7 +1,7 @@
 .internship-title {
-  font-size: 32px;
-  margin: 40px 0;
-  font-family: "Gilroy-semibold";
+  font-size: 26px;
+  font-family: "Gilroy-medium";
+  margin: 40px 0 32px 0;
 }
 
 .registration-intern {
@@ -22,7 +22,7 @@
 .registration-intern__button {
   background-color: var(--primary-color);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-items);
   color: var(--text-color);
   padding: 14px 121px;
   font-size: 16px;
@@ -44,9 +44,9 @@ h1 {
 }
 
 .resume-input,
-textarea,
+/* textarea, */
 select {
-  border-radius: 4px;
+  border-radius: var(--border-items);
   border: none;
   outline: 0;
   background-color: var(--text-color);
@@ -54,14 +54,20 @@ select {
   font-size: 18px;
   padding: 15px;
   width: 100%;
-  color: #363232;
+  color: var(--color-title);
   margin-bottom: 30px;
   font-family: "Gilroy-regular";
 }
 
+.resume-input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid var(--primary-color);
+}
+
 .resume-button {
   padding: 8px 56px;
-  border-radius: 4px;
+  border-radius: var(--border-items);
   border: none;
   background-color: var(--primary-color);
   color: var(--text-color);

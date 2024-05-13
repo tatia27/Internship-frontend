@@ -34,18 +34,10 @@ function SearchFilter({
         setInternships(response.data.internships);
         setTotalDocuments(response.data.numberOfPages);
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Упс, не удалось выполнить запрос...");
       });
-  }, [
-    setTotalDocuments,
-    setInternships,
-    currentPage,
-    focusOfInternship,
-    shedule,
-    typeOfEmployment,
-    url,
-  ]);
+  }, [setTotalDocuments, setInternships, url]);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value, checked } = event.target;

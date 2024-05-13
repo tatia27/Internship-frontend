@@ -4,20 +4,12 @@ import logo from "./../../../assets/icons/logo.svg";
 import profile from "./../../../assets/icons/profileHeader.svg";
 import { UserContext } from "../../../context/userContext";
 import "./headerCompany.css";
+import { useLogout } from "../../../hooks";
 
 function HeaderCompany() {
-  let navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const logout = () => {
-    if (localStorage.getItem("token")) {
-      localStorage.removeItem("token");
-    }
-    if (setUser) {
-      setUser(null);
-    }
-    navigate("/");
-  };
+  const logout = useLogout();
 
   const navigateToProfile = () => {
     navigate("/company/profile");
@@ -34,7 +26,7 @@ function HeaderCompany() {
             <ul>
               <li>
                 <NavLink
-                  to={`/company/add-internship`}
+                  to="/company/add-internship"
                   className="header__nav__item"
                 >
                   Разместить стажировку
@@ -54,7 +46,12 @@ function HeaderCompany() {
                 </Link>
               </li>
             </ul>
-            <img src={profile} alt="Профиль" onClick={navigateToProfile}></img>
+            <img
+              src={profile}
+              alt="Профиль"
+              onClick={navigateToProfile}
+              className="header__nav__profile"
+            ></img>
           </div>
         </div>
       </div>

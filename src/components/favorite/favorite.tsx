@@ -7,8 +7,8 @@ type FavoriteProps = {
 };
 
 function Favorite({ favorites }: FavoriteProps) {
-  const itemTemplate = (item: null) => {
-    return <Card id={String(item)} />;
+  const itemTemplate = (item: string) => {
+    return <Card id={item} />;
   };
 
   return (

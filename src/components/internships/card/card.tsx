@@ -1,28 +1,31 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import like from "./../../../assets/icons/likeCard.svg";
 import company from "./../../../assets/icons/logoSmall.svg";
 import location from "./../../../assets/icons/location.svg";
 import { UserContext } from "../../../context/userContext";
 import { type IInternship } from "../../filter/filter/filter";
+import { internshipService } from "../../../services/internship";
+import { internService } from "../../../services/intern";
 import "./card.css";
 
 function Card({ id }: { id: string }) {
-  let navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [internship, setInternship] = useState<IInternship>();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/internships/${id}`)
-      .then((response) => {
+    async function loadInternship() {
+      try {
+        const response = await internshipService.getInternships(id);
         setInternship(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      } catch {
+        toast.error("Упс, что-то пошло не так");
+      }
+    }
+    loadInternship();
   }, [id]);
 
   const handleClick = () => {
@@ -31,18 +34,9 @@ function Card({ id }: { id: string }) {
 
   const applyForInternship = async (internshipId: string) => {
     try {
-      const token = localStorage.getItem("token");
-
-      await axios.patch(
-        `${process.env.REACT_APP_API_URL}/v1/internships/${internshipId}/apply`,
-        { id: user?.id },
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      if (user?.id) {
+        await internshipService.applyForInternship(internshipId, user?.id);
+      }
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
         toast.error("Заявка уже подана");
@@ -56,18 +50,7 @@ function Card({ id }: { id: string }) {
 
   const addToFavorite = async (internshipId: string) => {
     try {
-      const token = localStorage.getItem("token");
-
-      await axios.patch(
-        `${process.env.REACT_APP_API_URL}/v1/intern/${internshipId}/add-to-favorites`,
-        { id: user?.id },
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await internService.addToFavorites(id, internshipId);
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
         toast.error("Стажировка уже добавлена в избранное");
@@ -115,6 +98,7 @@ function Card({ id }: { id: string }) {
               if (!localStorage.getItem("token")) {
                 navigate("/login");
               }
+
               addToFavorite(id);
             }}
           />

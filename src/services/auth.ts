@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AuthorizationTypes } from "../components/authorization/authorization";
 
 export const authService = {
   getAuth: () => {
@@ -9,5 +10,11 @@ export const authService = {
         Authorization: `Bearer ${token}`,
       },
     });
+  },
+  login: (formAuth: AuthorizationTypes) => {
+    return axios.post(
+      `${process.env.REACT_APP_API_URL}/v1/auth/login`,
+      formAuth
+    );
   },
 };

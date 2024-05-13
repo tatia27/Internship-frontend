@@ -2,6 +2,7 @@
   height: 225px;
   background-color: #28dac2;
   color: white;
+  flex: 0 0 auto;
 }
 
 .footer__nav {

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { UserContext } from "../../../context/userContext";
 import "./addInternship.css";
 
@@ -18,7 +18,7 @@ type InternshipForm = {
 };
 
 function AddInternship() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [internship, setInternship] = useState<InternshipForm>({
     title: "",
@@ -73,10 +73,6 @@ function AddInternship() {
       toast.error("Стажировка не создана");
     }
   };
-
-  // if (role !== "сompany") {
-  //   navigate("/main");
-  // }
 
   return (
     <div className="resume">

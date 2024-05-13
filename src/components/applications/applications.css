@@ -1,6 +1,10 @@
+.applications {
+  margin: 40px 0;
+}
+
 .intern-applications__title {
   font-size: 26px;
-  color: #434242;
-  margin: 30px 0;
-  font-family: "Gilroy-bold";
+  font-family: "Gilroy-medium";
+  color: #404040;
+  margin-bottom: 30px;
 }

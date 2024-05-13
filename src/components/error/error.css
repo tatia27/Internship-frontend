@@ -34,7 +34,7 @@
 .error__wrapper__info {
   font-size: 22px;
   font-family: "Gilroy-semibold";
-  color: #363232;
+  color: var(--color-title);
 }
 
 .link {

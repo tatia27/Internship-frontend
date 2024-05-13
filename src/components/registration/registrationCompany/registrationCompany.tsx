@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { validateEmail } from "../registrationIntern/registrationIntern";
+import { registerService } from "../../../services/register";
 import "./registrationCompany.css";
 
-type FormCompanyState = {
+export type CompanyForm = {
   name: string;
   email: string;
   password: string;
@@ -14,8 +15,8 @@ type FormCompanyState = {
 };
 
 function RegistrationCompany() {
-  let navigate = useNavigate();
-  const [form, setForm] = useState<FormCompanyState>({
+  const navigate = useNavigate();
+  const [form, setForm] = useState<CompanyForm>({
     name: "",
     email: "",
     password: "",
@@ -30,9 +31,7 @@ function RegistrationCompany() {
     setForm({ ...form, [event.target.name]: value });
   };
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const validateForm = (form: CompanyForm): void => {
     if (!form.name || !form.email || !form.password) {
       toast.info("Заполните все поля формы");
       return;
@@ -43,20 +42,18 @@ function RegistrationCompany() {
       toast.info("Email должен содержать специальные символы @ .");
       return;
     }
+  };
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    validateForm(form);
 
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/v1/company/`,
-        form,
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+      await registerService.registerCompany(form);
       navigate("/");
       toast.info(
-        "Вы зерегистрированы, войдите в приложение со своими учетными данными"
+        "Вы зерегистрированы, войдите в приложение с учетными данными"
       );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {

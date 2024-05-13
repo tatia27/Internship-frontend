@@ -1,6 +1,6 @@
-import "./footerLogo.css";
 import { Link } from "react-router-dom";
 import logo from "./../../../assets/icons/logoFooter.svg";
+import "./footerLogo.css";
 
 function FooterLogo() {
   return (

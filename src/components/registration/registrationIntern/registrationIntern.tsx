@@ -2,15 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
+import { registerService } from "../../../services/register";
 import "./registrationIntern.css";
 
-export const validateEmail = (email: string): boolean => {
-  const regExp = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]/g;
-  return regExp.test(email);
-};
-
-type InternState = {
+export type InternForm = {
   firstName: string;
   middleName: string;
   lastName: string;
@@ -19,9 +15,14 @@ type InternState = {
   conditions: boolean;
 };
 
+export const validateEmail = (email: string): boolean => {
+  const regExp = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]/g;
+  return regExp.test(email);
+};
+
 function RegistrationIntern() {
-  let navigate = useNavigate();
-  const [form, setForm] = useState<InternState>({
+  const navigate = useNavigate();
+  const [form, setForm] = useState<InternForm>({
     firstName: "",
     middleName: "",
     lastName: "",
@@ -38,9 +39,7 @@ function RegistrationIntern() {
     setForm({ ...form, [event.target.name]: value });
   };
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const validateForm = (form: InternForm) => {
     if (
       !form.firstName ||
       !form.middleName ||
@@ -57,21 +56,17 @@ function RegistrationIntern() {
       toast.info("Email должен содержать специальные символы @ ,");
       return;
     }
+  };
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    validateForm(form);
 
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/v1/intern/`,
-        form,
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
-
+      await registerService.registerIntern(form);
       navigate("/");
       toast.info(
-        "Вы зерегистрированы, войдите в приложение со своими учетными данными"
+        "Вы зерегистрированы, войдите в приложение с учетными данными"
       );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {

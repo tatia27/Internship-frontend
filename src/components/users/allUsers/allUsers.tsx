@@ -2,31 +2,41 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import currentCompany from "./../../../assets/images/student.png";
 import { CompanyContext } from "../../../context/companyContext";
+import { type IInternship } from "../../filter/filter/filter";
+import { internshipService } from "../../../services/internship";
 import User from "../user/user";
-import axios from "axios";
 import "./allUsers.css";
-import { type TestProps } from "../../test/test";
 
-function AllUsers({ id, title }: TestProps) {
-  let navigate = useNavigate();
+function AllUsers() {
+  const { internshipId } = useContext(CompanyContext);
   const [interns, setInterns] = useState<String[]>([]);
-  const { company } = useContext(CompanyContext);
-  // const idIntenship = "66257f1394009d339b26121b";
-  // const { id } = useParams();
+  const [internship, setInternship] = useState<IInternship>();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_API_URL}/v1/internships/${id}/participants`)
-  //     .then((response) => {
-  //       setInterns(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  //   navigate(`/companies/${id}/participants`);
-  // }, [id, interns, navigate]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
 
-  // console.log(interns);
+    async function loadInterns() {
+      const response = await internshipService.getInternsForInternship(
+        internshipId
+      );
+      setInterns(response.data);
+    }
+
+    async function loadInternship() {
+      if (internshipId) {
+        const response = await internshipService.getInternship(internshipId);
+        setInternship(response.data);
+      }
+    }
+
+    loadInterns();
+    loadInternship();
+  }, [internshipId, navigate]);
+
   return (
     <div className="user-profiles">
       <div className="container">
@@ -36,14 +46,17 @@ function AllUsers({ id, title }: TestProps) {
           </div>
           <div>
             <div className="user-profiles__company">
-              <h2 className="user-profiles__company__title">{company?.name}</h2>
-              <h3 className="user-profiles__company__internship">{title}</h3>
+              <h2 className="user-profiles__company__title">
+                {internship?.company}
+              </h2>
+              <h3 className="user-profiles__company__internship">
+                {internship?.title}
+              </h3>
             </div>
             <div className="user-profiles__all">
-              {/* {interns.map((item) => {
-                return <User user={item} />;
-              })} */}
-              <User />;
+              {interns.map((item) => {
+                return <User item={item.toString()} />;
+              })}
             </div>
           </div>
         </div>

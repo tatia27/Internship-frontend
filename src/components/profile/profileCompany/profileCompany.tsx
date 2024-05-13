@@ -1,19 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
 import currentCompany from "./../../../assets/images/student.png";
 import FullCard from "../../internships/fullCard/fullCard";
 import { type IInternship } from "../../filter/filter/filter";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { UserContext } from "../../../context/userContext";
+import { internshipService } from "../../../services/internship";
+import { companyService } from "../../../services/company";
 import "./profileCompany.css";
 
 function ProfileCompany() {
-  let navigate = useNavigate();
-  const { id } = useParams();
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const { company, setCompany } = useContext(CompanyContext);
-
   const [activeInternships, setActiveInternships] = useState<IInternship[]>([]);
 
   useEffect(() => {
@@ -21,36 +21,34 @@ function ProfileCompany() {
     if (!token) {
       navigate("/login");
     }
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/company/${user?.id}`, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setCompany({
-          name: response.data.name,
-          description: response.data.description,
-        });
-      })
-      .catch((error) => {
-        if ((error as AxiosError).response?.status === 404) {
-          navigate("/companies/error");
-        }
-      });
-  }, [id, navigate, setCompany, user?.id]);
-
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/v1/internships/${user?.id}/active`)
-      .then((response) => {
+    async function loadInternships() {
+      if (user?.id) {
+        debugger;
+        const response = await internshipService.getInactiveInternships(
+          user?.id
+        );
         setActiveInternships(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [activeInternships, user?.id]);
+      }
+    }
+
+    async function loadCompany() {
+      if (user?.id) {
+        try {
+          const response = await companyService.getCompany(user?.id);
+          setCompany({
+            name: response.data.name,
+            description: response.data.description,
+          });
+        } catch (error) {
+          if ((error as AxiosError).response?.status === 404) {
+            navigate("/company/error");
+          }
+        }
+      }
+    }
+    loadInternships();
+    loadCompany();
+  }, [navigate, setCompany, user?.id]);
 
   return (
     <div className="user-profile">

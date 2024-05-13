@@ -4,14 +4,14 @@ import { UserContext } from "../../context/userContext";
 import "./main.css";
 
 function Main() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
   const navigateToInternships = () => {
     if (user?.role === "intern") {
       navigate("/intern/internships");
     } else if (user?.role === "company") {
-      navigate("/company/internships");
+      navigate("/company/add-internship");
     } else {
       navigate("/internships");
     }
@@ -29,7 +29,7 @@ function Main() {
                 сегодня
               </h1>
               <h2 className="title-introduction">
-                Вас ждут множество вакансий в сфере инновационных технологий
+                Вас ждут множество специалистов в сфере инновационных технологий
               </h2>
             </>
           ) : (
@@ -45,7 +45,7 @@ function Main() {
             </>
           )}
           <button className="main__button" onClick={navigateToInternships}>
-            Начать поиск
+            {user?.role === "company" ? "Разместить" : "Начать поиск"}
           </button>
         </div>
       </div>

@@ -10,6 +10,8 @@
   --primary-color-hover: #28dac2;
   --text-color: #ffffff;
   --background-color: #f8f9fa;
+  --border-items: 4px;
+  --color-title: #363232;
 }
 
 .container {
@@ -20,6 +22,9 @@
 .App {
   background-color: #f8f9fa;
   font-family: "Gilroy-regular";
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
