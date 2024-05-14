@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { toast } from "react-toastify";
@@ -8,13 +8,12 @@ import like from "./../../../assets/icons/like.svg";
 import { ReactComponent as LikeIcon } from "./../../../assets/icons/like.svg";
 import { internshipService } from "../../../services/internship";
 import { FavoritesContext } from "../../../context/favoritesContext";
+import ApplyButton from "../../applyButton/applyButton";
 import "./actionForIntern.css";
-import cn from "classnames";
 
 function ActionForIntern(props: IInternship) {
   const { user } = useContext(UserContext);
   const { setFavorites } = useContext(FavoritesContext);
-  const [isApplied, setIsApplied] = useState(false);
   // TODO: add Favorites
   // const [favorites, setFavorites] = useState<string[]>([]);
   // const [isParticipant, setIsParticipant] = useState<boolean>(false);
@@ -34,24 +33,6 @@ function ActionForIntern(props: IInternship) {
     }
     loadFavorites();
   }, [setFavorites, user?.id]);
-
-  const applyForInternship = async (internshipId: string) => {
-    try {
-      if (user?.id) {
-        await internshipService.applyForInternship(internshipId, user?.id);
-      }
-
-      setIsApplied(true);
-    } catch (error) {
-      if ((error as AxiosError).response?.status === 400) {
-        toast.error("Заявка уже подана");
-      } else if ((error as AxiosError).response?.status === 401) {
-        toast.error("Авторизуйтесь в приложении");
-      } else {
-        toast.error("Упс, что-то пошло не так");
-      }
-    }
-  };
 
   const addToFavorite = async (internshipId: string) => {
     try {
@@ -88,30 +69,10 @@ function ActionForIntern(props: IInternship) {
     addToFavorite(props._id.toString());
   };
 
-  const isParticipant =
-    Boolean(user && (props.participants || []).includes(user.id)) || isApplied;
-
   return (
     <div className="full-current-card__top__action">
       <LikeIcon onClick={favoriteIconOnClick} />
-      <button
-        className={cn(
-          isParticipant && "full-current-card__top__button-applied",
-          "full-current-card__top__button-respond"
-        )}
-        onClick={(event) => {
-          event.stopPropagation();
-          if (isParticipant) {
-            return;
-          }
-          if (!user) {
-            navigate("/login");
-          }
-          applyForInternship(props._id.toString());
-        }}
-      >
-        {isParticipant ? "Заявка подана" : "Откликнуться"}
-      </button>
+      <ApplyButton id={props._id.toString()} />
     </div>
   );
 }

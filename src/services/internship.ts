@@ -51,7 +51,7 @@ export const internshipService = {
     return axiosInstance.patch(`/v1/internships/${id}/inactive`);
   },
 
-  getInternship: (id: string) => {
+  getInternship: (id: string | undefined) => {
     const token = localStorage.getItem("token");
 
     return axiosInstance.get(`/v1/internships/${id}`, {
@@ -84,10 +84,14 @@ export const internshipService = {
   applyForInternship: (internshipId: string, id: string | null) => {
     const token = localStorage.getItem("token");
 
-    return axiosInstance.patch(`/v1/internships/${internshipId}/apply`, id, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    return axiosInstance.patch(
+      `/v1/internships/${internshipId}/apply`,
+      { id },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   },
 };

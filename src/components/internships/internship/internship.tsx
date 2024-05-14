@@ -1,17 +1,14 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { UserContext } from "../../../context/userContext";
 import { type IInternship } from "../../filter/filter/filter";
 import { internshipService } from "../../../services/internship";
+import ApplyButton from "../../applyButton/applyButton";
 import "./internship.css";
 
 function Internship() {
   const [internship, setInternship] = useState<IInternship>();
-  const { user } = useContext(UserContext);
   const { id } = useParams();
-  //ToDo подача заявки на стажировку
 
   useEffect(() => {
     window.scrollTo({
@@ -32,22 +29,6 @@ function Internship() {
 
     loadInternship();
   }, [id]);
-
-  // const applyForInternship = async (internshipId: string) => {
-  //   try {
-  //     if (user?.id) {
-  //       await internshipService.applyForInternship(internshipId, user?.id);
-  //     }
-  //   } catch (error) {
-  //     if ((error as AxiosError).response?.status === 400) {
-  //       toast.error("Заявка уже подана");
-  //     } else if ((error as AxiosError).response?.status === 401) {
-  //       toast.error("Авторизуйтесь в приложении");
-  //     } else {
-  //       toast.error("Упс, что-то пошло не так");
-  //     }
-  //   }
-  // };
 
   return (
     <div>
@@ -106,19 +87,7 @@ function Internship() {
               <li>{internship?.conditions}</li>
             </ul>
           </div>
-          {user && user?.role === "intern" ? (
-            <button
-              className="internship__button"
-              onClick={(event) => {
-                event.stopPropagation();
-                // applyForInternship(internship?._id.toString());
-              }}
-            >
-              Подать заявку
-            </button>
-          ) : (
-            <></>
-          )}
+          <ApplyButton id={internship?._id.toString() || ""} />
         </div>
       </div>
     </div>
