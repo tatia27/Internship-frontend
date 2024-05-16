@@ -1,3 +1,4 @@
+import { InternshipForm } from "../components/internships/addInternship/addInternship";
 import { axiosInstance } from "./axiosInstance";
 
 export const internshipService = {
@@ -46,9 +47,18 @@ export const internshipService = {
   },
 
   deleteInternship: (id: string) => {
-    // const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-    return axiosInstance.patch(`/v1/internships/${id}/inactive`);
+    debugger;
+    return axiosInstance.patch(
+      `/v1/internships/${id}/inactive`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   },
 
   getInternship: (id: string | undefined) => {
@@ -87,6 +97,20 @@ export const internshipService = {
     return axiosInstance.patch(
       `/v1/internships/${internshipId}/apply`,
       { id },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  },
+
+  addInternship: (id: string | null, internship: InternshipForm) => {
+    const token = localStorage.getItem("token");
+
+    return axiosInstance.post(
+      `/v1/internships/${id}`,
+      { internship },
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -6,6 +6,7 @@ import { UserContext } from "../../context/userContext";
 import { IInternship } from "../filter/filter/filter";
 import { toast } from "react-toastify";
 import cn from "classnames";
+import "./applyButton.css";
 
 function ApplyButton({ id }: { id: string }) {
   const { user } = useContext(UserContext);

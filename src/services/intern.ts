@@ -45,4 +45,18 @@ export const internService = {
       }
     );
   },
+
+  removeFromFavorites: (id: string, internshipId: string) => {
+    const token = localStorage.getItem("token");
+
+    return axiosInstance.patch(
+      `/v1/intern/${internshipId}/add-to-favorites`,
+      id,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  },
 };

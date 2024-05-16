@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import "./main.css";
@@ -6,6 +6,13 @@ import "./main.css";
 function Main() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, []);
 
   const navigateToInternships = () => {
     if (user?.role === "intern") {

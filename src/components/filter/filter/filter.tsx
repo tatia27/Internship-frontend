@@ -29,6 +29,11 @@ function Filter() {
   const [totalDocuments, setTotalDocuments] = useState<number>(0);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+
     async function loadFilteredInternships() {
       try {
         const response = await internshipService.getFilteredInternships(

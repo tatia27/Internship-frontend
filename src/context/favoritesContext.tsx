@@ -7,33 +7,25 @@ import {
 } from "react";
 
 interface IFavorites {
-  favorites: string[] | [];
+  favorites: string[];
   setFavorites?: Dispatch<SetStateAction<string[]>>;
-  like: boolean;
-  setLike?: Dispatch<SetStateAction<boolean>>;
 }
 
 interface IFavoritesContextProviderProps {
   children: ReactNode;
 }
-export const FavoritesContext = createContext<IFavorites>({
-  favorites: [],
-  like: false,
-});
+export const FavoritesContext = createContext<IFavorites>({ favorites: [] });
 
 export function FavoritesContextProvider({
   children,
 }: IFavoritesContextProviderProps) {
-  const [favorites, setFavorites] = useState<string[] | []>([]);
-  const [like, setLike] = useState<boolean>(false);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   return (
     <FavoritesContext.Provider
       value={{
         favorites,
         setFavorites,
-        like,
-        setLike,
       }}
     >
       {children}

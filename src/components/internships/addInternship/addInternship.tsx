@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { UserContext } from "../../../context/userContext";
+import { internshipService } from "../../../services/internship";
 import "./addInternship.css";
 
-type InternshipForm = {
+export type InternshipForm = {
   title: string;
   company: string;
   focusOfInternship: string;
@@ -57,17 +57,21 @@ function AddInternship() {
       return;
     }
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/v1/internships/${user?.id}`,
-        internship,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-      console.log(data);
+      if (user?.id) {
+        await internshipService.addInternship(user?.id, internship);
+      }
+
+      // const { data } = await axios.post(
+      //   `${process.env.REACT_APP_API_URL}/v1/internships/${user?.id}`,
+      //   internship,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     withCredentials: true,
+      //   }
+      // );
+      // console.log(data);
       navigate(`/company/profile`);
     } catch (error) {
       toast.error("Стажировка не создана");

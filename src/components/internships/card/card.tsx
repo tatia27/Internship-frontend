@@ -1,18 +1,15 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import like from "./../../../assets/icons/likeCard.svg";
 import company from "./../../../assets/icons/logoSmall.svg";
 import location from "./../../../assets/icons/location.svg";
-import { UserContext } from "../../../context/userContext";
 import { type IInternship } from "../../filter/filter/filter";
 import { internshipService } from "../../../services/internship";
-import { internService } from "../../../services/intern";
+import ApplyButton from "../../applyButton/applyButton";
+import Favorites from "../../favorites/favorites";
 import "./card.css";
 
 function Card({ id }: { id: string }) {
-  const { user } = useContext(UserContext);
   const [internship, setInternship] = useState<IInternship>();
   const navigate = useNavigate();
 
@@ -22,7 +19,7 @@ function Card({ id }: { id: string }) {
         const response = await internshipService.getInternships(id);
         setInternship(response.data);
       } catch {
-        toast.error("Упс, что-то пошло не так");
+        toast.error("Упс, что-то пошло не так...");
       }
     }
     loadInternship();
@@ -31,51 +28,6 @@ function Card({ id }: { id: string }) {
   const handleClick = () => {
     navigate(`/internships/${id}`);
   };
-
-  const applyForInternship = async (internshipId: string) => {
-    try {
-      if (user?.id) {
-        await internshipService.applyForInternship(internshipId, user?.id);
-      }
-    } catch (error) {
-      if ((error as AxiosError).response?.status === 400) {
-        toast.error("Заявка уже подана");
-      } else if ((error as AxiosError).response?.status === 401) {
-        toast.error("Авторизуйтесь в приложении");
-      } else {
-        toast.error("Упс, что-то пошло не так");
-      }
-    }
-  };
-
-  const addToFavorite = async (internshipId: string) => {
-    try {
-      await internService.addToFavorites(id, internshipId);
-    } catch (error) {
-      if ((error as AxiosError).response?.status === 400) {
-        toast.error("Стажировка уже добавлена в избранное");
-      } else if ((error as AxiosError).response?.status === 401) {
-        toast.error("Авторизуйтесь в приложении");
-      } else {
-        toast.error("Упс, что-то пошло не так");
-      }
-    }
-  };
-
-  // const removeFromFavorites = async (internshipId: string) => {
-  //   const token = localStorage.getItem("token");
-
-  //   await axios.patch(
-  //     `${process.env.REACT_APP_API_URL}/v1/intern/${internshipId}/remove-from-favorites`,
-  //     { id: user?.id },
-  //     {
-  //       withCredentials: true,
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   );
-  // };
 
   return (
     <div className="current-card">
@@ -91,17 +43,7 @@ function Card({ id }: { id: string }) {
               </div>
             </div>
           </div>
-          <img
-            src={like}
-            alt="Избранное"
-            onClick={() => {
-              if (!localStorage.getItem("token")) {
-                navigate("/login");
-              }
-
-              addToFavorite(id);
-            }}
-          />
+          <Favorites id={id} />
         </div>
         <div>
           <div className="card-middle">
@@ -130,18 +72,7 @@ function Card({ id }: { id: string }) {
           </div>
         </div>
         <div className="current-card__button">
-          <button
-            className="button-respond"
-            onClick={(event) => {
-              if (!localStorage.getItem("token")) {
-                navigate("/login");
-              }
-              event.stopPropagation();
-              applyForInternship(id);
-            }}
-          >
-            Откликнуться
-          </button>
+          <ApplyButton id={id} />
           <button className="button-more" onClick={handleClick}>
             Подробнее
           </button>

@@ -139,7 +139,14 @@ function App() {
           }
         />
         <Route path="/intern/profile/resume" element={<Resume />} />
-        <Route path="/intern/internships" element={<Filter />} />
+        <Route
+          path="/intern/internships"
+          element={
+            // <FavoritesContextProvider>
+            <Filter />
+            // </FavoritesContextProvider>
+          }
+        />
         <Route path="/intern/my-applications" element={<Applications />} />
         <Route path="/intern/error" element={<Error />} />
         <Route
