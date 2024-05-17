@@ -6,7 +6,7 @@
 .favorite-internships__title {
   font-size: 22px;
   font-family: "Gilroy-medium";
-  margin: 60px 0 15px 0;
+  margin-bottom: 20px;
 }
 
 .p-carousel {
@@ -25,13 +25,4 @@
 
 .p-carousel-item {
   margin-left: 5px;
-}
-
-/* .p-carousel-item {
-  flex: 0;
-} */
-
-.p-carousel .p-carousel-item {
-  /* flex: 1 1 60%; */
-  /* margin-right: 10px; */
 }

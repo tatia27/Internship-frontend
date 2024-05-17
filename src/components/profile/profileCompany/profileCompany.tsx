@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
 import currentCompany from "./../../../assets/images/student.png";
@@ -24,9 +24,7 @@ function ProfileCompany() {
     async function loadInternships() {
       if (user?.id) {
         debugger;
-        const response = await internshipService.getInactiveInternships(
-          user?.id
-        );
+        const response = await internshipService.getActiveInternships(user?.id);
         setActiveInternships(response.data);
       }
     }
@@ -49,6 +47,15 @@ function ProfileCompany() {
     loadInternships();
     loadCompany();
   }, [navigate, setCompany, user?.id]);
+
+  const handleRemove = useCallback((id: string) => {
+    setActiveInternships((prev) => {
+      if (prev.length) {
+        return prev.filter((it) => it._id !== id);
+      }
+      return prev;
+    });
+  }, []);
 
   return (
     <div className="user-profile">
@@ -84,7 +91,13 @@ function ProfileCompany() {
         <div className="company-profiles__active-internhip__active">
           <div>
             {activeInternships.map((item) => {
-              return <FullCard key={item._id.toString()} {...item} />;
+              return (
+                <FullCard
+                  key={item._id.toString()}
+                  {...item}
+                  onRemove={handleRemove}
+                />
+              );
             })}
           </div>
         </div>

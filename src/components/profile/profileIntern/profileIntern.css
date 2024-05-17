@@ -1,7 +1,7 @@
 .user-profiles__info {
   display: flex;
   column-gap: 24px;
-  margin: 40px 0 50px 0;
+  margin: 40px 0 20px 0;
 }
 
 .user-profiles__wrapper {
@@ -46,7 +46,7 @@
   display: flex;
   justify-content: space-between;
   column-gap: 35px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .skills {

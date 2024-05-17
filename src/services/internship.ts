@@ -23,7 +23,7 @@ export const internshipService = {
   },
 
   getPopularInternships: () => {
-    return axiosInstance.get(`/v1/internships/popular`, {});
+    return axiosInstance.get(`/v1/internships/popular`);
   },
 
   getInternshipsForIntern: (id: string) => {
@@ -49,7 +49,6 @@ export const internshipService = {
   deleteInternship: (id: string) => {
     const token = localStorage.getItem("token");
 
-    debugger;
     return axiosInstance.patch(
       `/v1/internships/${id}/inactive`,
       {},
@@ -71,7 +70,7 @@ export const internshipService = {
     });
   },
 
-  getInactiveInternships: (id: string) => {
+  getActiveInternships: (id: string) => {
     const token = localStorage.getItem("token");
 
     return axiosInstance.get(`/v1/internships/${id}/active`, {
@@ -108,14 +107,10 @@ export const internshipService = {
   addInternship: (id: string | null, internship: InternshipForm) => {
     const token = localStorage.getItem("token");
 
-    return axiosInstance.post(
-      `/v1/internships/${id}`,
-      { internship },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    return axiosInstance.post(`/v1/internships/${id}`, internship, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
 };

@@ -8,7 +8,11 @@ import ActionForIntern from "../actionForIntern/actionForIntern";
 import ActionForCompany from "../actionForCompany/actionForCompany";
 import "./fullCard.css";
 
-function FullCard(props: IInternship) {
+type FullCardProps = IInternship & {
+  onRemove?: (id: string) => void;
+};
+
+function FullCard(props: FullCardProps) {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
