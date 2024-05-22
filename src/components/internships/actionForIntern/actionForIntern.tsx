@@ -38,7 +38,7 @@ function ActionForIntern(props: IInternship) {
 
   return (
     <div className="full-current-card__top__action">
-      <Favorites id={favoriteIconOnClick()} />
+      <Favorites item={props} />
       <ApplyButton id={props._id.toString()} />
     </div>
   );

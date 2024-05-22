@@ -5,21 +5,25 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { IInternship } from "../components/filter/filter/filter";
 
 interface IFavorites {
-  favorites: string[];
-  setFavorites?: Dispatch<SetStateAction<string[]>>;
+  favorites: IInternship[];
+  setFavorites: Dispatch<SetStateAction<IInternship[]>>;
 }
 
 interface IFavoritesContextProviderProps {
   children: ReactNode;
 }
-export const FavoritesContext = createContext<IFavorites>({ favorites: [] });
+export const FavoritesContext = createContext<IFavorites>({
+  favorites: [],
+  setFavorites: () => {},
+});
 
 export function FavoritesContextProvider({
   children,
 }: IFavoritesContextProviderProps) {
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<IInternship[]>([]);
 
   return (
     <FavoritesContext.Provider

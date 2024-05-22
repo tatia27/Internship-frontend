@@ -16,15 +16,15 @@ function FooterComapny() {
             <div className="footer__menu">
               <ul>
                 <li>
-                  <NavLink to="/" onClick={logout}>
-                    Выйти
-                  </NavLink>
+                  <NavLink to="/addInternship">Разместить стажировку</NavLink>
                 </li>
                 <li>
                   <NavLink to="/internships">Стажировки</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/addInternship">Разместить стажировку</NavLink>
+                  <NavLink to="/" onClick={logout}>
+                    Выйти
+                  </NavLink>
                 </li>
               </ul>
             </div>

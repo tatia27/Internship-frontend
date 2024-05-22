@@ -16,6 +16,7 @@ function ApplyButton({ id }: { id: string }) {
 
   useEffect(() => {
     async function loadInternship(id: string) {
+      debugger;
       const response = await internshipService.getInternship(id);
       setInternship(response.data);
     }

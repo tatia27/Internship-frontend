@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import { FavoritesContext } from "../context/favoritesContext";
 import { CompanyContext } from "../context/companyContext";
+import { authService } from "../services/auth";
 
 export const useLogout = () => {
   const navigate = useNavigate();
@@ -10,10 +11,12 @@ export const useLogout = () => {
   const { setFavorites } = useContext(FavoritesContext);
   const { setInternshipId } = useContext(CompanyContext);
 
-  const logout = () => {
+  const logout = async () => {
     if (localStorage.getItem("token")) {
+      await authService.logout();
       localStorage.removeItem("token");
     }
+    debugger;
     if (setUser) {
       setUser(null);
     }
@@ -23,7 +26,6 @@ export const useLogout = () => {
     if (setInternshipId) {
       setInternshipId(null);
     }
-
     navigate("/");
   };
   return logout;

@@ -9,24 +9,15 @@ import ApplyButton from "../../applyButton/applyButton";
 import Favorites from "../../favorites/favorites";
 import "./card.css";
 
-function Card({ id }: { id: string }) {
-  const [internship, setInternship] = useState<IInternship>();
+type Props = {
+  item: IInternship;
+};
+
+function Card({ item: internship }: Props) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function loadInternship() {
-      try {
-        const response = await internshipService.getInternships(id);
-        setInternship(response.data);
-      } catch {
-        toast.error("Упс, что-то пошло не так...");
-      }
-    }
-    loadInternship();
-  }, [id]);
-
   const handleClick = () => {
-    navigate(`/internships/${id}`);
+    navigate(`/internships/${internship._id}`);
   };
 
   return (
@@ -43,7 +34,7 @@ function Card({ id }: { id: string }) {
               </div>
             </div>
           </div>
-          <Favorites id={id} />
+          <Favorites item={internship} />
         </div>
         <div>
           <div className="card-middle">
@@ -72,7 +63,7 @@ function Card({ id }: { id: string }) {
           </div>
         </div>
         <div className="current-card__button">
-          <ApplyButton id={id} />
+          <ApplyButton id={internship._id} />
           <button className="button-more" onClick={handleClick}>
             Подробнее
           </button>

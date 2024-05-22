@@ -1,16 +1,22 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as LikeIcon } from "../../assets/icons/like.svg";
+import icon from "../../assets/icons/like.svg";
+import iconAdd from "../../assets/icons/addedLike.svg";
 import { internshipService } from "../../services/internship";
 import { UserContext } from "../../context/userContext";
 import { FavoritesContext } from "../../context/favoritesContext";
+import { internService } from "../../services/intern";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import cn from "classnames";
 import "./favorites.css";
-import { internService } from "../../services/intern";
+import { IInternship } from "../filter/filter/filter";
 
-function Favorites({ id }: { id: string }) {
+type ItemProps = {
+  item: IInternship;
+};
+
+function Favorites({ item }: ItemProps) {
+  const id = item._id;
   const { user } = useContext(UserContext);
   const { favorites, setFavorites } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -86,26 +92,23 @@ function Favorites({ id }: { id: string }) {
       return;
     }
 
-    if (favorites.includes(id)) {
+    if (favorites.find((it) => it._id === id)) {
       removeFromFavorites(id);
     } else {
       addToFavorite(id);
     }
   };
 
-  // debugger;
   const isFavoriteInternship =
-    Boolean(user && favorites.includes(id)) || isFavorite;
-  // debugger;
+    Boolean(user && favorites.find((it) => it._id === id)) || isFavorite;
+
   return (
     <>
-      <LikeIcon
-        onClick={favoriteIconOnClick}
-        className={cn({
-          "like-icon path": isFavoriteInternship,
-          "like-icon-unused path": !isFavoriteInternship,
-        })}
-      />
+      {isFavoriteInternship ? (
+        <img src={iconAdd} alt="Избранное" onClick={favoriteIconOnClick} />
+      ) : (
+        <img src={icon} alt="Избранное" onClick={favoriteIconOnClick} />
+      )}
     </>
   );
 }

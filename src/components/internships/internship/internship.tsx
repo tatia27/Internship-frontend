@@ -19,6 +19,7 @@ function Internship() {
     async function loadInternship() {
       if (id) {
         try {
+          debugger;
           const response = await internshipService.getInternship(id);
           setInternship(response.data);
         } catch {

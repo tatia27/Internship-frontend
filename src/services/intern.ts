@@ -5,7 +5,7 @@ export const internService = {
   getIntern: (id: string) => {
     const token = localStorage.getItem("token");
 
-    return axiosInstance.get(`/v1/intern/${id}`, {
+    return axiosInstance.get(`/v1/intern/${id}/one`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

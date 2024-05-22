@@ -23,7 +23,7 @@ export const internshipService = {
   },
 
   getPopularInternships: () => {
-    return axiosInstance.get(`/v1/internships/popular`);
+    return axiosInstance.get(`/v1/internships/new-popular`);
   },
 
   getInternshipsForIntern: (id: string) => {

@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Bounce, ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 import Header from "../headers/header/header";
 import HeaderIntern from "../headers/headerIntern/headerIntern";
 import HeaderCompany from "../headers/headerCompany/headerCompany";
@@ -22,6 +22,7 @@ import Authorization from "../authorization/authorization";
 import AddInternship from "../internships/addInternship/addInternship";
 import CompanyInfo from "../profile/companyInfo/companyInfo";
 import Error from "../error/error";
+import ProfileInternForCompany from "../profile/profileInternForCompany/profileInternForComapny";
 import AllUsers from "../users/allUsers/allUsers";
 import { CompanyContextProvider } from "../../context/companyContext";
 import { FavoritesContextProvider } from "../../context/favoritesContext";
@@ -207,6 +208,14 @@ function App() {
           element={
             <CompanyContextProvider>
               <AllUsers />
+            </CompanyContextProvider>
+          }
+        />
+        <Route
+          path="/company/profile/participants/:id"
+          element={
+            <CompanyContextProvider>
+              <ProfileInternForCompany />
             </CompanyContextProvider>
           }
         />

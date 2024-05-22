@@ -28,6 +28,7 @@ function AllUsers() {
 
     async function loadInternship() {
       if (internshipId) {
+        debugger;
         const response = await internshipService.getInternship(internshipId);
         setInternship(response.data);
       }

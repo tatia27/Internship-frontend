@@ -4,18 +4,20 @@ import { UserContext } from "../../context/userContext";
 import arrow from "./../../assets/icons/arrow.svg";
 import Card from "../internships/card/card";
 import { internshipService } from "../../services/internship";
+import { IInternship } from "../filter/filter/filter";
 import "./popular.css";
 
 function Popular() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const [internships, setInternships] = useState<[]>([]);
+  const [internships, setInternships] = useState<IInternship[]>([]);
 
   useEffect(() => {
     async function loadPopular() {
       const response = await internshipService.getPopularInternships();
 
       if (setInternships) {
+        debugger;
         setInternships(response.data);
       }
     }
@@ -31,7 +33,7 @@ function Popular() {
         </div>
         <div className="popular__interns">
           {internships.map((item) => {
-            return <Card key={item} id={item} />;
+            return <Card item={item} key={item._id} />;
           })}
         </div>
         <button

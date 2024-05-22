@@ -1,14 +1,11 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AxiosError } from "axios";
 import iconStudent from "./../../../assets/images/student.png";
-import Favorite from "../../favoriteCarousel/favoriteCarousel";
 import { UserContext } from "../../../context/userContext";
 import { type Cv } from "../../resume/resume";
-import { FavoritesContext } from "../../../context/favoritesContext";
 import { internService } from "../../../services/intern";
-import "./profileIntern.css";
-import FavoriteCarousel from "../../favoriteCarousel/favoriteCarousel";
+import "./profileInternForCompany.css";
 
 export interface IIntern {
   firstName: string;
@@ -21,18 +18,12 @@ export interface IIntern {
   cv: Cv;
 }
 
-function ProfileIntern() {
+function ProfileInternForCompany() {
   const [intern, setIntern] = useState<IIntern>();
-  const { favorites, setFavorites } = useContext(FavoritesContext);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  // ToDo доступ только для интерна
-
+  const { id } = useParams();
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //   navigate("/login");
-    // }
     window.scrollTo({
       top: 0,
       left: 0,
@@ -40,9 +31,9 @@ function ProfileIntern() {
 
     async function loadIntern() {
       try {
-        if (user?.id) {
+        if (id) {
           debugger;
-          const response = await internService.getIntern(user?.id);
+          const response = await internService.getIntern(id);
           setIntern(response.data);
         }
       } catch (error) {
@@ -52,25 +43,8 @@ function ProfileIntern() {
       }
     }
 
-    async function loadFavorites() {
-      try {
-        if (user?.id) {
-          const response = await internService.getFavoritesInternship(user?.id);
-          if (setFavorites) {
-            debugger;
-            setFavorites(response.data);
-          }
-        }
-      } catch (error) {
-        if ((error as AxiosError).response?.status === 404) {
-          navigate("/intern/error");
-        }
-      }
-    }
-
     loadIntern();
-    loadFavorites();
-  }, [navigate, setFavorites, user?.id]);
+  }, [navigate, id]);
 
   return (
     <div className="user-profile">
@@ -105,15 +79,7 @@ function ProfileIntern() {
             </div>
           </div>
         </div>
-        <div className="user-profile__skills-intern">
-          <div>
-            <button
-              className="button-resume"
-              onClick={() => navigate(`/intern/profile/resume`)}
-            >
-              Добавить резюме
-            </button>
-          </div>
+        <div className="user-profile__skills">
           <div className="skills">
             <h4 className="skills__hard-soft">Hard Skills</h4>
             <p className="skills__description">{intern?.cv.hardSkills}</p>
@@ -123,14 +89,9 @@ function ProfileIntern() {
             <p className="skills__description">{intern?.cv.softSkills}</p>
           </div>
         </div>
-        {favorites.length !== 0 ? (
-          <FavoriteCarousel favorites={favorites} />
-        ) : (
-          <></>
-        )}
       </div>
     </div>
   );
 }
 
-export default ProfileIntern;
+export default ProfileInternForCompany;

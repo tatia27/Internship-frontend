@@ -1,14 +1,15 @@
 import { Carousel } from "primereact/carousel";
+import { IInternship } from "../filter/filter/filter";
 import Card from "../internships/card/card";
-import "./favorite.css";
+import "./favoriteCarousel.css";
 
 type FavoriteProps = {
-  favorites: string[];
+  favorites: IInternship[];
 };
 
-function Favorite({ favorites }: FavoriteProps) {
-  const itemTemplate = (item: string) => {
-    return <Card id={item} />;
+function FavoriteCarousel({ favorites }: FavoriteProps) {
+  const itemTemplate = (item: IInternship) => {
+    return <Card item={item} />;
   };
 
   return (
@@ -24,4 +25,4 @@ function Favorite({ favorites }: FavoriteProps) {
   );
 }
 
-export default Favorite;
+export default FavoriteCarousel;

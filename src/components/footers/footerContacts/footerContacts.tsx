@@ -10,10 +10,6 @@ function FooterContacts() {
         <p className="footer__text">internship@gmail.com</p>
         <p className="footer__text">+7 (999) 999-99-99</p>
       </div>
-      <div className="footer__icons">
-        <img src={email} alt="Почта" />
-        <img src={vk} alt="Вконтакте" />
-      </div>
     </div>
   );
 }

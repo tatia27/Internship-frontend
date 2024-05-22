@@ -13,10 +13,10 @@ function Footer() {
             <div className="footer__menu">
               <ul>
                 <li>
-                  <NavLink to="/login">Войти</NavLink>
+                  <NavLink to="/internships">Стажировки</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/internships">Стажировки</NavLink>
+                  <NavLink to="/login">Войти</NavLink>
                 </li>
               </ul>
             </div>

@@ -11,10 +11,25 @@ export const authService = {
       },
     });
   },
+
   login: (formAuth: AuthorizationTypes) => {
     return axios.post(
       `${process.env.REACT_APP_API_URL}/v1/auth/login`,
       formAuth
+    );
+  },
+
+  logout: () => {
+    const token = localStorage.getItem("token");
+    return axios.post(
+      `${process.env.REACT_APP_API_URL}/v1/auth/logout`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      }
     );
   },
 };
