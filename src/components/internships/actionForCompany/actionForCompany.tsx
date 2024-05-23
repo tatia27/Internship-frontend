@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import deleteInternship from "./../../../assets/icons/delete.svg";
 import { type IInternship } from "../../filter/filter/filter";
 import { CompanyContext } from "../../../context/companyContext";
 import { internshipService } from "../../../services/internship";
 import "./actionForCompany.css";
-import { UserContext } from "../../../context/userContext";
 
 type ActionForCompanyProps = IInternship & {
   onRemove?: (id: string) => void;
@@ -13,21 +12,7 @@ type ActionForCompanyProps = IInternship & {
 
 function ActionForCompany(props: ActionForCompanyProps) {
   const { setInternshipId } = useContext(CompanyContext);
-  // const [activeInternships, setActiveInternships] = useState<IInternship[]>([]);
-  // const { user } = useContext(UserContext);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   async function loadActiveInternships() {
-  //     if (user?.id) {
-  //       debugger;
-  //       const response = await internshipService.getActiveInternships(user?.id);
-  //       setActiveInternships(response.data);
-  //     }
-  //   }
-
-  //   loadActiveInternships();
-  // }, [user?.id, setActiveInternships]);
 
   const handleButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -45,18 +30,6 @@ function ActionForCompany(props: ActionForCompanyProps) {
       props.onRemove(id);
     }
   }
-  // const handleCardClick = async (id: string) => {
-  //   if (id) {
-  //     await internshipService.deleteInternship(id);
-  //   }
-  // };
-
-  // async function removeInternship(id: string) {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     await internshipService.deleteInternship(id);
-  //   }
-  // }
 
   return (
     <div className="full-current-card__top__action">

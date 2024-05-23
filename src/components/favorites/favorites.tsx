@@ -6,21 +6,20 @@ import { internshipService } from "../../services/internship";
 import { UserContext } from "../../context/userContext";
 import { FavoritesContext } from "../../context/favoritesContext";
 import { internService } from "../../services/intern";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import "./favorites.css";
 import { IInternship } from "../filter/filter/filter";
+import "./favorites.css";
 
 type ItemProps = {
   item: IInternship;
 };
 
 function Favorites({ item }: ItemProps) {
-  const id = item._id;
   const { user } = useContext(UserContext);
   const { favorites, setFavorites } = useContext(FavoritesContext);
-  const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
+  const id = item._id;
 
   useEffect(() => {
     async function loadFavorites() {
@@ -39,49 +38,47 @@ function Favorites({ item }: ItemProps) {
 
   const addToFavorite = async (internshipId: string) => {
     try {
-      const token = localStorage.getItem("token");
+      if (user?.id) {
+        const response = await internService.addToFavorites(
+          internshipId,
+          user?.id
+        );
 
-      // await internService.addToFavorites(internshipId, user?.id);
-
-      await axios.patch(
-        `${process.env.REACT_APP_API_URL}/v1/intern/${internshipId}/add-to-favorites`,
-        { id: user?.id },
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        if (response.data?.internship) {
+          setFavorites((prev) => {
+            return [...prev, response.data.internship];
+          });
         }
-      );
-      setIsFavorite(true);
+      }
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
         toast.error("Стажировка уже добавлена в избранное");
       } else if ((error as AxiosError).response?.status === 401) {
         toast.error("Авторизуйтесь в приложении");
       } else {
-        toast.error("Упс, что-то пошло не так");
+        toast.error("Упс, что-то пошло не так...");
       }
     }
   };
 
   const removeFromFavorites = async (internshipId: string) => {
-    // const token = localStorage.getItem("token");
-    if (user?.id) {
-      await internService.removeFromFavorites(internshipId, user?.id);
-    }
+    try {
+      if (user?.id) {
+        await internService.removeFromFavorites(internshipId, user?.id);
 
-    // await axios.patch(
-    //   `${process.env.REACT_APP_API_URL}/v1/intern/${internshipId}/remove-from-favorites`,
-    //   { id: user?.id },
-    //   {
-    //     withCredentials: true,
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   }
-    // );
-    setIsFavorite(false);
+        setFavorites((prev) => {
+          return prev.filter((it) => {
+            return it._id !== internshipId;
+          });
+        });
+      }
+    } catch (error) {
+      if ((error as AxiosError).response?.status === 400) {
+        toast.error("Стажировка не найдена");
+      } else {
+        toast.error("Упс, что-то пошло не так...");
+      }
+    }
   };
 
   const favoriteIconOnClick = (event: { stopPropagation: () => void }) => {
@@ -99,15 +96,26 @@ function Favorites({ item }: ItemProps) {
     }
   };
 
-  const isFavoriteInternship =
-    Boolean(user && favorites.find((it) => it._id === id)) || isFavorite;
+  const isFavoriteInternship = Boolean(
+    user && favorites.find((it) => it._id === id)
+  );
 
   return (
     <>
       {isFavoriteInternship ? (
-        <img src={iconAdd} alt="Избранное" onClick={favoriteIconOnClick} />
+        <img
+          src={iconAdd}
+          className="favorite"
+          alt="Избранное"
+          onClick={favoriteIconOnClick}
+        />
       ) : (
-        <img src={icon} alt="Избранное" onClick={favoriteIconOnClick} />
+        <img
+          src={icon}
+          className="favorite"
+          alt="Избранное"
+          onClick={favoriteIconOnClick}
+        />
       )}
     </>
   );

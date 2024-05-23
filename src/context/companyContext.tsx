@@ -41,17 +41,16 @@ export function CompanyContextProvider({
   });
   const [internshipId, setInternshipId] = useState<string | null>(null);
 
-  const value = useMemo(
-    () => ({
-      company,
-      setCompany,
-      internshipId,
-      setInternshipId,
-    }),
-    [company, internshipId]
-  );
-
   return (
-    <CompanyContext.Provider value={value}>{children}</CompanyContext.Provider>
+    <CompanyContext.Provider
+      value={{
+        company,
+        setCompany,
+        internshipId,
+        setInternshipId,
+      }}
+    >
+      {children}
+    </CompanyContext.Provider>
   );
 }

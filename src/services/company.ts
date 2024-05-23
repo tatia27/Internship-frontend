@@ -8,6 +8,7 @@ export const companyService = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     });
   },
 
@@ -18,6 +19,7 @@ export const companyService = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     });
   },
 };

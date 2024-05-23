@@ -9,6 +9,7 @@ export const internService = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     });
   },
 
@@ -19,6 +20,7 @@ export const internService = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     });
   },
 
@@ -29,33 +31,36 @@ export const internService = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     });
   },
 
-  addToFavorites: (id: string, internshipId: string) => {
+  addToFavorites: (internshipId: string, id: string) => {
     const token = localStorage.getItem("token");
 
     return axiosInstance.patch(
       `/v1/intern/${internshipId}/add-to-favorites`,
-      id,
+      { id },
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        withCredentials: true,
       }
     );
   },
 
-  removeFromFavorites: (id: string, internshipId: string) => {
+  removeFromFavorites: (internshipId: string, id: string) => {
     const token = localStorage.getItem("token");
 
     return axiosInstance.patch(
-      `/v1/intern/${internshipId}/add-to-favorites`,
-      id,
+      `/v1/intern/${internshipId}/remove-from-favorites`,
+      { id },
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        withCredentials: true,
       }
     );
   },

@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import company from "./../../../assets/icons/logoSmall.svg";
 import location from "./../../../assets/icons/location.svg";
 import { type IInternship } from "../../filter/filter/filter";
-import { internshipService } from "../../../services/internship";
 import ApplyButton from "../../applyButton/applyButton";
 import Favorites from "../../favorites/favorites";
 import "./card.css";

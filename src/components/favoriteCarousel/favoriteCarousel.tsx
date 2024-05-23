@@ -20,7 +20,7 @@ function FavoriteCarousel({ favorites }: FavoriteProps) {
         numVisible={2}
         numScroll={1}
         itemTemplate={itemTemplate}
-      ></Carousel>
+      />
     </div>
   );
 }

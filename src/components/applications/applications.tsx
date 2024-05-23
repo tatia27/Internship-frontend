@@ -30,7 +30,7 @@ function Applications() {
           <h3 className="intern-applications__title">Отправленные заявки</h3>
           <p className="applications__title">
             Здесь будут отображаться заявки на стажировку, на которые вы
-            отклкинитесь. Скоро с вами свяжутся, вам придёт сообщение на почту.
+            отклкинитесь. Скоро с вами свяжутся, вам придёт на письмо на почту.
           </p>
           <div>
             {applications.map((item) => {

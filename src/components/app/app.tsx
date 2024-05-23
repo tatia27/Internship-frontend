@@ -140,14 +140,7 @@ function App() {
           }
         />
         <Route path="/intern/profile/resume" element={<Resume />} />
-        <Route
-          path="/intern/internships"
-          element={
-            // <FavoritesContextProvider>
-            <Filter />
-            // </FavoritesContextProvider>
-          }
-        />
+        <Route path="/intern/internships" element={<Filter />} />
         <Route path="/intern/my-applications" element={<Applications />} />
         <Route path="/intern/error" element={<Error />} />
         <Route
@@ -178,14 +171,6 @@ function App() {
             </CompanyContextProvider>
           }
         />
-        {/* <Route
-          path="/companies/internships"
-          element={
-            <CompanyContextProvider>
-              <Filter />
-            </CompanyContextProvider>
-          }
-        /> */}
         <Route path="/company/internships" element={<Filter />} />
         <Route
           path="/company/add-internship"
@@ -219,14 +204,6 @@ function App() {
             </CompanyContextProvider>
           }
         />
-        {/* <Route
-          path="/company/profile/participants"
-          element={
-            <CompanyContextProvider>
-              <AllUsers />
-            </CompanyContextProvider>
-          }
-        /> */}
         <Route
           path="/companies/error"
           element={

@@ -26,13 +26,8 @@ function ProfileIntern() {
   const { favorites, setFavorites } = useContext(FavoritesContext);
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  // ToDo доступ только для интерна
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //   navigate("/login");
-    // }
     window.scrollTo({
       top: 0,
       left: 0,

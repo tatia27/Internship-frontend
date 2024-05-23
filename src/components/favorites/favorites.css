@@ -1,7 +1,3 @@
-.like-icon.path {
-  fill: #242424;
-}
-
-.like-icon-unused.path {
-  fill: #a1a1aa;
+.favorite {
+  cursor: pointer;
 }

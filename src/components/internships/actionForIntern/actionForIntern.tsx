@@ -11,7 +11,6 @@ import "./actionForIntern.css";
 function ActionForIntern(props: IInternship) {
   const { user } = useContext(UserContext);
   const { setFavorites } = useContext(FavoritesContext);
-  // TODO: add Favorites
 
   useEffect(() => {
     async function loadFavorites() {
@@ -31,10 +30,6 @@ function ActionForIntern(props: IInternship) {
     }
     loadFavorites();
   }, [setFavorites, user?.id]);
-
-  const favoriteIconOnClick = (): string => {
-    return props._id.toString();
-  };
 
   return (
     <div className="full-current-card__top__action">

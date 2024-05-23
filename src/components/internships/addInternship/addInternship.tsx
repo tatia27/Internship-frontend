@@ -42,36 +42,26 @@ function AddInternship() {
   };
 
   const handleIntership = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (
-      !internship.title ||
-      !internship.company ||
-      !internship.focusOfInternship ||
-      !internship.schedule ||
-      !internship.typeOfEmployment ||
-      !internship.durationOfInternship ||
-      !internship.skills ||
-      !internship.conditions
-    ) {
-      toast.info("Заполните все поля формы");
-      return;
-    }
     try {
+      e.preventDefault();
+      if (
+        !internship.title ||
+        !internship.company ||
+        !internship.focusOfInternship ||
+        !internship.schedule ||
+        !internship.typeOfEmployment ||
+        !internship.durationOfInternship ||
+        !internship.skills ||
+        !internship.conditions
+      ) {
+        toast.info("Заполните все поля формы");
+        return;
+      }
+
       if (user?.id) {
         await internshipService.addInternship(user?.id, internship);
       }
 
-      // const { data } = await axios.post(
-      //   `${process.env.REACT_APP_API_URL}/v1/internships/${user?.id}`,
-      //   internship,
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     withCredentials: true,
-      //   }
-      // );
-      // console.log(data);
       navigate(`/company/profile`);
     } catch (error) {
       toast.error("Стажировка не создана");

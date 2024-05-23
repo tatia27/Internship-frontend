@@ -1,11 +1,11 @@
-import axios from "axios";
 import { AuthorizationTypes } from "../components/authorization/authorization";
+import { axiosInstance } from "../services/axiosInstance";
 
 export const authService = {
   getAuth: () => {
     const token = localStorage.getItem("token");
 
-    return axios.get(`${process.env.REACT_APP_API_URL}/v1/auth/isAuth`, {
+    return axiosInstance.get(`/v1/auth/isAuth`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -13,16 +13,14 @@ export const authService = {
   },
 
   login: (formAuth: AuthorizationTypes) => {
-    return axios.post(
-      `${process.env.REACT_APP_API_URL}/v1/auth/login`,
-      formAuth
-    );
+    return axiosInstance.post(`/v1/auth/login`, formAuth);
   },
 
   logout: () => {
     const token = localStorage.getItem("token");
-    return axios.post(
-      `${process.env.REACT_APP_API_URL}/v1/auth/logout`,
+
+    return axiosInstance.post(
+      `/v1/auth/logout`,
       {},
       {
         headers: {

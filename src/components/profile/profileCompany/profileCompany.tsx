@@ -23,7 +23,6 @@ function ProfileCompany() {
     }
     async function loadInternships() {
       if (user?.id) {
-        debugger;
         const response = await internshipService.getActiveInternships(user?.id);
         setActiveInternships(response.data);
       }
