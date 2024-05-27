@@ -9,6 +9,7 @@ type PaginationProps = {
 
 function Pagination({ setCurrentPage, totalDocuments }: PaginationProps) {
   const handlePageClick = async (data: { selected: number }) => {
+    debugger;
     setCurrentPage(data.selected + 1);
   };
 

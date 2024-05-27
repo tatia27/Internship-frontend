@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
@@ -10,6 +10,7 @@ function CompanyInfo() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const { company, setCompany } = useContext(CompanyContext);
+  const [isTitle, setIsTitle] = useState<Boolean>(false);
 
   const handleCompanyInfo = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -40,13 +41,25 @@ function CompanyInfo() {
           className="companyInfo__form"
           onSubmit={handleCompanyInfo}
         >
-          <input
-            type="text"
-            name="name"
-            placeholder="Наименование компании"
-            className="companyInfo-input"
-            onChange={changeInputHandler}
-          />
+          <div className="companyInfo__form__new-title">
+            <div className="companyInfo__form_new-title__checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                onChange={() => setIsTitle(!isTitle)}
+              />
+              <span>Исправить</span>
+            </div>
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Наименование компании"
+              className="companyInfo-input"
+              disabled={!isTitle}
+              onChange={changeInputHandler}
+            />
+          </div>
           <input
             type="text"
             name="description"

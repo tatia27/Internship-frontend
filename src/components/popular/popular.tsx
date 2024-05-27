@@ -17,12 +17,17 @@ function Popular() {
       const response = await internshipService.getPopularInternships();
 
       if (setInternships) {
-        debugger;
         setInternships(response.data);
       }
     }
     loadPopular();
   }, []);
+
+  const navigateToInternships = () => {
+    user?.role === "intern"
+      ? navigate("/intern/internships")
+      : navigate("/internships");
+  };
 
   return (
     <div className="popular">
@@ -36,14 +41,7 @@ function Popular() {
             return <Card item={item} key={item._id} />;
           })}
         </div>
-        <button
-          className="main-button"
-          onClick={() =>
-            user?.role === "intern"
-              ? navigate("/intern/internships")
-              : navigate("/internships")
-          }
-        >
+        <button className="main-button" onClick={navigateToInternships}>
           Показать больше
           <img src={arrow} alt="Стрелка" className="main-button__arrow" />
         </button>

@@ -36,10 +36,11 @@ function Filter() {
 
     async function loadFilteredInternships() {
       try {
+        debugger;
         const response = await internshipService.getFilteredInternships(
           currentPage
         );
-
+        debugger;
         setInternships(response.data.internships);
         setTotalDocuments(response.data.numberOfPages);
       } catch {

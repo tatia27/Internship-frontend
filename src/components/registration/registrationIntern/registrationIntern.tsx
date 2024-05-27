@@ -57,6 +57,7 @@ function RegistrationIntern() {
       return;
     }
   };
+
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

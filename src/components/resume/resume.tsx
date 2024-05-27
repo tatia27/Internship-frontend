@@ -98,9 +98,19 @@ function Resume() {
             onChange={changeSelectHandler}
             defaultValue="Бакалавриат"
           >
+            <option value="Основное общее образование">
+              Основное общее образование
+            </option>
+            <option value="Среднее общее образование">
+              Среднее общее образование
+            </option>
+            <option value="Среднее профессиональное образование">
+              Среднее профессиональное образование
+            </option>
             <option value="Бакалавриат">Бакалавриат</option>
             <option value="Специалитет">Специалитет</option>
             <option value="Магистратура">Магистратура</option>
+            <option value="Аспирантура">Аспирантура</option>
           </select>
           <input
             type="text"

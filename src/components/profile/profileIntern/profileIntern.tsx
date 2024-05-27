@@ -2,13 +2,13 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import iconStudent from "./../../../assets/images/student.png";
-import Favorite from "../../favoriteCarousel/favoriteCarousel";
 import { UserContext } from "../../../context/userContext";
 import { type Cv } from "../../resume/resume";
 import { FavoritesContext } from "../../../context/favoritesContext";
 import { internService } from "../../../services/intern";
-import "./profileIntern.css";
 import FavoriteCarousel from "../../favoriteCarousel/favoriteCarousel";
+import editing from "../../../assets/icons/editing.svg";
+import "./profileIntern.css";
 
 export interface IIntern {
   firstName: string;
@@ -67,6 +67,9 @@ function ProfileIntern() {
     loadFavorites();
   }, [navigate, setFavorites, user?.id]);
 
+  const navigateToEditPage = () => {
+    navigate("/intern/editing");
+  };
   return (
     <div className="user-profile">
       <div className="container">
@@ -76,18 +79,29 @@ function ProfileIntern() {
           </div>
           <div className="user-profiles__wrapper">
             <div className="user-profiles__student">
-              <h2 className="user-profiles__student__title">
-                {`${
-                  intern?.lastName !== undefined ? intern?.lastName : "Фамилия"
-                } ${
-                  intern?.firstName !== undefined ? intern?.firstName : "Имя"
-                } 
+              <div className="user-profiles__student__editing">
+                <h2 className="user-profiles__student__title">
+                  {`${
+                    intern?.lastName !== undefined
+                      ? intern?.lastName
+                      : "Фамилия"
+                  } ${
+                    intern?.firstName !== undefined ? intern?.firstName : "Имя"
+                  } 
                 ${
                   intern?.middleName !== undefined
                     ? intern?.middleName
                     : "Отчество"
                 }`}
-              </h2>
+                </h2>
+                <img
+                  src={editing}
+                  alt="редактирование"
+                  className="editing"
+                  onClick={navigateToEditPage}
+                />
+              </div>
+
               <div className="user-profiles__student__person-info">
                 <p>
                   Возраст: {intern?.cv.age !== null ? `${intern?.cv.age}` : ""}

@@ -2,16 +2,6 @@ import { InternshipForm } from "../components/internships/addInternship/addInter
 import { axiosInstance } from "./axiosInstance";
 
 export const internshipService = {
-  // getInternships: (id: string) => {
-  //   const token = localStorage.getItem("token");
-
-  //   return axiosInstance.get(`/v1/internships/${id}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  // },
-
   getFavoritesInternships: (id: string) => {
     const token = localStorage.getItem("token");
 

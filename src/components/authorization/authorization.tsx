@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { UserContext } from "../../context/userContext";
-// import { validateEmail } from "../registration/registrationIntern";
+import { validateEmail } from "../registration/registrationIntern/registrationIntern";
 import { type User } from "../../context/userContext";
 import { authService } from "../../services/auth";
 import "./authorization.css";
@@ -34,11 +34,10 @@ function Authorization() {
     if (!formAuth.email || !formAuth.password) {
       toast.info("Заполните все поля формы");
       return;
+    } else if (validateEmail(formAuth.email) === false) {
+      toast.info("Email должен содержать специальные символы @ .");
+      return;
     }
-    // else if (validateEmail(formAuth.email) === false) {
-    //   toast.info("Email должен содержать специальные символы @ .");
-    //   return;
-    // }
 
     async function load() {
       const token = localStorage.getItem("token");

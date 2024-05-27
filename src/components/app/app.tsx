@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import Header from "../headers/header/header";
 import HeaderIntern from "../headers/headerIntern/headerIntern";
 import HeaderCompany from "../headers/headerCompany/headerCompany";
@@ -32,6 +32,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Applications from "../applications/applications";
 import { authService } from "../../services/auth";
 import "./app.css";
+import EditingInternInfo from "../profile/editingInternInfo/editingInternInfo";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -153,6 +154,7 @@ function App() {
             </>
           }
         />
+        <Route path="/intern/editing" element={<EditingInternInfo />} />
         <Route
           path="/company"
           element={

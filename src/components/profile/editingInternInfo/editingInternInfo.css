@@ -47,13 +47,3 @@ textarea:focus {
   margin: 0 auto;
   display: block;
 }
-
-.companyInfo__form__new-title {
-  display: flex;
-  align-items: center;
-}
-
-.companyInfo__form_new-title__checkbox {
-  display: flex;
-  margin-right: 30px;
-}

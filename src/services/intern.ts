@@ -1,3 +1,4 @@
+import { IUpdateUser } from "../components/profile/editingInternInfo/editingInternInfo";
 import { type Cv } from "../components/resume/resume";
 import { axiosInstance } from "./axiosInstance";
 
@@ -6,6 +7,17 @@ export const internService = {
     const token = localStorage.getItem("token");
 
     return axiosInstance.get(`/v1/intern/${id}/one`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+  },
+
+  updateIntern: (id: string, userInfo: IUpdateUser) => {
+    const token = localStorage.getItem("token");
+
+    return axiosInstance.patch(`/v1/intern/${id}/update-intern`, userInfo, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

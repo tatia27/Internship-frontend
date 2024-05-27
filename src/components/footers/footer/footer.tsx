@@ -23,7 +23,6 @@ function Footer() {
           </div>
           <FooterContacts />
         </div>
-        <p className="footer_info">© 2024 Internship portal</p>
       </div>
     </footer>
   );

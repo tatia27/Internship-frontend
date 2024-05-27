@@ -5,12 +5,15 @@
 .current-card {
   display: flex;
   align-items: center;
+  background-color: var(--text-color);
   width: 380px;
   height: 284px;
   padding: 32px 18px;
   margin-bottom: 20px;
   border-radius: var(--border-items);
-  box-shadow: 2px 2px 4px rgba(61, 105, 16, 0.5);
+  box-shadow: var(--box-shadow);
+  /* box-shadow: 0 5px 6px 0 rgba(216, 216, 216, 0.3); */
+  /* box-shadow: 2px 2px 4px rgba(61, 105, 16, 0.5); */
 }
 
 .popular__title {

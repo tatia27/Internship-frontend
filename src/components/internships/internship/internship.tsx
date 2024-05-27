@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { type IInternship } from "../../filter/filter/filter";
 import { internshipService } from "../../../services/internship";
 import ApplyButton from "../../applyButton/applyButton";
+import { UserContext } from "../../../context/userContext";
 import "./internship.css";
 
 function Internship() {
   const [internship, setInternship] = useState<IInternship>();
+  const { user } = useContext(UserContext);
   const { id } = useParams();
 
   useEffect(() => {
@@ -88,7 +90,11 @@ function Internship() {
               <li>{internship?.conditions}</li>
             </ul>
           </div>
-          <ApplyButton id={internship?._id.toString() || ""} />
+          {user?.role !== "company" ? (
+            <ApplyButton id={internship?._id.toString() || ""} />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

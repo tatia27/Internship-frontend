@@ -12,6 +12,7 @@
   --background-color: #f8f9fa;
   --border-items: 4px;
   --color-title: #363232;
+  --box-shadow: 0 2px 3px 0 rgba(205, 205, 205, 0.29);
 }
 
 .container {

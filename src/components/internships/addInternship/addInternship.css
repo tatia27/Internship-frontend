@@ -44,7 +44,6 @@ h1 {
 }
 
 .resume-input,
-/* textarea, */
 select {
   border-radius: var(--border-items);
   border: none;

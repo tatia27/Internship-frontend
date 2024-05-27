@@ -24,10 +24,15 @@ function ActionForCompany(props: ActionForCompanyProps) {
   };
 
   async function handleCardClick(id: string) {
-    await internshipService.deleteInternship(id);
-    if (props.onRemove) {
-      debugger;
-      props.onRemove(id);
+    const confirmed = window.confirm(
+      "Вы уверены, что хоитите удалить стажировку?"
+    );
+
+    if (confirmed) {
+      await internshipService.deleteInternship(id);
+      if (props.onRemove) {
+        props.onRemove(id);
+      }
     }
   }
 

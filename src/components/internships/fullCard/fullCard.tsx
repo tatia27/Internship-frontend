@@ -17,7 +17,8 @@ function FullCard(props: FullCardProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleClick = () => {
+  const handleClick = (event: { stopPropagation: () => void }) => {
+    event?.stopPropagation();
     navigate(`/internships/${props._id}`);
   };
 
