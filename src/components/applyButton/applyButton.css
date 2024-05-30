@@ -10,4 +10,5 @@
 
 .full-current-card__top__button-respond.full-current-card__top__button-applied {
   background-color: #3f5363;
+  cursor: pointer;
 }

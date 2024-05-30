@@ -31,13 +31,6 @@ function Authorization() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formAuth.email || !formAuth.password) {
-      toast.info("Заполните все поля формы");
-      return;
-    } else if (validateEmail(formAuth.email) === false) {
-      toast.info("Email должен содержать специальные символы @ .");
-      return;
-    }
 
     async function load() {
       const token = localStorage.getItem("token");
@@ -59,18 +52,33 @@ function Authorization() {
 
     async function login() {
       try {
+        if (!formAuth.email || !formAuth.password) {
+          toast.info("Заполните все поля формы");
+          return;
+        } else if (validateEmail(formAuth.email) === false) {
+          toast.info("Email должен содержать специальные символы @ .");
+          return;
+        }
         const { data } = await authService.login(formAuth);
 
         localStorage.setItem("token", data.token);
 
-        await load();
+        // await load();
+        // if (data) {
+        //   navigate("/");
+        // }
 
-        navigate("/");
+        // await load();
+
+        if (data) {
+          await load();
+          navigate("/"); // Move navigate here to ensure it only runs on success
+        }
       } catch (error) {
         if ((error as AxiosError).response?.status === 401) {
           toast.error("Неверный пароль");
         } else {
-          toast.error("Пользователь не найден");
+          toast.error("Неверный логин или пароль");
         }
       }
     }

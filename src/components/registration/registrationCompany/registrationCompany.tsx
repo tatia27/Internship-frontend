@@ -47,7 +47,18 @@ function RegistrationCompany() {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    validateForm(form);
+    // validateForm(form);
+
+    if (!form.name || !form.email || !form.password) {
+      toast.info("Заполните все поля формы");
+      return;
+    } else if (form.password.length < 8) {
+      toast.info("Минимальная длина пароля 8 символов");
+      return;
+    } else if (validateEmail(form.email) === false) {
+      toast.info("Email должен содержать специальные символы @ .");
+      return;
+    }
 
     try {
       await registerService.registerCompany(form);

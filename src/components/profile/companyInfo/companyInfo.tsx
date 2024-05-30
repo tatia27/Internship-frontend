@@ -15,7 +15,7 @@ function CompanyInfo() {
   const handleCompanyInfo = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      if (!company.description) {
+      if (!company.description || !company.description) {
         toast.info("Заполните все поля формы");
         return;
       }

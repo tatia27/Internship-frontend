@@ -28,36 +28,36 @@ function Filter() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalDocuments, setTotalDocuments] = useState<number>(0);
 
+  const [filter, setFilter] = useState<{
+    schedule: string[];
+    salary: string[];
+    typeOfEmployment: string[];
+    focusOfInternship: string[];
+    currentPage: number;
+  }>({
+    schedule: [],
+    salary: [],
+    typeOfEmployment: [],
+    focusOfInternship: [],
+    currentPage: 1,
+  });
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
     });
-
-    async function loadFilteredInternships() {
-      try {
-        debugger;
-        const response = await internshipService.getFilteredInternships(
-          currentPage
-        );
-        debugger;
-        setInternships(response.data.internships);
-        setTotalDocuments(response.data.numberOfPages);
-      } catch {
-        toast.error("Упс, что-то пошло не так...");
-      }
-    }
-    loadFilteredInternships();
-  }, [currentPage]);
+  }, []);
 
   return (
     <div className="internship-filter">
       <div className="container">
         <div className="internship-filter__items">
           <SearchFilter
-            currentPage={currentPage}
             internships={internships}
             setInternships={setInternships}
+            setFilter={setFilter}
+            filter={filter}
             setTotalDocuments={setTotalDocuments}
           />
           <div>
@@ -67,8 +67,8 @@ function Filter() {
           </div>
         </div>
         <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          filter={filter}
+          setFilter={setFilter}
           totalDocuments={totalDocuments}
         />
       </div>

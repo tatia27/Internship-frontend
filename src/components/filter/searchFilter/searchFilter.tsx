@@ -4,80 +4,128 @@ import { IInternship } from "../filter/filter";
 import "../searchFilter/searchFilter.css";
 import axios from "axios";
 
-type SearchFilterProps = {
+type Filter = {
+  schedule: string[];
+  salary: string[];
+  typeOfEmployment: string[];
+  focusOfInternship: string[];
   currentPage: number;
+};
+
+type SearchFilterProps = {
   internships: IInternship[];
   setInternships: (internships: IInternship[]) => void;
   setTotalDocuments: (page: number) => void;
+  filter: Filter;
+  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
 };
 
 function SearchFilter({
-  currentPage,
   internships,
   setInternships,
   setTotalDocuments,
+  setFilter,
+  filter,
 }: SearchFilterProps) {
-  const [focusOfInternship, setFocusOfInternship] = useState<String[]>([]);
-  const [typeOfEmployment, setTypeOfEmployment] = useState<String[]>([]);
-  const [shedule, setShedule] = useState<String[]>([]);
-  const [salary, setSalary] = useState<String[]>([]);
   const [checked, setChecked] = useState(false);
 
-  const url = `${
-    process.env.REACT_APP_API_URL
-  }/v1/internships?page=${currentPage}&focusOfInternship=${focusOfInternship.toString()}&schedule=${shedule.toString()}&typeOfEmployment=${typeOfEmployment.toString()}&salary=${salary.toString()}`;
-
   useEffect(() => {
+    const url = `${process.env.REACT_APP_API_URL}/v1/internships?page=${
+      filter.currentPage
+    }&focusOfInternship=${filter.focusOfInternship.toString()}&schedule=${filter.schedule.toString()}&typeOfEmployment=${filter.typeOfEmployment.toString()}&salary=${filter.salary.toString()}`;
+
+    debugger;
     axios
       .get(url)
       .then((response) => {
+        debugger;
         setInternships(response.data.internships);
         setTotalDocuments(response.data.numberOfPages);
+        debugger;
       })
       .catch(() => {
         toast.error("Упс, не удалось выполнить запрос...");
       });
-  }, [setTotalDocuments, setInternships, url]);
+  }, [setTotalDocuments, setInternships, filter]);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value, checked } = event.target;
-
+    debugger;
     if (name === "focusOfInternship") {
       if (checked) {
-        setFocusOfInternship([...focusOfInternship, value]);
+        setFilter((prev) => ({
+          ...prev,
+          focusOfInternship: [...prev.focusOfInternship, value],
+          currentPage: 1,
+        }));
       } else {
-        setFocusOfInternship(
-          focusOfInternship.filter((item) => item !== value)
-        );
+        setFilter((prev) => ({
+          ...prev,
+          focusOfInternship: prev.focusOfInternship.filter(
+            (item) => item !== value
+          ),
+          currentPage: 1,
+        }));
       }
     }
     if (name === "schedule") {
       if (checked) {
-        setShedule([...shedule, value]);
+        setFilter((prev) => ({
+          ...prev,
+          schedule: [...prev.schedule, value],
+          currentPage: 1,
+        }));
       } else {
-        setShedule(shedule.filter((item) => item !== value));
+        setFilter((prev) => ({
+          ...prev,
+          schedule: prev.schedule.filter((item) => item !== value),
+          currentPage: 1,
+        }));
       }
     }
     if (name === "typeOfEmployment") {
       if (checked) {
-        setTypeOfEmployment([...typeOfEmployment, value]);
+        setFilter((prev) => ({
+          ...prev,
+          typeOfEmployment: [...prev.typeOfEmployment, value],
+          currentPage: 1,
+        }));
       } else {
-        setTypeOfEmployment(typeOfEmployment.filter((item) => item !== value));
+        setFilter((prev) => ({
+          ...prev,
+          typeOfEmployment: prev.typeOfEmployment.filter(
+            (item) => item !== value
+          ),
+          currentPage: 1,
+        }));
       }
     }
     if (name === "salary") {
       if (checked) {
-        setSalary([...salary, value]);
+        setFilter((prev) => ({
+          ...prev,
+          salary: [...prev.salary, value],
+          currentPage: 1,
+        }));
       } else {
-        setSalary(salary.filter((item) => item !== value));
+        setFilter((prev) => ({
+          ...prev,
+          salary: prev.salary.filter((item) => item !== value),
+          currentPage: 1,
+        }));
       }
     }
+    debugger;
   };
 
   const resetFilter = () => {
-    setFocusOfInternship([]);
-    setShedule([]);
-    setTypeOfEmployment([]);
+    setFilter({
+      schedule: [],
+      salary: [],
+      typeOfEmployment: [],
+      focusOfInternship: [],
+      currentPage: 1,
+    });
     setChecked(false);
   };
 

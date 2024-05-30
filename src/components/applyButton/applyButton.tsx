@@ -34,13 +34,7 @@ function ApplyButton({ id }: { id: string }) {
       }
       setIsApplied(true);
     } catch (error) {
-      if ((error as AxiosError).response?.status === 400) {
-        toast.error("Заявка уже подана");
-      } else if ((error as AxiosError).response?.status === 401) {
-        toast.error("Авторизуйтесь в приложении");
-      } else {
-        toast.error("Упс, что-то пошло не так");
-      }
+      toast.error("Упс, что-то пошло не так");
     }
   };
 
@@ -57,6 +51,7 @@ function ApplyButton({ id }: { id: string }) {
       onClick={(event) => {
         event.stopPropagation();
         if (isParticipant) {
+          toast.info("Заявка уже подана");
           return;
         }
         if (!user) {

@@ -17,6 +17,53 @@ export type InternshipForm = {
   conditions: string;
 };
 
+const OPTIONS = [
+  {
+    value: "Frontend developer",
+    title: "Frontend-разработчик",
+  },
+  {
+    value: "Backend developer",
+    title: "Backend-разработчик",
+  },
+  {
+    value: "Mobile developer",
+    title: "Мобильный разработчик",
+  },
+  {
+    value: "System administrator",
+    title: "Системный администартор",
+  },
+  {
+    value: "Game developer",
+    title: "Разработчик игр",
+  },
+  {
+    value: "Teaster",
+    title: "Тестировщик",
+  },
+  {
+    value: "Analyst",
+    title: "Аналитик",
+  },
+  {
+    value: "Designer",
+    title: "Дизайнер",
+  },
+  {
+    value: "Manager",
+    title: "Менеджер",
+  },
+  {
+    value: "Recruiter",
+    title: "Рекрутер",
+  },
+  {
+    value: "Other",
+    title: "Другое",
+  },
+];
+
 function AddInternship() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
@@ -89,19 +136,13 @@ function AddInternship() {
             className="resume-input"
             onChange={changeSelectHandler}
           >
-            <option value="Frontend developer">Frontend-разработчик</option>
-            <option value="Backend developer">Backend-разработчик</option>
-            <option value="Mobile developer">Мобильный разработчик</option>
-            <option value="System administrator">
-              Системный администартор
-            </option>
-            <option value="Game developer">Разработчик игр</option>
-            <option value="Teaster">Тестировщик</option>
-            <option value="Analyst">Аналитик</option>
-            <option value="Designer">Дизайнер</option>
-            <option value="Manager">Менеджер</option>
-            <option value="Recruiter">Рекрутер</option>
-            <option value="Other">Другое</option>
+            {OPTIONS.map(({ title, value }) => {
+              return (
+                <option key={value} value={value}>
+                  {title}
+                </option>
+              );
+            })}
           </select>
           <input
             type="text"

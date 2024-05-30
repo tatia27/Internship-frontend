@@ -5,6 +5,7 @@ import { UserContext } from "../../../context/userContext";
 import { internService } from "../../../services/intern";
 import { AxiosError } from "axios";
 import "./editingInternInfo.css";
+import { validateEmail } from "../../registration/registrationIntern/registrationIntern";
 
 export interface IUpdateUser {
   firstName: string;
@@ -33,6 +34,9 @@ function EditingInternInfo() {
         !isUpdateUser.email
       ) {
         toast.info("Заполните все поля формы");
+        return;
+      } else if (validateEmail(isUpdateUser.email) === false) {
+        toast.info("Email должен содержать специальные символы @ .");
         return;
       }
       if (user?.id) {

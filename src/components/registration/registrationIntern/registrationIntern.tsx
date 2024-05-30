@@ -39,31 +39,47 @@ function RegistrationIntern() {
     setForm({ ...form, [event.target.name]: value });
   };
 
-  const validateForm = (form: InternForm) => {
+  const validateForm = (form: InternForm): boolean => {
     if (
       !form.firstName ||
       !form.middleName ||
       !form.lastName ||
       !form.email ||
-      !form.password
+      !form.password ||
+      !form.conditions
     ) {
       toast.info("Заполните все поля формы");
-      return;
+      return false;
     } else if (form.password.length < 8) {
       toast.info("Минимальная длина пароля 8 символов");
-      return;
+      return false;
     } else if (validateEmail(form.email) === false) {
       toast.info("Email должен содержать специальные символы @ ,");
-      return;
+      return false;
     }
+    return true;
   };
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    validateForm(form);
-
     try {
+      if (
+        !form.firstName ||
+        !form.middleName ||
+        !form.lastName ||
+        !form.email ||
+        !form.password ||
+        !form.conditions
+      ) {
+        toast.info("Заполните все поля формы");
+        return;
+      } else if (form.password.length < 8) {
+        toast.info("Минимальная длина пароля 8 символов");
+        return;
+      } else if (validateEmail(form.email) === false) {
+        toast.info("Email должен содержать специальные символы @ ,");
+        return;
+      }
       await registerService.registerIntern(form);
       navigate("/");
       toast.info(

@@ -41,6 +41,7 @@ function Resume() {
       !resume.softSkills
     ) {
       toast.info("Заполните все поля формы");
+      return;
     }
 
     async function loadResume() {

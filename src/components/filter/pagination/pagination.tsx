@@ -1,16 +1,29 @@
 import ReactPaginate from "react-paginate";
 import "../pagination/pagination.css";
 
-type PaginationProps = {
+type Filter = {
+  schedule: string[];
+  salary: string[];
+  typeOfEmployment: string[];
+  focusOfInternship: string[];
   currentPage: number;
-  totalDocuments: number;
-  setCurrentPage: (page: number) => void;
 };
 
-function Pagination({ setCurrentPage, totalDocuments }: PaginationProps) {
+type PaginationProps = {
+  totalDocuments: number;
+  filter: Filter;
+  setFilter: React.Dispatch<React.SetStateAction<Filter>>;
+};
+
+function Pagination({ totalDocuments, setFilter, filter }: PaginationProps) {
   const handlePageClick = async (data: { selected: number }) => {
     debugger;
-    setCurrentPage(data.selected + 1);
+    setFilter((prev) => {
+      return {
+        ...prev,
+        currentPage: data.selected + 1,
+      };
+    });
   };
 
   return (
@@ -19,6 +32,7 @@ function Pagination({ setCurrentPage, totalDocuments }: PaginationProps) {
       onPageChange={handlePageClick}
       pageCount={totalDocuments}
       previousLabel="<"
+      forcePage={filter.currentPage - 1}
       renderOnZeroPageCount={null}
       containerClassName={"pagination"}
       pageClassName={"page-item"}
