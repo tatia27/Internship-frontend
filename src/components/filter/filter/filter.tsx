@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import FullCard from "../../internships/fullCard/fullCard";
 import SearchFilter from "../searchFilter/searchFilter";
 import Pagination from "../pagination/pagination";
-import { internshipService } from "../../../services/internship";
-import { toast } from "react-toastify";
 import "../filter/filter.css";
 
 export interface IInternship {
@@ -20,6 +18,7 @@ export interface IInternship {
   skills: string;
   conditions: string;
   isActive: boolean;
+  companyId: string;
   onClick: () => void;
 }
 

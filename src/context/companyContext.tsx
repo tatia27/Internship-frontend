@@ -4,12 +4,12 @@ import {
   ReactNode,
   Dispatch,
   SetStateAction,
-  useMemo,
 } from "react";
 
 type Company = {
   name: string;
   description: string;
+  id: string;
 };
 
 interface ICompany {
@@ -24,7 +24,7 @@ interface ICompanyContextProviderProps {
 }
 
 export const defaultState = {
-  company: { name: "", description: "" },
+  company: { name: "", description: "", id: "" },
   setCompany: () => {},
   internshipId: null,
   setInternshipId: () => {},
@@ -38,6 +38,7 @@ export function CompanyContextProvider({
   const [company, setCompany] = useState<Company>({
     name: "",
     description: "",
+    id: "",
   });
   const [internshipId, setInternshipId] = useState<string | null>(null);
 

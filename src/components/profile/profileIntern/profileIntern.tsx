@@ -8,6 +8,7 @@ import { FavoritesContext } from "../../../context/favoritesContext";
 import { internService } from "../../../services/intern";
 import FavoriteCarousel from "../../favoriteCarousel/favoriteCarousel";
 import editing from "../../../assets/icons/editing.svg";
+import { toast } from "react-toastify";
 import "./profileIntern.css";
 
 export interface IIntern {
@@ -42,7 +43,7 @@ function ProfileIntern() {
         }
       } catch (error) {
         if ((error as AxiosError).response?.status === 404) {
-          navigate("/intern/error");
+          toast.info("Упс, компания не найдена....");
         }
       }
     }

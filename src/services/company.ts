@@ -4,7 +4,7 @@ export const companyService = {
   getCompany: (id: string) => {
     const token = localStorage.getItem("token");
 
-    return axiosInstance.get(`/v1/company/${id}`, {
+    return axiosInstance.get(`/v1/company/${id}/one`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

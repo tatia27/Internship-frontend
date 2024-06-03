@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import icon from "../../assets/icons/like.svg";
 import iconAdd from "../../assets/icons/addedLike.svg";

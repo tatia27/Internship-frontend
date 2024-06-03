@@ -3,10 +3,10 @@ import "./footerContacts.css";
 function FooterContacts() {
   return (
     <div className="footer__right-part">
-      <span className="footer__title">Контакты</span>
-      <div className="footer__right-part__contacts">
-        <p className="footer__text">internship@gmail.com</p>
-      </div>
+      <p className="footer__title">Контакты</p>
+      <a href="mailto:itinternshipsportal@gmail.com" className="footer__link">
+        itinternshipsportal@gmail.com
+      </a>
     </div>
   );
 }

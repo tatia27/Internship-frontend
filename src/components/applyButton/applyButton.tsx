@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { internshipService } from "../../services/internship";
@@ -16,7 +15,6 @@ function ApplyButton({ id }: { id: string }) {
 
   useEffect(() => {
     async function loadInternship(id: string) {
-      debugger;
       const response = await internshipService.getInternship(id);
       setInternship(response.data);
     }
@@ -34,7 +32,7 @@ function ApplyButton({ id }: { id: string }) {
       }
       setIsApplied(true);
     } catch (error) {
-      toast.error("Упс, что-то пошло не так");
+      toast.error("Упс, что-то пошло не так...");
     }
   };
 

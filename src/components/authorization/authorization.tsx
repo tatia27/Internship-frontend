@@ -52,27 +52,25 @@ function Authorization() {
 
     async function login() {
       try {
+        debugger;
         if (!formAuth.email || !formAuth.password) {
           toast.info("Заполните все поля формы");
           return;
         } else if (validateEmail(formAuth.email) === false) {
           toast.info("Email должен содержать специальные символы @ .");
           return;
+        } else if (formAuth.password.length < 8) {
+          toast.info("Минимальная длина пароля 8");
+          return;
         }
+        debugger;
         const { data } = await authService.login(formAuth);
-
+        debugger;
         localStorage.setItem("token", data.token);
-
-        // await load();
-        // if (data) {
-        //   navigate("/");
-        // }
-
-        // await load();
 
         if (data) {
           await load();
-          navigate("/"); // Move navigate here to ensure it only runs on success
+          navigate("/");
         }
       } catch (error) {
         if ((error as AxiosError).response?.status === 401) {

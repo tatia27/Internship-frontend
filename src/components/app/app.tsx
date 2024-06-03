@@ -21,7 +21,6 @@ import Resume from "../resume/resume";
 import Authorization from "../authorization/authorization";
 import AddInternship from "../internships/addInternship/addInternship";
 import CompanyInfo from "../profile/companyInfo/companyInfo";
-import Error from "../error/error";
 import ProfileInternForCompany from "../profile/profileInternForCompany/profileInternForComapny";
 import AllUsers from "../users/allUsers/allUsers";
 import { CompanyContextProvider } from "../../context/companyContext";
@@ -31,8 +30,9 @@ import { type User } from "../../context/userContext";
 import "react-toastify/dist/ReactToastify.css";
 import Applications from "../applications/applications";
 import { authService } from "../../services/auth";
-import "./app.css";
 import EditingInternInfo from "../profile/editingInternInfo/editingInternInfo";
+import ProfileCompanyForIntern from "../profile/prodileCompanyForIntern/profileCompanyForIntern";
+import "./app.css";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -112,7 +112,22 @@ function App() {
           }
         />
         <Route path="/internships" element={<Filter />} />
-        <Route path="/internships/:id" element={<Internship />} />
+        <Route
+          path="/internships/:id"
+          element={
+            <CompanyContextProvider>
+              <Internship />
+            </CompanyContextProvider>
+          }
+        />
+        <Route
+          path="/internships/company/:id"
+          element={
+            <CompanyContextProvider>
+              <ProfileCompanyForIntern />
+            </CompanyContextProvider>
+          }
+        />
         <Route path="/addInternship" element={<AddInternship />} />
         <Route path="/registration" element={<Registration />} />
         <Route
@@ -143,7 +158,6 @@ function App() {
         <Route path="/intern/profile/resume" element={<Resume />} />
         <Route path="/intern/internships" element={<Filter />} />
         <Route path="/intern/my-applications" element={<Applications />} />
-        <Route path="/intern/error" element={<Error />} />
         <Route
           path="/intern"
           element={
@@ -203,14 +217,6 @@ function App() {
           element={
             <CompanyContextProvider>
               <ProfileInternForCompany />
-            </CompanyContextProvider>
-          }
-        />
-        <Route
-          path="/companies/error"
-          element={
-            <CompanyContextProvider>
-              <Error />
             </CompanyContextProvider>
           }
         />

@@ -16,7 +16,6 @@ export const useLogout = () => {
       await authService.logout();
       localStorage.removeItem("token");
     }
-    debugger;
     if (setUser) {
       setUser(null);
     }

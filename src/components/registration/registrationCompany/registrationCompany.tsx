@@ -31,23 +31,8 @@ function RegistrationCompany() {
     setForm({ ...form, [event.target.name]: value });
   };
 
-  const validateForm = (form: CompanyForm): void => {
-    if (!form.name || !form.email || !form.password) {
-      toast.info("Заполните все поля формы");
-      return;
-    } else if (form.password.length < 8) {
-      toast.info("Минимальная длина пароля 8 символов");
-      return;
-    } else if (validateEmail(form.email) === false) {
-      toast.info("Email должен содержать специальные символы @ .");
-      return;
-    }
-  };
-
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // validateForm(form);
 
     if (!form.name || !form.email || !form.password) {
       toast.info("Заполните все поля формы");
@@ -72,7 +57,7 @@ function RegistrationCompany() {
       } else if ((error as AxiosError).response?.status === 401) {
         toast.error("Примите условия соглашения");
       } else {
-        toast.error("Упс, что-то пошло не так");
+        toast.error("Упс, что-то пошло не так...");
       }
     }
   };

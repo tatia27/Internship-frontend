@@ -1,16 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { type IInternship } from "../../filter/filter/filter";
 import { internshipService } from "../../../services/internship";
 import ApplyButton from "../../applyButton/applyButton";
 import { UserContext } from "../../../context/userContext";
+import { CompanyContext } from "../../../context/companyContext";
 import "./internship.css";
 
 function Internship() {
   const [internship, setInternship] = useState<IInternship>();
   const { user } = useContext(UserContext);
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { setCompany } = useContext(CompanyContext);
 
   useEffect(() => {
     window.scrollTo({
@@ -21,7 +24,6 @@ function Internship() {
     async function loadInternship() {
       if (id) {
         try {
-          debugger;
           const response = await internshipService.getInternship(id);
           setInternship(response.data);
         } catch {
@@ -33,13 +35,29 @@ function Internship() {
     loadInternship();
   }, [id]);
 
+  const handleClick = (event: { stopPropagation: () => void }) => {
+    event.stopPropagation();
+    if (internship?.companyId) {
+      debugger;
+      setCompany({
+        name: "",
+        description: "",
+        id: internship.companyId,
+      });
+      debugger;
+      navigate(`/internships/company/${internship.companyId}`);
+    }
+  };
+
   return (
     <div>
       <div className="container">
         <div className="internship">
           <div className="internship__title">
             <h4>{internship?.title}</h4>
-            <h5>{internship?.company}</h5>
+            <h5 onClick={handleClick} className="internship__title__company">
+              {internship?.company}
+            </h5>
           </div>
           <div className="internship__card-info">
             <div className="internship__card-info__item">

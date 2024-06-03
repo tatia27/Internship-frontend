@@ -8,6 +8,7 @@ import { AxiosError } from "axios";
 import { UserContext } from "../../../context/userContext";
 import { internshipService } from "../../../services/internship";
 import { companyService } from "../../../services/company";
+import { toast } from "react-toastify";
 import "./profileCompany.css";
 
 function ProfileCompany() {
@@ -35,10 +36,11 @@ function ProfileCompany() {
           setCompany({
             name: response.data.name,
             description: response.data.description,
+            id: response.data.companyId,
           });
         } catch (error) {
           if ((error as AxiosError).response?.status === 404) {
-            navigate("/company/error");
+            toast.info("Упс, компания не найдена....");
           }
         }
       }

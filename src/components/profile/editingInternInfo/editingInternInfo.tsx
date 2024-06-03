@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { internService } from "../../../services/intern";
 import { AxiosError } from "axios";
-import "./editingInternInfo.css";
 import { validateEmail } from "../../registration/registrationIntern/registrationIntern";
+import "./editingInternInfo.css";
 
 export interface IUpdateUser {
   firstName: string;

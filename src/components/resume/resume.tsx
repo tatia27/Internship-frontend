@@ -46,16 +46,13 @@ function Resume() {
 
     async function loadResume() {
       try {
-        const token = localStorage.getItem("token");
-        if (token) {
-          if (user) {
-            await internService.createResume(user?.id, resume);
-          }
-
-          navigate(`/intern/profile`);
+        if (user) {
+          await internService.createResume(user?.id, resume);
         }
+
+        navigate(`/intern/profile`);
       } catch (error) {
-        toast.error("Стажировка не создана");
+        toast.error("Упс, резюме не добавлено...");
       }
     }
 
