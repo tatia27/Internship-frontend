@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AxiosError } from "axios";
 import iconStudent from "./../../../assets/images/student.png";
-import { UserContext } from "../../../context/userContext";
 import { type Cv } from "../../resume/resume";
 import { internService } from "../../../services/intern";
 import "./profileInternForCompany.css";
+import { toast } from "react-toastify";
 
 export interface IIntern {
   firstName: string;
@@ -20,9 +20,9 @@ export interface IIntern {
 
 function ProfileInternForCompany() {
   const [intern, setIntern] = useState<IIntern>();
-  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -32,13 +32,12 @@ function ProfileInternForCompany() {
     async function loadIntern() {
       try {
         if (id) {
-          debugger;
           const response = await internService.getIntern(id);
           setIntern(response.data);
         }
       } catch (error) {
         if ((error as AxiosError).response?.status === 404) {
-          navigate("/intern/error");
+          toast.error("Упс, интерн не найден...");
         }
       }
     }

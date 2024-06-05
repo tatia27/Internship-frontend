@@ -37,13 +37,12 @@ function ProfileIntern() {
     async function loadIntern() {
       try {
         if (user?.id) {
-          debugger;
           const response = await internService.getIntern(user?.id);
           setIntern(response.data);
         }
       } catch (error) {
         if ((error as AxiosError).response?.status === 404) {
-          toast.info("Упс, компания не найдена....");
+          toast.info("Упс, интерн не найден....");
         }
       }
     }
@@ -53,13 +52,12 @@ function ProfileIntern() {
         if (user?.id) {
           const response = await internService.getFavoritesInternship(user?.id);
           if (setFavorites) {
-            debugger;
             setFavorites(response.data);
           }
         }
       } catch (error) {
         if ((error as AxiosError).response?.status === 404) {
-          navigate("/intern/error");
+          toast.error("Упс, стажировки не найдены...");
         }
       }
     }

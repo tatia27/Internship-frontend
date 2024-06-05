@@ -11,7 +11,6 @@ function User({ item }: { item: string }) {
 
   useEffect(() => {
     async function loadIntern() {
-      debugger;
       const response = await internService.getIntern(item);
       setIntern(response.data);
     }

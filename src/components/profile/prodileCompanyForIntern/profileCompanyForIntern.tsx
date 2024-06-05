@@ -3,14 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
 import currentCompany from "./../../../assets/images/student.png";
 import { AxiosError } from "axios";
-import { UserContext } from "../../../context/userContext";
 import { companyService } from "../../../services/company";
 import "../profileCompany/profileCompany.css";
 import { toast } from "react-toastify";
 
 function ProfileCompanyForIntern() {
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
   const { company, setCompany } = useContext(CompanyContext);
 
   useEffect(() => {
@@ -26,7 +24,7 @@ function ProfileCompanyForIntern() {
           });
         } catch (error) {
           if ((error as AxiosError).response?.status === 404) {
-            toast.info("Упс, компания не найдена....");
+            toast.error("Упс, компания не найдена....");
           }
         }
       }

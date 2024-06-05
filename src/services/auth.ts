@@ -18,7 +18,6 @@ export const authService = {
 
   logout: () => {
     const token = localStorage.getItem("token");
-    debugger;
 
     return axiosInstance.post(
       `/v1/auth/logout`,

@@ -34,14 +34,11 @@ function SearchFilter({
       filter.currentPage
     }&focusOfInternship=${filter.focusOfInternship.toString()}&schedule=${filter.schedule.toString()}&typeOfEmployment=${filter.typeOfEmployment.toString()}&salary=${filter.salary.toString()}`;
 
-    debugger;
     axios
       .get(url)
       .then((response) => {
-        debugger;
         setInternships(response.data.internships);
         setTotalDocuments(response.data.numberOfPages);
-        debugger;
       })
       .catch(() => {
         toast.error("Упс, не удалось выполнить запрос...");
@@ -50,7 +47,7 @@ function SearchFilter({
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value, checked } = event.target;
-    debugger;
+
     if (name === "focusOfInternship") {
       if (checked) {
         setFilter((prev) => ({
@@ -115,7 +112,6 @@ function SearchFilter({
         }));
       }
     }
-    debugger;
   };
 
   const resetFilter = () => {

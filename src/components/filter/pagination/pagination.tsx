@@ -17,7 +17,6 @@ type PaginationProps = {
 
 function Pagination({ totalDocuments, setFilter, filter }: PaginationProps) {
   const handlePageClick = async (data: { selected: number }) => {
-    debugger;
     setFilter((prev) => {
       return {
         ...prev,

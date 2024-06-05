@@ -12,7 +12,6 @@ function Applications() {
   useEffect(() => {
     async function loadInternshipsForIntern() {
       if (user?.id) {
-        debugger;
         const response = await internshipService.getInternshipsForIntern(
           user.id
         );

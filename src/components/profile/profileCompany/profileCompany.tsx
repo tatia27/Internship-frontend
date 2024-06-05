@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
 import currentCompany from "./../../../assets/images/student.png";
@@ -40,23 +40,24 @@ function ProfileCompany() {
           });
         } catch (error) {
           if ((error as AxiosError).response?.status === 404) {
-            toast.info("Упс, компания не найдена....");
+            toast.error("Упс, компания не найдена...");
           }
         }
       }
     }
+
     loadInternships();
     loadCompany();
   }, [navigate, setCompany, user?.id]);
 
-  const handleRemove = useCallback((id: string) => {
+  const handleRemove = (id: string) => {
     setActiveInternships((prev) => {
       if (prev.length) {
         return prev.filter((it) => it._id !== id);
       }
       return prev;
     });
-  }, []);
+  };
 
   return (
     <div className="user-profile">

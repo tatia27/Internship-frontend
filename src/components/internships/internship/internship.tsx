@@ -38,13 +38,11 @@ function Internship() {
   const handleClick = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
     if (internship?.companyId) {
-      debugger;
       setCompany({
         name: "",
         description: "",
         id: internship.companyId,
       });
-      debugger;
       navigate(`/internships/company/${internship.companyId}`);
     }
   };

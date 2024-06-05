@@ -52,7 +52,6 @@ function Authorization() {
 
     async function login() {
       try {
-        debugger;
         if (!formAuth.email || !formAuth.password) {
           toast.info("Заполните все поля формы");
           return;
@@ -63,9 +62,9 @@ function Authorization() {
           toast.info("Минимальная длина пароля 8");
           return;
         }
-        debugger;
+
         const { data } = await authService.login(formAuth);
-        debugger;
+
         localStorage.setItem("token", data.token);
 
         if (data) {
