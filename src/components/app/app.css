@@ -9,7 +9,7 @@
   --primary-color: #20c6b1;
   --primary-color-hover: #28dac2;
   --text-color: #ffffff;
-  --background-color: #f8f9fa;
+  --background-color: #eff1f3;
   --border-items: 4px;
   --color-title: #363232;
   --box-shadow: 0 2px 3px 0 rgba(205, 205, 205, 0.29);
@@ -21,7 +21,7 @@
 }
 
 .App {
-  background-color: #f8f9fa;
+  background-color: var(--background-color);
   font-family: "Gilroy-regular";
   min-height: 100vh;
   display: flex;

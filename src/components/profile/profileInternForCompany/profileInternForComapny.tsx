@@ -6,17 +6,7 @@ import { type Cv } from "../../resume/resume";
 import { internService } from "../../../services/intern";
 import "./profileInternForCompany.css";
 import { toast } from "react-toastify";
-
-export interface IIntern {
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  email: string;
-  role: string;
-  description: string;
-  favorites: [];
-  cv: Cv;
-}
+import { type IIntern } from "../profileIntern/profileIntern";
 
 function ProfileInternForCompany() {
   const [intern, setIntern] = useState<IIntern>();

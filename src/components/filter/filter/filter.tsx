@@ -24,7 +24,6 @@ export interface IInternship {
 
 function Filter() {
   const [internships, setInternships] = useState<IInternship[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalDocuments, setTotalDocuments] = useState<number>(0);
 
   const [filter, setFilter] = useState<{
