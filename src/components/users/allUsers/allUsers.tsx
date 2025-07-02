@@ -4,10 +4,10 @@ import currentCompany from "./../../../assets/images/student.png";
 import { CompanyContext } from "../../../context/companyContext";
 import { type IInternship } from "../../filter/filter/filter";
 import { internshipService } from "../../../services/internship";
-import User from "../user/user";
-import "./allUsers.css";
+import { User } from "../user/user";
+import s from "./allUsers.module.scss";
 
-function AllUsers() {
+export const AllUsers = () => {
   const { internshipId } = useContext(CompanyContext);
   const [interns, setInterns] = useState<String[]>([]);
   const [internship, setInternship] = useState<IInternship>();
@@ -38,22 +38,18 @@ function AllUsers() {
   }, [internshipId, navigate]);
 
   return (
-    <div className="user-profiles">
-      <div className="container">
-        <div className="user-profiles__information">
+    <div>
+      <div className={s.container}>
+        <div className={s.information}>
           <div>
             <img src={currentCompany} alt="Логотип компании"></img>
           </div>
           <div>
-            <div className="user-profiles__company">
-              <h2 className="user-profiles__company__title">
-                {internship?.company}
-              </h2>
-              <h3 className="user-profiles__company__internship">
-                {internship?.title}
-              </h3>
+            <div>
+              <h2 className={s.title}>{internship?.company}</h2>
+              <h3 className={s.internship}>{internship?.title}</h3>
             </div>
-            <div className="user-profiles__all">
+            <div className={s.all}>
               {interns.map((item) => {
                 return <User item={item.toString()} />;
               })}
@@ -63,6 +59,6 @@ function AllUsers() {
       </div>
     </div>
   );
-}
+};
 
 export default AllUsers;

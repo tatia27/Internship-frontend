@@ -4,13 +4,13 @@ import deleteInternship from "./../../../assets/icons/delete.svg";
 import { type IInternship } from "../../filter/filter/filter";
 import { CompanyContext } from "../../../context/companyContext";
 import { internshipService } from "../../../services/internship";
-import "./actionForCompany.css";
+import s from "./actionForCompany.module.scss";
 
 type ActionForCompanyProps = IInternship & {
   onRemove?: (id: string) => void;
 };
 
-function ActionForCompany(props: ActionForCompanyProps) {
+export const ActionForCompany = (props: ActionForCompanyProps) => {
   const { setInternshipId } = useContext(CompanyContext);
   const navigate = useNavigate();
 
@@ -37,9 +37,9 @@ function ActionForCompany(props: ActionForCompanyProps) {
   }
 
   return (
-    <div className="full-current-card__top__action">
+    <div className={s.action}>
       <button
-        className="full-current-card__top__button-respond"
+        className={s.button}
         onClick={(event) => handleButtonClick(event, props._id.toString())}
       >
         Посмотреть участников
@@ -47,7 +47,7 @@ function ActionForCompany(props: ActionForCompanyProps) {
       <img
         src={deleteInternship}
         alt="Крестик"
-        className="full-current-card__top__action__remove"
+        className={s.action__remove}
         onClick={(event) => {
           event.stopPropagation();
           handleCardClick(props._id.toString());
@@ -55,6 +55,4 @@ function ActionForCompany(props: ActionForCompanyProps) {
       />
     </div>
   );
-}
-
-export default ActionForCompany;
+};

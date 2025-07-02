@@ -1,0 +1,63 @@
+@import "../../app/_mixins";
+
+.container {
+  @include container;
+}
+
+.header {
+  background-color: var(--text-color);
+
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+
+  &__nav__company {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+    justify-content: flex-end;
+    margin-left: 20px;
+
+    ul {
+      display: flex;
+      align-items: center;
+    }
+
+    ul li {
+      font-family: "Gilroy-bold";
+      font-size: 18px;
+      list-style-type: none;
+      margin-left: 20px;
+    }
+  }
+}
+
+.item:hover {
+  color: var(--primary-color);
+}
+
+.button {
+  background-color: var(--primary-color);
+  padding: 8px 20px;
+  color: var(--text-color);
+  border: none;
+  border-radius: var(--border-items);
+  font-size: 18px;
+
+  :hover {
+    background-color: var(--primary-color-hover);
+    color: var(--text-color);
+    border: none;
+  }
+}
+
+.active {
+  color: var(--primary-color);
+}
+
+.profile {
+  cursor: pointer;
+}

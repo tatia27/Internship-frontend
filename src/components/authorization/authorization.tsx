@@ -6,11 +6,11 @@ import { UserContext } from "../../context/userContext";
 import { validateEmail } from "../registration/registrationIntern/registrationIntern";
 import { type User } from "../../context/userContext";
 import { authService } from "../../services/auth";
-import "./authorization.css";
+import s from "./authorization.module.scss";
 
 export type AuthorizationTypes = { email: string; password: string };
 
-function Authorization() {
+export const Authorization = () => {
   const navigate = useNavigate();
   const [formAuth, setFormAuth] = useState<AuthorizationTypes>({
     email: "",
@@ -84,11 +84,11 @@ function Authorization() {
   };
 
   return (
-    <div className="registration-intern">
-      <div className="container">
+    <div className={s.registration}>
+      <div className={s.container}>
         <form
           method="post"
-          className="registration-intern__form"
+          className={s.registration__form}
           onSubmit={handleLogin}
         >
           <h1>Добро пожаловать в Internship</h1>
@@ -96,18 +96,18 @@ function Authorization() {
             type="email"
             name="email"
             placeholder="Email"
-            className="authorization-input"
+            className={s.authorizationInput}
             onChange={changeHandler}
           />
           <input
             type="password"
             name="password"
             placeholder="Пароль"
-            className="authorization-input"
+            className={s.authorizationInput}
             onChange={changeHandler}
           />
-          <div className="registration-intern__wrapper">
-            <button type="submit" className="registration-intern__button">
+          <div className={s.wrapper}>
+            <button type="submit" className={s.button}>
               Войти
             </button>
             <span>
@@ -118,6 +118,4 @@ function Authorization() {
       </div>
     </div>
   );
-}
-
-export default Authorization;
+};

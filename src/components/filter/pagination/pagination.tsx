@@ -15,7 +15,11 @@ type PaginationProps = {
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
 };
 
-function Pagination({ totalDocuments, setFilter, filter }: PaginationProps) {
+export const Pagination = ({
+  totalDocuments,
+  setFilter,
+  filter,
+}: PaginationProps) => {
   const handlePageClick = async (data: { selected: number }) => {
     setFilter((prev) => {
       return {
@@ -45,6 +49,4 @@ function Pagination({ totalDocuments, setFilter, filter }: PaginationProps) {
       activeClassName={"active"}
     />
   );
-}
-
-export default Pagination;
+};

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import FullCard from "../../internships/fullCard/fullCard";
-import SearchFilter from "../searchFilter/searchFilter";
-import Pagination from "../pagination/pagination";
-import "../filter/filter.css";
+import { FullCard } from "../../internships/fullCard/fullCard";
+import { SearchFilter } from "../searchFilter/searchFilter";
+import { Pagination } from "../pagination/pagination";
+import s from "./filter.module.scss";
 
 export interface IInternship {
   _id: string;
@@ -48,9 +48,9 @@ function Filter() {
   }, []);
 
   return (
-    <div className="internship-filter">
-      <div className="container">
-        <div className="internship-filter__items">
+    <div className={s.filter}>
+      <div className={s.container}>
+        <div className={s.filter__items}>
           <SearchFilter
             internships={internships}
             setInternships={setInternships}

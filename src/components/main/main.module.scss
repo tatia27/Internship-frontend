@@ -1,4 +1,10 @@
-.main_part {
+@import "../../components/app/mixins";
+
+.container {
+  @include container;
+}
+
+.mainPart {
   width: 100%;
   background: url("./../../assets/images/wallpaper.png");
   background-size: cover;
@@ -12,27 +18,27 @@
   align-items: center;
   justify-content: center;
   height: 630px;
+
+  &__title {
+    font-size: 62px;
+    text-transform: uppercase;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: "Lato-semibold";
+    line-height: 120%;
+  }
+
+  &__introduction {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 60px;
+    font-family: "Gilroy-regular";
+    line-height: 150%;
+  }
 }
 
-.main__title-uppercarse {
-  font-size: 62px;
-  text-transform: uppercase;
-  color: var(--text-color);
-  text-align: center;
-  margin-bottom: 30px;
-  font-family: "Lato-semibold";
-  line-height: 120%;
-}
-
-.title-introduction {
-  font-size: 24px;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 60px;
-  font-family: "Gilroy-regular";
-  line-height: 150%;
-}
-
-.main__button {
+.button {
   font-size: 22px;
   font-family: "Gilroy-semibold";
   padding: 15px 67px;

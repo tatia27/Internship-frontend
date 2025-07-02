@@ -4,15 +4,15 @@ import companyLogo from "../../../assets/icons/fullCardLogo.svg";
 import town from "./../../../assets/icons/location.svg";
 import { UserContext } from "../../../context/userContext";
 import { type IInternship } from "../../filter/filter/filter";
-import ActionForIntern from "../actionForIntern/actionForIntern";
-import ActionForCompany from "../actionForCompany/actionForCompany";
-import "./fullCard.css";
+import { ActionForIntern } from "../actionForIntern/actionForIntern";
+import { ActionForCompany } from "../actionForCompany/actionForCompany";
+import s from "./fullCard.module.scss";
 
 type FullCardProps = IInternship & {
   onRemove?: (id: string) => void;
 };
 
-function FullCard(props: FullCardProps) {
+export const FullCard = (props: FullCardProps) => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,11 +38,11 @@ function FullCard(props: FullCardProps) {
   };
 
   return (
-    <div className="user-profiles__card" onClick={handleClick}>
-      <div className="full-current-card">
-        <div className="current-card__text">
-          <div className="full-current-card__top">
-            <div className="full-current-card__top__company">
+    <div onClick={handleClick}>
+      <div className={s.fullCurrentCard}>
+        <div>
+          <div className={s.fullCurrentCard__top}>
+            <div className={s.fullCurrentCard__company}>
               <img src={companyLogo} alt="Компания" />
               <h4>{props.company}</h4>
             </div>
@@ -50,25 +50,25 @@ function FullCard(props: FullCardProps) {
           </div>
         </div>
         <div>
-          <p className="current-card__info__title">{props.title}</p>
-          <div className="locatio">
+          <p className={s.title}>{props.title}</p>
+          <div className={s.location}>
             <img src={town} alt="Местоположение" />
             <span>Таганрог</span>
           </div>
-          <div className="current-card__info">
-            <div className="current-card__info__item">
+          <div className={s.currentCard__info}>
+            <div className={s.currentCard__info__item}>
               <span>
                 {props.salary !== null ? "Оплачиваемая" : "Неоплачиваемая"}
               </span>
             </div>
-            <div className="current-card__info__item">
+            <div className={s.currentCard__info__item}>
               <span>
                 {props.typeOfEmployment === "Full"
                   ? "Полный день"
                   : "Неполный день"}
               </span>
             </div>
-            <div className="current-card__info__item">
+            <div className={s.currentCard__info__item}>
               <span>
                 {props.schedule === "Office" ? "В офиссе" : "Удалённо"}
               </span>
@@ -78,6 +78,4 @@ function FullCard(props: FullCardProps) {
       </div>
     </div>
   );
-}
-
-export default FullCard;
+};

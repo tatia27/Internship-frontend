@@ -1,18 +1,24 @@
-.registration-company {
+@import "../../app/_mixins";
+
+.container {
+  @include container;
+}
+
+.registrationCompany {
   background-color: #f8f9fa;
   padding: 100px 0;
+
+  &__form {
+    padding: 35px 85px;
+    max-width: 580px;
+    margin: 10px auto;
+    background-color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid #f3f3f3;
+  }
 }
 
-.registration-company__form {
-  padding: 35px 85px;
-  max-width: 580px;
-  margin: 10px auto;
-  background-color: var(--text-color);
-  border-radius: 10px;
-  border: 1px solid #f3f3f3;
-}
-
-.registration-company__button {
+.button {
   background-color: var(--primary-color);
   border: none;
   border-radius: var(--border-items);
@@ -21,11 +27,11 @@
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 10px;
-}
 
-.registration-company__button:hover {
-  background-color: var(--primary-color-hover);
-  cursor: pointer;
+  :hover {
+    background-color: var(--primary-color-hover);
+    cursor: pointer;
+  }
 }
 
 h1 {
@@ -55,19 +61,19 @@ label {
   margin-bottom: 8px;
 }
 
-.registration-company__form__info {
+.form__info {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.registration-company__form__info span {
-  font-size: 14px;
-  text-align: center;
-}
+  span {
+    font-size: 14px;
+    text-align: center;
+  }
 
-.registration-company__form__info span a {
-  color: var(--primary-color);
+  span a {
+    color: var(--primary-color);
+  }
 }
 
 .checkbox {

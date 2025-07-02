@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "./../../../assets/icons/logoFooter.svg";
-import "./footerLogo.css";
+import s from "./footerLogo.module.scss";
 
-function FooterLogo() {
+export const FooterLogo = () => {
   return (
-    <div className="footer__logo">
+    <div className={s.logo}>
       <Link to="/">
         <img src={logo} alt="Логотип" />
       </Link>
@@ -14,6 +14,4 @@ function FooterLogo() {
       </p>
     </div>
   );
-}
-
-export default FooterLogo;
+};

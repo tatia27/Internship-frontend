@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/userContext";
 import { internService } from "../../services/intern";
-import "./resume.css";
+import s from "./resume.module.scss";
 
 export type Cv = {
   age: number | null;
@@ -15,7 +15,7 @@ export type Cv = {
   softSkills: string;
 };
 
-function Resume() {
+export const Resume = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [resume, setResume] = useState<Cv>({
@@ -68,31 +68,27 @@ function Resume() {
   };
 
   return (
-    <div className="resume">
-      <div className="container">
-        <h1 className="resume-title">Резюме</h1>
-        <form
-          method="post"
-          className="resume-internship__form"
-          onSubmit={handleResume}
-        >
+    <div>
+      <div className={s.container}>
+        <h1 className={s.title}>Резюме</h1>
+        <form method="post" className={s.form} onSubmit={handleResume}>
           <input
             type="text"
             name="age"
             placeholder="Возраст"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <input
             type="text"
             name="location"
             placeholder="Местоположение"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <select
             name="levelOfEducation"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeSelectHandler}
             defaultValue="Бакалавриат"
           >
@@ -114,21 +110,21 @@ function Resume() {
             type="text"
             name="educationalInstitution"
             placeholder="Учебное заведение"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <input
             type="text"
             name="specialization"
             placeholder="Специализация"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <input
             type="text"
             name="hardSkills"
             placeholder="Hard skills"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <input
@@ -138,11 +134,9 @@ function Resume() {
             className="resume-input"
             onChange={changeInputHandler}
           />
-          <button className="resume-button">Создать</button>
+          <button className={s.resumeButton}>Создать</button>
         </form>
       </div>
     </div>
   );
-}
-
-export default Resume;
+};

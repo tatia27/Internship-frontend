@@ -1,0 +1,14 @@
+@import "../../app/_mixins";
+
+.container {
+  @include container;
+}
+
+.filter {
+  margin: 40px;
+
+  &__items {
+    display: flex;
+    column-gap: 20px;
+  }
+}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/userContext";
 import { internshipService } from "../../../services/internship";
-import "./addInternship.css";
+import s from "./addInternship.module.scss";
 
 export type InternshipForm = {
   title: string;
@@ -64,7 +64,7 @@ const OPTIONS = [
   },
 ];
 
-function AddInternship() {
+export const AddInternship = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [internship, setInternship] = useState<InternshipForm>({
@@ -116,24 +116,20 @@ function AddInternship() {
   };
 
   return (
-    <div className="resume">
-      <div className="container">
-        <h1 className="internship-title">Информация о стажировке</h1>
-        <form
-          method="post"
-          className="resume-internship__form"
-          onSubmit={handleIntership}
-        >
+    <div>
+      <div className={s.container}>
+        <h1 className={s.title}>Информация о стажировке</h1>
+        <form method="post" className={s.form} onSubmit={handleIntership}>
           <input
             type="text"
             name="title"
             placeholder="Наименование стажировки"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <select
             name="focusOfInternship"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeSelectHandler}
           >
             {OPTIONS.map(({ title, value }) => {
@@ -148,18 +144,18 @@ function AddInternship() {
             type="text"
             name="company"
             placeholder="Компания"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <input
             type="text"
             name="durationOfInternship"
             placeholder="Длительность"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
-          <div className="resume-internship__form__salary">
-            <div className="resume-internship__form__salary__margin">
+          <div className={s.form__salary}>
+            <div className={s.salary__margin}>
               <input
                 type="checkbox"
                 className="checkbox"
@@ -172,16 +168,16 @@ function AddInternship() {
               type="number"
               name="salary"
               placeholder="Зарплата"
-              className="resume-input"
+              className={s.resumeInput}
               onChange={changeInputHandler}
               disabled={!salaryActive}
             />
           </div>
-          <div className="checkbox-filter-internship">
+          <div className={s.checkboxFilterInternship}>
             <div>
-              <h3 className="filter_title">График работы</h3>
-              <form action="" className="work">
-                <div className="checkbox-filter">
+              <h3>График работы</h3>
+              <form action="">
+                <div className={s.checkboxFilterInternship}>
                   <input
                     type="checkbox"
                     value="Remotely"
@@ -191,7 +187,7 @@ function AddInternship() {
                   />
                   <label>Удалённо</label>
                 </div>
-                <div className="checkbox-filter">
+                <div className={s.checkboxFilterInternship}>
                   <input
                     type="checkbox"
                     name="schedule"
@@ -206,7 +202,7 @@ function AddInternship() {
             <div>
               <h3 className="filter_title">Тип занятости</h3>
               <form action="" className="work_time">
-                <div className="checkbox-filter">
+                <div className={s.checkboxFilterInternship}>
                   <input
                     type="checkbox"
                     name="typeOfEmployment"
@@ -215,7 +211,7 @@ function AddInternship() {
                   />
                   <label>Полная</label>
                 </div>
-                <div className="checkbox-filter">
+                <div className={s.checkboxFilterInternship}>
                   <input
                     type="checkbox"
                     name="typeOfEmployment"
@@ -231,21 +227,19 @@ function AddInternship() {
             type="text"
             name="skills"
             placeholder="Навыки"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
           <input
             type="text"
             name="conditions"
             placeholder="Условия"
-            className="resume-input"
+            className={s.resumeInput}
             onChange={changeInputHandler}
           />
-          <button className="resume-button">Создать</button>
+          <button className={s.button}>Создать</button>
         </form>
       </div>
     </div>
   );
-}
-
-export default AddInternship;
+};

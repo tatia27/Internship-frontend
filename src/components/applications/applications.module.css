@@ -1,0 +1,22 @@
+.applications {
+  margin: 40px 0;
+
+  &__title {
+    font-size: 26px;
+    font-family: "Gilroy-medium";
+    color: #404040;
+    margin-bottom: 20px;
+  }
+
+  &__title2 {
+    font-size: 18px;
+    font-family: "Gilroy-regular";
+    color: #404040;
+    margin-bottom: 20px;
+  }
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}

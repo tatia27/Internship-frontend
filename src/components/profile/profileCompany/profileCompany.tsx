@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CompanyContext } from "../../../context/companyContext";
 import currentCompany from "./../../../assets/images/student.png";
-import FullCard from "../../internships/fullCard/fullCard";
+import { FullCard } from "../../internships/fullCard/fullCard";
 import { type IInternship } from "../../filter/filter/filter";
 import { AxiosError } from "axios";
 import { UserContext } from "../../../context/userContext";

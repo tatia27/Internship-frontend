@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { validateEmail } from "../registrationIntern/registrationIntern";
 import { registerService } from "../../../services/register";
-import "./registrationCompany.css";
+import s from "./registrationCompany.module.scss";
 
 export type CompanyForm = {
   name: string;
@@ -14,7 +14,7 @@ export type CompanyForm = {
   conditions: boolean;
 };
 
-function RegistrationCompany() {
+export const RegistrationCompany = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState<CompanyForm>({
     name: "",
@@ -63,10 +63,10 @@ function RegistrationCompany() {
   };
 
   return (
-    <div className="registration-company">
-      <div className="container">
+    <div className={s.registrationCompany}>
+      <div className={s.container}>
         <form
-          className="registration-company__form"
+          className={s.registrationCompany__form}
           method="post"
           onSubmit={handleRegister}
         >
@@ -75,21 +75,21 @@ function RegistrationCompany() {
             type="text"
             name="name"
             placeholder="Наименование компании"
-            className="registration__input"
+            className={s.registration__input}
             onChange={changeHandler}
           />
           <input
             type="email"
             name="email"
             placeholder="Email"
-            className="registration__input"
+            className={s.registration__input}
             onChange={changeHandler}
           />
           <input
             type="password"
             name="password"
             placeholder="Пароль"
-            className="registration__input"
+            className={s.registration__input}
             onChange={changeHandler}
           />
           <div className="checkbox-company">
@@ -106,8 +106,8 @@ function RegistrationCompany() {
               конфиденциальности
             </label>
           </div>
-          <div className="registration-company__form__info">
-            <button type="submit" className="registration-company__button">
+          <div className={s.form__info}>
+            <button type="submit" className={s.button}>
               Зарегистрироваться
             </button>
             <span>
@@ -118,6 +118,4 @@ function RegistrationCompany() {
       </div>
     </div>
   );
-}
-
-export default RegistrationCompany;
+};

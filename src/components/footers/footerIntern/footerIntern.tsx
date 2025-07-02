@@ -1,19 +1,19 @@
 import { NavLink } from "react-router-dom";
-import FooterContacts from "../footerContacts/footerContacts";
-import FooterLogo from "../footerLogo/footerLogo";
+import { FooterContacts } from "../footerContacts/footerContacts";
+import { FooterLogo } from "../footerLogo/footerLogo";
 import { useLogout } from "../../../hooks";
-import "./footerIntern.css";
+import s from "./footerIntern.module.scss";
 
-function FooterIntern() {
+export const FooterIntern = () => {
   const logout = useLogout();
 
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer__nav">
-          <div className="footer__left-part">
+    <footer className={s.footer}>
+      <div className={s.container}>
+        <div className={s.footer__nav}>
+          <div className={s.footer__leftPartt}>
             <FooterLogo />
-            <div className="footer__menu">
+            <div className={s.footer__menu}>
               <ul>
                 <li>
                   <NavLink to="/internships">Стажировки</NavLink>
@@ -31,6 +31,4 @@ function FooterIntern() {
       </div>
     </footer>
   );
-}
-
-export default FooterIntern;
+};

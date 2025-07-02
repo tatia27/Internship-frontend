@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { type IInternship } from "../filter/filter/filter";
 import { UserContext } from "../../context/userContext";
-import FullCard from "../internships/fullCard/fullCard";
+import { FullCard } from "../internships/fullCard/fullCard";
 import { internshipService } from "../../services/internship";
-import "./applications.css";
+import s from "./applications.module.css";
 
-function Applications() {
+export const Applications = () => {
   const [applications, setApplications] = useState<IInternship[]>([]);
   const { user } = useContext(UserContext);
 
@@ -23,11 +23,11 @@ function Applications() {
   }, [user?.id]);
 
   return (
-    <div className="applications">
-      <div className="container">
-        <div className="intern-applications">
-          <h3 className="intern-applications__title">Отправленные заявки</h3>
-          <p className="applications__title">
+    <div className={s.applications}>
+      <div className={s.container}>
+        <div>
+          <h3 className={s.applications__title}>Отправленные заявки</h3>
+          <p className={s.applications__title2}>
             Здесь будут отображаться заявки на стажировку, на которые вы
             отклкинитесь. Скоро с вами свяжутся, вам придёт письмо на почту.
           </p>
@@ -40,6 +40,4 @@ function Applications() {
       </div>
     </div>
   );
-}
-
-export default Applications;
+};

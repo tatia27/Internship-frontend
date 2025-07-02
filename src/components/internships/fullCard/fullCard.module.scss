@@ -2,7 +2,7 @@
   align-items: center;
 }
 
-.full-current-card {
+.fullCurrentCard {
   width: 870px;
   height: 200px;
   padding: 27px 35px;
@@ -11,24 +11,26 @@
   cursor: pointer;
   margin-bottom: 20px;
   background-color: var(--text-color);
-}
 
-.current-card__top {
-  display: flex;
-  align-items: center;
-}
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.full-current-card__top__company {
-  display: flex;
-  align-items: center;
-  column-gap: 16px;
+  &__company {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    margin-bottom: 12px;
+  }
 }
 
 span {
   font-size: 18px;
 }
 
-.locatio {
+.location {
   display: flex;
   column-gap: 5px;
   align-items: center;
@@ -57,23 +59,30 @@ span {
   column-gap: 24px;
 }
 
-.current-card__info {
+.currentCard__info {
   display: flex;
   justify-content: flex-start;
   column-gap: 16px;
+
+  &__item {
+    background-color: #ebf0f3;
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 2px;
+
+    span {
+      font-size: 12px;
+      color: #333333;
+      font-weight: 600;
+    }
+  }
 }
 
-.current-card__info__title {
+.title {
   margin-bottom: 5px;
   font-family: "Gilroy-bold";
   font-size: 18px;
-}
-.current-card__info__item {
-  background-color: #ebf0f3;
-  display: flex;
-  align-items: center;
-  padding: 4px 12px;
-  border-radius: 2px;
 }
 
 .current-card__info__item span {

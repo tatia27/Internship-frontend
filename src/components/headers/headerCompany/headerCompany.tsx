@@ -3,10 +3,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./../../../assets/icons/logo.svg";
 import profile from "./../../../assets/icons/profileHeader.svg";
 import { UserContext } from "../../../context/userContext";
-import "./headerCompany.css";
+import s from "./headerCompany.module.scss";
 import { useLogout } from "../../../hooks";
 
-function HeaderCompany() {
+export const HeaderCompany = () => {
   const navigate = useNavigate();
 
   const logout = useLogout();
@@ -16,13 +16,13 @@ function HeaderCompany() {
   };
 
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__menu">
+    <header className={s.header}>
+      <div className={s.container}>
+        <div className={s.header__menu}>
           <Link to="/">
             <img src={logo} alt="Логотип" />
           </Link>
-          <div className="header__nav__company">
+          <div className={s.header__nav__company}>
             <ul>
               <li>
                 <NavLink
@@ -33,15 +33,12 @@ function HeaderCompany() {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/company/internships"
-                  className="header__nav__item"
-                >
+                <NavLink to="/company/internships" className={s.item}>
                   Стажировки
                 </NavLink>
               </li>
               <li>
-                <Link to={`/`} className="header__nav__item" onClick={logout}>
+                <Link to={`/`} className={s.button} onClick={logout}>
                   Выйти
                 </Link>
               </li>
@@ -50,13 +47,11 @@ function HeaderCompany() {
               src={profile}
               alt="Профиль"
               onClick={navigateToProfile}
-              className="header__nav__profile"
+              className={s.profile}
             ></img>
           </div>
         </div>
       </div>
     </header>
   );
-}
-
-export default HeaderCompany;
+};

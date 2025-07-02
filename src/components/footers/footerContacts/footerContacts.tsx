@@ -1,14 +1,12 @@
-import "./footerContacts.css";
+import s from "./footerContacts.module.scss";
 
-function FooterContacts() {
+export const FooterContacts = () => {
   return (
-    <div className="footer__right-part">
-      <p className="footer__title">Контакты</p>
-      <a href="mailto:itinternshipsportal@gmail.com" className="footer__link">
+    <div>
+      <p className={s.title}>Контакты</p>
+      <a href="mailto:itinternshipsportal@gmail.com" className={s.link}>
         itinternshipsportal@gmail.com
       </a>
     </div>
   );
-}
-
-export default FooterContacts;
+};

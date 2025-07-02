@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
-import "./main.css";
+import s from "./main.module.scss";
 
-function Main() {
+export const Main = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
@@ -25,39 +25,37 @@ function Main() {
   };
 
   return (
-    <div className="main_part">
-      <div className="container">
-        <div className="main">
+    <div className={s.mainPart}>
+      <div className={s.container}>
+        <div className={s.main}>
           {user?.role === "company" ? (
             <>
-              <h1 className="main__title-uppercarse">
+              <h1 className={s.main__title}>
                 Разместите IT стажировку
                 <br />
                 сегодня
               </h1>
-              <h2 className="title-introduction">
+              <h2 className={s.main__introduction}>
                 Вас ждут множество специалистов в сфере инновационных технологий
               </h2>
             </>
           ) : (
             <>
-              <h1 className="main__title-uppercarse">
+              <h1 className={s.main__title}>
                 Найди IT стажировку
                 <br />
                 сегодня
               </h1>
-              <h2 className="title-introduction">
+              <h2 className={s.main__introduction}>
                 Вас ждут множество вакансий в сфере инновационных технологий
               </h2>
             </>
           )}
-          <button className="main__button" onClick={navigateToInternships}>
+          <button className={s.button} onClick={navigateToInternships}>
             {user?.role === "company" ? "Разместить" : "Начать поиск"}
           </button>
         </div>
       </div>
     </div>
   );
-}
-
-export default Main;
+};

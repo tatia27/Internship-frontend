@@ -1,25 +1,21 @@
 import { useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
-import Header from "../headers/header/header";
-import HeaderIntern from "../headers/headerIntern/headerIntern";
-import HeaderCompany from "../headers/headerCompany/headerCompany";
-import Main from "../main/main";
-import Instructions from "../instructions/instructions";
-import Footer from "../footers/footer/footer";
-import FooterCompany from "../footers/footerCompany/footerCompany";
-import FooterIntern from "../footers/footerIntern/footerIntern";
-import Registration from "../registration/register/registration";
+import { Header } from "../headers/header/header";
+import { HeaderIntern } from "../headers/headerIntern/headerIntern";
+import { HeaderCompany } from "../headers/headerCompany/headerCompany";
+
+import { Instructions } from "../instructions/instructions";
+
 import RegistrationIntern from "../registration/registrationIntern/registrationIntern";
-import RegistrationCompany from "../registration/registrationCompany/registrationCompany";
+import { RegistrationCompany } from "../registration/registrationCompany/registrationCompany";
 import ProfileCompany from "../profile/profileCompany/profileCompany";
-import Filter from "../filter/filter/filter";
-import Popular from "../popular/popular";
+
 import ProfileIntern from "../profile/profileIntern/profileIntern";
 import Internship from "../internships/internship/internship";
-import Resume from "../resume/resume";
-import Authorization from "../authorization/authorization";
-import AddInternship from "../internships/addInternship/addInternship";
+import { Resume } from "../resume/resume";
+import { Authorization } from "../authorization/authorization";
+import { AddInternship } from "../internships/addInternship/addInternship";
 import CompanyInfo from "../profile/companyInfo/companyInfo";
 import ProfileInternForCompany from "../profile/profileInternForCompany/profileInternForComapny";
 import AllUsers from "../users/allUsers/allUsers";
@@ -28,11 +24,18 @@ import { FavoritesContextProvider } from "../../context/favoritesContext";
 import { UserContext } from "../../context/userContext";
 import { type User } from "../../context/userContext";
 import "react-toastify/dist/ReactToastify.css";
-import Applications from "../applications/applications";
+import { Applications } from "../applications/applications";
 import { authService } from "../../services/auth";
 import EditingInternInfo from "../profile/editingInternInfo/editingInternInfo";
 import ProfileCompanyForIntern from "../profile/prodileCompanyForIntern/profileCompanyForIntern";
-import "./app.css";
+import s from "./app.module.scss";
+import { Popular } from "../popular/popular";
+import { Main } from "../main/main";
+import { Registration } from "../registration/register/registration";
+import { Footer } from "../footers/footer/footer";
+import { FooterIntern } from "../footers/footerIntern/footerIntern";
+import { FooterCompany } from "../footers/footerCompany/footerCompany";
+import Filter from "../filter/filter/filter";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -80,7 +83,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={s.app}>
       {renderHeader()}
       <ToastContainer
         position="bottom-right"

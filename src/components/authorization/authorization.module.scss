@@ -1,18 +1,18 @@
-.registration-intern {
+.registration {
   background-color: #f8f9fa;
   padding: 80px 0;
+
+  &__form {
+    padding: 35px 85px;
+    max-width: 580px;
+    margin: 10px auto;
+    background-color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid #f3f3f3;
+  }
 }
 
-.registration-intern__form {
-  padding: 35px 85px;
-  max-width: 580px;
-  margin: 10px auto;
-  background-color: var(--text-color);
-  border-radius: 10px;
-  border: 1px solid #f3f3f3;
-}
-
-.registration-intern__button {
+.button {
   background-color: var(--primary-color);
   border: none;
   border-radius: var(--border-items);
@@ -21,11 +21,11 @@
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 10px;
-}
 
-.registration-intern__button:hover {
-  background-color: var(--primary-color-hover);
-  cursor: pointer;
+  :hover {
+    background-color: var(--primary-color-hover);
+    cursor: pointer;
+  }
 }
 
 h1 {
@@ -36,7 +36,7 @@ h1 {
   color: #404040;
 }
 
-.authorization-input {
+.authorizationInput {
   border: 0;
   font-size: 16px;
   padding: 10px 0;
@@ -44,28 +44,33 @@ h1 {
   border-bottom: 1px solid #434343;
   margin-bottom: 35px;
   outline: none;
-}
 
-.authorization-input:focus {
-  border-bottom: 1px solid var(--primary-color);
+  :focus {
+    border-bottom: 1px solid var(--primary-color);
+  }
 }
 
 label {
   display: block;
 }
 
-.registration-intern__wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 200px;
+
+  span {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  span a {
+    color: var(--primary-color);
+  }
 }
 
-.registration-intern__wrapper span {
-  font-size: 14px;
-  text-align: center;
-}
-
-.registration-intern__wrapper span a {
-  color: var(--primary-color);
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
 }

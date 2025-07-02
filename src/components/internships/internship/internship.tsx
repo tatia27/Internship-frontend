@@ -3,10 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { type IInternship } from "../../filter/filter/filter";
 import { internshipService } from "../../../services/internship";
-import ApplyButton from "../../applyButton/applyButton";
+import { ApplyButton } from "../../applyButton/applyButton";
 import { UserContext } from "../../../context/userContext";
 import { CompanyContext } from "../../../context/companyContext";
-import "./internship.css";
+import s from "./internship.module.scss";
 
 function Internship() {
   const [internship, setInternship] = useState<IInternship>();
@@ -49,59 +49,57 @@ function Internship() {
 
   return (
     <div>
-      <div className="container">
-        <div className="internship">
-          <div className="internship__title">
+      <div className={s.container}>
+        <div className={s.internship}>
+          <div className={s.internship__title}>
             <h4>{internship?.title}</h4>
             <h5 onClick={handleClick} className="internship__title__company">
               {internship?.company}
             </h5>
           </div>
-          <div className="internship__card-info">
-            <div className="internship__card-info__item">
+          <div className={s.cardInfo}>
+            <div className={s.cardInfo__item}>
               <span>
                 {internship?.salary !== null
                   ? "Оплачиваемая"
                   : "Неоплачиваемая"}
               </span>
             </div>
-            <div className="internship__card-info__item">
+            <div className={s.cardInfo__item}>
               <span>
                 {internship?.typeOfEmployment === "Full"
                   ? "Полный день"
                   : "Неполный день"}
               </span>
             </div>
-            <div className="internship__card-info__item">
+            <div className={s.cardInfo__item}>
               <span>
                 {internship?.schedule === "Office" ? "В офисе" : "Удалённо"}
               </span>
             </div>
           </div>
-          <div className="internship__time-salary">
-            <div className="internship__time-salary__all">
-              <p className="internship__time-salary__all__title">
-                Длительность
-              </p>
+          <div className={s.internship__timeSalary}>
+            <div>
+              <p className={s.internship__timeSalary__title}>Длительность</p>
               <span>
                 <span>{internship?.durationOfInternship}</span>
               </span>
             </div>
-            <div className="internship__time-salary__all">
-              <p className="internship__time-salary__all__title">Зарплата</p>
+            <div>
+              <p className={s.internship__timeSalary__title}>Зарплата</p>
               <span>
                 {internship?.salary !== 0 ? `${internship?.salary} р.` : "-"}
               </span>
             </div>
           </div>
-          <div className="internship__skills">
-            <p className="internship__skills__title">Навыки</p>
+          <div className={s.internshipSkills}>
+            <p className={s.internshipSkills__title}>Навыки</p>
             <ul>
               <li>{internship?.skills}</li>
             </ul>
           </div>
-          <div className="internship__conditions">
-            <p className="internship__skills__title">Условия</p>
+          <div className={s.internshipConditions}>
+            <p className={s.internshipSkills__title}>Условия</p>
             <ul>
               <li>{internship?.conditions}</li>
             </ul>

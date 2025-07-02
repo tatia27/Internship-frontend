@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { IInternship } from "../filter/filter";
-import "../searchFilter/searchFilter.css";
+import s from "./searchFilter.module.scss";
 import axios from "axios";
 
 type Filter = {
@@ -20,13 +20,13 @@ type SearchFilterProps = {
   setFilter: React.Dispatch<React.SetStateAction<Filter>>;
 };
 
-function SearchFilter({
+export const SearchFilter = ({
   internships,
   setInternships,
   setTotalDocuments,
   setFilter,
   filter,
-}: SearchFilterProps) {
+}: SearchFilterProps) => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -126,10 +126,10 @@ function SearchFilter({
   };
 
   return (
-    <div className="filter">
-      <h3 className="filter_title">Специализация</h3>
-      <form action="" className="specialization">
-        <div className="checkbox-filter">
+    <div className={s.filter}>
+      <h3 className={s.filter__title}>Специализация</h3>
+      <form action="" className={s.specialization}>
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -138,7 +138,7 @@ function SearchFilter({
           />
           <label>Frontend-разработчик</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -147,7 +147,7 @@ function SearchFilter({
           />
           <label>Backend-разработчик</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -156,7 +156,7 @@ function SearchFilter({
           />
           <label>Мобильный разработчик</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -165,7 +165,7 @@ function SearchFilter({
           />
           <label>Системный администратор</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -174,7 +174,7 @@ function SearchFilter({
           />
           <label>Разработчик игр</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -183,7 +183,7 @@ function SearchFilter({
           />
           <label>Тестировщик</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -192,7 +192,7 @@ function SearchFilter({
           />
           <label>Аналитик</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -201,7 +201,7 @@ function SearchFilter({
           />
           <label>Дизайнер</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -210,7 +210,7 @@ function SearchFilter({
           />
           <label>Менеджер</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -219,7 +219,7 @@ function SearchFilter({
           />
           <label>Рекрутер</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="focusOfInternship"
@@ -229,9 +229,9 @@ function SearchFilter({
           <label>Другое</label>
         </div>
       </form>
-      <h3 className="filter_title">Вид стажировки</h3>
+      <h3 className={s.filter__title}>Вид стажировки</h3>
       <form action="" className="direction">
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="salary"
@@ -240,7 +240,7 @@ function SearchFilter({
           />
           <label>Оплачиваемая</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="salary"
@@ -250,9 +250,9 @@ function SearchFilter({
           <label>Неоплачиваемая</label>
         </div>
       </form>
-      <h3 className="filter_title">График работы</h3>
+      <h3 className={s.filter__title}>График работы</h3>
       <form action="" className="work">
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="schedule"
@@ -261,7 +261,7 @@ function SearchFilter({
           />
           <label>Удалённо</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="schedule"
@@ -271,9 +271,9 @@ function SearchFilter({
           <label>В офисе</label>
         </div>
       </form>
-      <h3 className="filter_title">Тип занятости</h3>
-      <form action="" className="work_time">
-        <div className="checkbox-filter">
+      <h3 className={s.filter__title}>Тип занятости</h3>
+      <form action="" className={s.workTime}>
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="typeOfEmployment"
@@ -282,7 +282,7 @@ function SearchFilter({
           />
           <label>Полная</label>
         </div>
-        <div className="checkbox-filter">
+        <div className={s.checkboxFilter}>
           <input
             type="checkbox"
             name="typeOfEmployment"
@@ -292,11 +292,9 @@ function SearchFilter({
           <label>Частичная</label>
         </div>
       </form>
-      <a href="/internships" className="filter-reset" onClick={resetFilter}>
+      <a href="/internships" className={s.filterReset} onClick={resetFilter}>
         Сбросить всё
       </a>
     </div>
   );
-}
-
-export default SearchFilter;
+};

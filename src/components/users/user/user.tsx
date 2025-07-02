@@ -3,9 +3,9 @@ import { IIntern } from "../../profile/profileIntern/profileIntern";
 import userIcon from "./../../../assets/icons/userCompany.svg";
 import { internService } from "../../../services/intern";
 import { useNavigate } from "react-router-dom";
-import "./user.css";
+import s from "./user.module.scss";
 
-function User({ item }: { item: string }) {
+export const User = ({ item }: { item: string }) => {
   const [intern, setIntern] = useState<IIntern>();
   const navigate = useNavigate();
 
@@ -19,13 +19,11 @@ function User({ item }: { item: string }) {
 
   return (
     <div
-      className="user"
+      className={s.user}
       onClick={() => navigate(`/company/profile/participants/${item}`)}
     >
       <img src={userIcon} alt="Иконка пользователя"></img>
       <span>{`${intern?.lastName} ${intern?.firstName}`}</span>
     </div>
   );
-}
-
-export default User;
+};

@@ -1,0 +1,60 @@
+@import "../../app/_mixins";
+
+.container {
+  @include container;
+}
+
+.registration {
+  margin: 150px 0 255px 0;
+
+  &__title {
+    font-size: 32px;
+    color: var(--color-title);
+    font-weight: 600;
+    margin-bottom: 50px;
+    margin-left: 175px;
+    font-family: "Gilroy-semibold";
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 90px;
+  }
+}
+
+.card {
+  width: 380px;
+  height: 220px;
+  padding: 61px 97px 76px 50px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--box-shadow);
+  background: #fff;
+
+  h3 {
+    font-size: 20px;
+    font-weight: normal;
+    color: var(--color-title);
+    margin-bottom: 30px;
+    font-family: "Gilroy-medium";
+  }
+}
+
+.button {
+  padding: 10px 24px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: var(--border-items);
+  border: none;
+  font-size: 16px;
+  display: flex;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--primary-color-hover);
+  }
+}

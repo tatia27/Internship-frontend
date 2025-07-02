@@ -5,9 +5,9 @@ import { UserContext } from "../../context/userContext";
 import { IInternship } from "../filter/filter/filter";
 import { toast } from "react-toastify";
 import cn from "classnames";
-import "./applyButton.css";
+import s from "./applyButton.module.scss";
 
-function ApplyButton({ id }: { id: string }) {
+export const ApplyButton = ({ id }: { id: string }) => {
   const { user } = useContext(UserContext);
   const [isApplied, setIsApplied] = useState(false);
   const [internship, setInternship] = useState<IInternship>();
@@ -42,10 +42,7 @@ function ApplyButton({ id }: { id: string }) {
 
   return (
     <button
-      className={cn(
-        isParticipant && "full-current-card__top__button-applied",
-        "full-current-card__top__button-respond"
-      )}
+      className={cn(isParticipant && s.buttonApplied, s.buttonRespond)}
       onClick={(event) => {
         event.stopPropagation();
         if (isParticipant) {
@@ -61,6 +58,4 @@ function ApplyButton({ id }: { id: string }) {
       {isParticipant ? "Заявка подана" : "Откликнуться"}
     </button>
   );
-}
-
-export default ApplyButton;
+};

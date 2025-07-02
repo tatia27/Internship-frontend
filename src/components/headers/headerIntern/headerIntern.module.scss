@@ -1,0 +1,48 @@
+@import "../../app/_mixins";
+
+.container {
+  @include container;
+}
+
+.header {
+  background-color: var(--text-color);
+
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+
+  &__nav__intern {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+    justify-content: flex-end;
+    margin-left: 20px;
+
+    ul {
+      display: flex;
+      align-items: center;
+    }
+
+    ul li {
+      font-family: "Gilroy-bold";
+      font-size: 18px;
+      list-style-type: none;
+      margin-left: 20px;
+    }
+  }
+}
+
+.header__nav__item:hover {
+  color: var(--primary-color);
+}
+
+.active {
+  color: var(--primary-color);
+}
+
+.profile {
+  cursor: pointer;
+}

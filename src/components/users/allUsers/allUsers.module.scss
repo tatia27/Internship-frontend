@@ -1,10 +1,16 @@
-.user-profiles__information {
+@import "../../app/_mixins";
+
+.container {
+  @include container;
+}
+
+.information {
   display: flex;
   column-gap: 24px;
   margin: 50px 0 70px 0;
 }
 
-.user-profiles__all {
+.all {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -22,4 +28,9 @@
   font-size: 22px;
   font-family: "Gilroy-medium";
   margin-bottom: 30px;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
 }

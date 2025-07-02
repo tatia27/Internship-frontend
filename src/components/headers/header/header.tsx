@@ -1,29 +1,29 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "./../../../assets/icons/logo.svg";
-import "./header.css";
+import s from "./header.module.scss";
 
-function Header() {
+export const Header = () => {
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__menu">
+    <header className={s.header}>
+      <div className={s.container}>
+        <div className={s.header__menu}>
           <Link to="/">
             <img src={logo} alt="Логотип" />
           </Link>
-          <div className="header__nav">
+          <div className={s.header__nav}>
             <ul>
               <li>
-                <NavLink to="/internships" className="header__nav__item">
+                <NavLink to="/internships" className={s.header__nav__item}>
                   Стажировки
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/registration" className="header__nav__item">
+                <NavLink to="/registration" className={s.header__nav__item}>
                   Регистрация
                 </NavLink>
               </li>
               <li>
-                <Link to="/login" className="header__nav-btn">
+                <Link to="/login" className={s.button}>
                   Вход
                 </Link>
               </li>
@@ -33,6 +33,4 @@ function Header() {
       </div>
     </header>
   );
-}
-
-export default Header;
+};

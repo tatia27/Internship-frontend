@@ -4,11 +4,11 @@ import { UserContext } from "../../../context/userContext";
 import { type IInternship } from "../../filter/filter/filter";
 import { internshipService } from "../../../services/internship";
 import { FavoritesContext } from "../../../context/favoritesContext";
-import ApplyButton from "../../applyButton/applyButton";
+import { ApplyButton } from "../../applyButton/applyButton";
 import Favorites from "../../favorites/favorites";
-import "./actionForIntern.css";
+import s from "./actionForIntern.module.scss";
 
-function ActionForIntern(props: IInternship) {
+export const ActionForIntern = (props: IInternship) => {
   const { user } = useContext(UserContext);
   const { setFavorites } = useContext(FavoritesContext);
 
@@ -32,11 +32,9 @@ function ActionForIntern(props: IInternship) {
   }, [setFavorites, user?.id]);
 
   return (
-    <div className="full-current-card__top__action">
+    <div className={s.action}>
       <Favorites item={props} />
       <ApplyButton id={props._id.toString()} />
     </div>
   );
-}
-
-export default ActionForIntern;
+};

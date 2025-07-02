@@ -1,4 +1,9 @@
-.resume-title {
+@import "../app/mixins";
+
+.container {
+  @include container;
+}
+.title {
   font-size: 26px;
   font-family: "Gilroy-medium";
   margin: 40px 0;
@@ -6,12 +11,7 @@
   color: #404040;
 }
 
-.registration-intern {
-  background-color: #f8f9fa;
-  /* padding: 60px 0; */
-}
-
-.resume-internship__form {
+.form {
   padding: 50px 100px;
   max-width: 980px;
   background-color: var(--text-color);
@@ -21,23 +21,7 @@
   margin-bottom: 40px;
 }
 
-.registration-intern__button {
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: var(--border-items);
-  color: var(--text-color);
-  padding: 14px 121px;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.registration-intern__button:hover {
-  background-color: var(--primary-color-hover);
-  cursor: pointer;
-}
-
-.resume-input,
+.resumeInput,
 select {
   border-radius: var(--border-items);
   background-color: var(--text-color);
@@ -49,7 +33,7 @@ select {
   margin-bottom: 30px;
 }
 
-.resume-button {
+.resumeButton {
   padding: 8px 56px;
   border-radius: var(--border-items);
   border: none;

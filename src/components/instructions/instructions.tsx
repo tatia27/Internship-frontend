@@ -1,45 +1,29 @@
 import user from "./../../assets/icons/addUser.svg";
 import resume from "./../../assets/icons/resume.svg";
 import letter from "./../../assets/icons/letter.svg";
-import "./instructions.css";
+import s from "./instructions.module.scss";
 
-function Instructions() {
+export const Instructions = () => {
   return (
-    <section className="instructions">
-      <div className="container">
-        <div className="instructions__block">
-          <div className="instructions__block__item">
-            <img
-              src={user}
-              alt="Пользователь"
-              className="instructions__block__item__user"
-            />
-            <span className="instructions__block__item__text-register">
-              Зарегистрируйся на сайте
-            </span>
+    <section className={s.instructions}>
+      <div className={s.container}>
+        <div className={s.instructions__block}>
+          <div className={s.instructions__item}>
+            <img src={user} alt="Пользователь" className={s.user} />
+            <span className={s.textRegister}>Зарегистрируйся на сайте</span>
           </div>
           <hr />
-          <div className="instructions__block__item">
+          <div className={s.instructions__item}>
             <img src={resume} alt="Резюме" />
-            <span className="instructions__block__item__text">
-              Подай резюме
-            </span>
+            <span className={s.text}>Подай резюме</span>
           </div>
           <hr />
-          <div className="instructions__block__item">
-            <img
-              src={letter}
-              alt="Письмо"
-              className="instructions__block__item__letter"
-            />
-            <span className="instructions__block__item__text">
-              Подай заявку
-            </span>
+          <div className={s.instructions__item}>
+            <img src={letter} alt="Письмо" className={s.letter} />
+            <span className={s.text}>Подай заявку</span>
           </div>
         </div>
       </div>
     </section>
   );
-}
-
-export default Instructions;
+};

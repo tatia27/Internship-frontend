@@ -6,7 +6,7 @@ import { UserContext } from "../../../context/userContext";
 import { type Cv } from "../../resume/resume";
 import { FavoritesContext } from "../../../context/favoritesContext";
 import { internService } from "../../../services/intern";
-import FavoriteCarousel from "../../favoriteCarousel/favoriteCarousel";
+import { FavoriteCarousel } from "../../favoriteCarousel/favoriteCarousel";
 import editing from "../../../assets/icons/editing.svg";
 import { toast } from "react-toastify";
 import "./profileIntern.css";

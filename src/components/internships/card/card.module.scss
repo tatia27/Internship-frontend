@@ -1,0 +1,106 @@
+.currentCard {
+  display: flex;
+  align-items: center;
+  background-color: var(--text-color);
+  width: 380px;
+  height: 284px;
+  padding: 32px 18px;
+  margin-bottom: 20px;
+  border-radius: var(--border-items);
+  box-shadow: var(--box-shadow);
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  &__logo {
+    display: flex;
+    column-gap: 24px;
+  }
+
+  &__company {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    column-gap: 10px;
+
+    h4 {
+      font-family: "Gilroy-semibold";
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    &__button {
+      display: flex;
+      column-gap: 20px;
+    }
+  }
+}
+
+h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-title);
+}
+
+span {
+  font-size: 18px;
+}
+
+.location {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+
+  span {
+    font-family: "Gilroy-regular";
+    font-size: 14px;
+  }
+}
+
+.cardMiddle {
+  margin-bottom: 15px;
+
+  &__title {
+    font-size: 18px;
+    font-family: "Gilroy-semibold";
+    font-weight: 700;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 16px;
+  margin-bottom: 28px;
+
+  &__small {
+    background-color: #ebf0f3;
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-family: "Gilroy-regular";
+
+    span {
+      font-size: 12px;
+      color: #333333;
+      font-weight: 600;
+    }
+  }
+}
+
+.buttonMore {
+  background-color: var(--text-color);
+  padding: 5px 36px;
+  color: var(--primary-color);
+  border: none;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-items);
+  font-size: 14px;
+  font-family: "Gilroy-medium";
+  cursor: pointer;
+}
