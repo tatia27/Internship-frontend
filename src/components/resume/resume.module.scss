@@ -3,6 +3,11 @@
 .container {
   @include container;
 }
+
+.error {
+  @include error;
+}
+
 .title {
   font-size: 26px;
   font-family: "Gilroy-medium";
@@ -30,7 +35,7 @@ select {
   padding: 15px;
   width: 100%;
   color: var(--color-title);
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .resumeButton {

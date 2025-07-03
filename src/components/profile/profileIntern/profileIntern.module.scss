@@ -1,10 +1,16 @@
-.user-profiles__info {
+@import "../../app/mixins";
+
+.container {
+  @include container;
+}
+
+.info {
   display: flex;
   column-gap: 24px;
   margin: 40px 0 20px 0;
 }
 
-.user-profiles__wrapper {
+.wrapper {
   padding: 40px;
   width: 1000px;
   height: 280px;
@@ -13,64 +19,46 @@
   box-shadow: var(--box-shadow);
 }
 
-.user-profiles__student__editing {
+.student__editing {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 
-.user-profiles__student__title {
+.student__title {
   font-size: 26px;
   color: #434242;
   margin-bottom: 30px;
   font-family: "Gilroy-bold";
 }
 
-.user-profiles__student__description {
-  width: 800px;
-  height: 80px;
-  background-color: #f8f9fa;
-  border-radius: 5px;
-  padding: 8px;
-  color: #181818;
-  font-weight: 600;
-  opacity: 0.5;
-  margin-bottom: 20px;
-}
-
-.user-profiles__active-internhip {
-  font-size: 22px;
-  font-weight: 700;
-  margin-left: 310px;
-}
-
-.user-profiles__favorite-internhip {
-  margin-bottom: 38px;
-}
-
-.user-profile__skills-intern {
+.skills {
   display: flex;
   justify-content: space-between;
   column-gap: 35px;
   margin-bottom: 30px;
 }
 
-.skills {
+.skillsUser {
   width: 430px;
   height: 168px;
   background-color: var(--text-color);
   padding: 15px 26px;
   border-radius: 15px;
   box-shadow: var(--box-shadow);
+
+  &__hardSoft {
+    font-family: "Gilroy-bold";
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  &__description {
+    font-size: 18px;
+  }
 }
 
-.skills__hard-soft {
-  font-family: "Gilroy-bold";
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.button-resume {
+.buttonResume {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,14 +74,14 @@
   font-family: "Gilroy-semibold";
 }
 
-.user-profiles__student__person-info p {
+.userProfiles p {
   font-size: 18px;
   margin-bottom: 10px;
   color: var(--color-title);
-}
 
-.user-profiles__student__person-info p:last-child {
-  margin-bottom: 0;
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .skills__description {

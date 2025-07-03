@@ -9,7 +9,7 @@ import { internService } from "../../../services/intern";
 import { FavoriteCarousel } from "../../favoriteCarousel/favoriteCarousel";
 import editing from "../../../assets/icons/editing.svg";
 import { toast } from "react-toastify";
-import "./profileIntern.css";
+import s from "./profileIntern.module.scss";
 
 export interface IIntern {
   firstName: string;
@@ -71,15 +71,15 @@ function ProfileIntern() {
   };
   return (
     <div className="user-profile">
-      <div className="container">
-        <div className="user-profiles__info">
+      <div className={s.container}>
+        <div className={s.info}>
           <div>
             <img src={iconStudent} alt="Иконка пользователя"></img>
           </div>
-          <div className="user-profiles__wrapper">
+          <div className={s.wrapper}>
             <div className="user-profiles__student">
-              <div className="user-profiles__student__editing">
-                <h2 className="user-profiles__student__title">
+              <div className={s.student__editing}>
+                <h2 className={s.student__title}>
                   {`${
                     intern?.lastName !== undefined
                       ? intern?.lastName
@@ -96,12 +96,12 @@ function ProfileIntern() {
                 <img
                   src={editing}
                   alt="редактирование"
-                  className="editing"
+                  className={s.editing}
                   onClick={navigateToEditPage}
                 />
               </div>
 
-              <div className="user-profiles__student__person-info">
+              <div className={s.userProfiles}>
                 <p>
                   Возраст: {intern?.cv.age !== null ? `${intern?.cv.age}` : ""}
                 </p>
@@ -113,22 +113,26 @@ function ProfileIntern() {
             </div>
           </div>
         </div>
-        <div className="user-profile__skills-intern">
+        <div className={s.skills}>
           <div>
             <button
-              className="button-resume"
+              className={s.buttonResume}
               onClick={() => navigate(`/intern/profile/resume`)}
             >
               Добавить резюме
             </button>
           </div>
-          <div className="skills">
-            <h4 className="skills__hard-soft">Hard Skills</h4>
-            <p className="skills__description">{intern?.cv.hardSkills}</p>
+          <div className={s.skillsUser}>
+            <h4 className={s.skillsUser__hardSoft}>Hard Skills</h4>
+            <p className={s.skillsUser____description}>
+              {intern?.cv.hardSkills}
+            </p>
           </div>
-          <div className="skills">
-            <h4 className="skills__hard-soft">Soft Skills</h4>
-            <p className="skills__description">{intern?.cv.softSkills}</p>
+          <div className={s.skillsUser}>
+            <h4 className={s.skillsUser__hardSoft}>Soft Skills</h4>
+            <p className={s.skillsUser____description}>
+              {intern?.cv.softSkills}
+            </p>
           </div>
         </div>
         {favorites.length !== 0 ? (

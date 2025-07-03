@@ -4,13 +4,10 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { Header } from "../headers/header/header";
 import { HeaderIntern } from "../headers/headerIntern/headerIntern";
 import { HeaderCompany } from "../headers/headerCompany/headerCompany";
-
 import { Instructions } from "../instructions/instructions";
-
-import RegistrationIntern from "../registration/registrationIntern/registrationIntern";
+import { RegistrationIntern } from "../registration/registrationIntern/registrationIntern";
 import { RegistrationCompany } from "../registration/registrationCompany/registrationCompany";
 import ProfileCompany from "../profile/profileCompany/profileCompany";
-
 import ProfileIntern from "../profile/profileIntern/profileIntern";
 import Internship from "../internships/internship/internship";
 import { Resume } from "../resume/resume";

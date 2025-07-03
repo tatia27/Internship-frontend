@@ -4,6 +4,11 @@
   margin: 40px 0 20px 0;
 }
 
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
 .user-profiles__wrapper {
   padding: 40px;
   width: 1000px;

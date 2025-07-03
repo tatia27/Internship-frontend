@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import { FavoritesContext } from "../context/favoritesContext";
@@ -28,4 +28,10 @@ export const useLogout = () => {
     navigate("/");
   };
   return logout;
+};
+
+export const useToTopPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 };

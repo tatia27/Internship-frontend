@@ -3,7 +3,7 @@ import { type IInternship } from "../filter/filter/filter";
 import { UserContext } from "../../context/userContext";
 import { FullCard } from "../internships/fullCard/fullCard";
 import { internshipService } from "../../services/internship";
-import s from "./applications.module.css";
+import s from "./applications.module.scss";
 
 export const Applications = () => {
   const [applications, setApplications] = useState<IInternship[]>([]);
@@ -25,7 +25,7 @@ export const Applications = () => {
   return (
     <div className={s.applications}>
       <div className={s.container}>
-        <div>
+        <div className={s.applications__my}>
           <h3 className={s.applications__title}>Отправленные заявки</h3>
           <p className={s.applications__title2}>
             Здесь будут отображаться заявки на стажировку, на которые вы

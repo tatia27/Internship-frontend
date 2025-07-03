@@ -1,4 +1,7 @@
-import { useState, useContext } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/userContext";
@@ -6,7 +9,7 @@ import { internService } from "../../services/intern";
 import s from "./resume.module.scss";
 
 export type Cv = {
-  age: number | null;
+  age: number;
   location: string;
   levelOfEducation: string;
   educationalInstitution: string;
@@ -15,81 +18,88 @@ export type Cv = {
   softSkills: string;
 };
 
+const schema = yup.object().shape({
+  age: yup
+    .number()
+    .typeError("Возраст должен быть числом")
+    .required("Возраст обязателен")
+    .min(14, "Возраст должен быть не менее 14")
+    .max(100, "Возраст должен быть не более 100"),
+  location: yup.string().required("Местоположение обязательно"),
+  levelOfEducation: yup.string().required("Уровень образования обязателен"),
+  educationalInstitution: yup
+    .string()
+    .required("Учебное заведение обязательно"),
+  specialization: yup.string().required("Специализация обязательна"),
+  hardSkills: yup.string().required("Hard skills обязательны"),
+  softSkills: yup.string().required("Soft skills обязательны"),
+});
+
 export const Resume = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const [resume, setResume] = useState<Cv>({
-    age: null,
-    location: "",
-    levelOfEducation: "Бакалавриат",
-    educationalInstitution: "",
-    specialization: "",
-    hardSkills: "",
-    softSkills: "",
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<Cv>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      age: undefined,
+      location: "",
+      levelOfEducation: "Бакалавриат",
+      educationalInstitution: "",
+      specialization: "",
+      hardSkills: "",
+      softSkills: "",
+    },
   });
 
-  const handleResume = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (
-      !resume.age ||
-      !resume.location ||
-      !resume.levelOfEducation ||
-      !resume.educationalInstitution ||
-      !resume.specialization ||
-      !resume.hardSkills ||
-      !resume.softSkills
-    ) {
-      toast.info("Заполните все поля формы");
-      return;
-    }
-
-    async function loadResume() {
-      try {
-        if (user) {
-          await internService.createResume(user?.id, resume);
-        }
-
+  const onSubmit = async (data: Cv) => {
+    try {
+      if (user) {
+        await internService.createResume(user.id, data);
+        toast.success("Резюме успешно создано");
         navigate(`/intern/profile`);
-      } catch (error) {
-        toast.error("Упс, резюме не добавлено...");
+      } else {
+        toast.error("Пользователь не найден");
       }
+    } catch {
+      toast.error("Упс, резюме не добавлено...");
     }
-
-    loadResume();
-  };
-
-  const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setResume({ ...resume, [event.target.name]: event.target.value });
-  };
-
-  const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setResume({ ...resume, [event.target.name]: event.target.value });
   };
 
   return (
     <div>
       <div className={s.container}>
         <h1 className={s.title}>Резюме</h1>
-        <form method="post" className={s.form} onSubmit={handleResume}>
+        <form
+          method="post"
+          className={s.form}
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <input
-            type="text"
-            name="age"
+            type="number"
             placeholder="Возраст"
             className={s.resumeInput}
-            onChange={changeInputHandler}
+            {...register("age")}
           />
+          {errors.age && <p className={s.error}>{errors.age.message}</p>}
+
           <input
             type="text"
-            name="location"
             placeholder="Местоположение"
             className={s.resumeInput}
-            onChange={changeInputHandler}
+            {...register("location")}
           />
+          {errors.location && (
+            <p className={s.error}>{errors.location.message}</p>
+          )}
+
           <select
-            name="levelOfEducation"
             className={s.resumeInput}
-            onChange={changeSelectHandler}
+            {...register("levelOfEducation")}
             defaultValue="Бакалавриат"
           >
             <option value="Основное общее образование">
@@ -106,35 +116,53 @@ export const Resume = () => {
             <option value="Магистратура">Магистратура</option>
             <option value="Аспирантура">Аспирантура</option>
           </select>
+          {errors.levelOfEducation && (
+            <p className={s.error}>{errors.levelOfEducation.message}</p>
+          )}
+
           <input
             type="text"
-            name="educationalInstitution"
             placeholder="Учебное заведение"
             className={s.resumeInput}
-            onChange={changeInputHandler}
+            {...register("educationalInstitution")}
           />
+          {errors.educationalInstitution && (
+            <p className={s.error}>{errors.educationalInstitution.message}</p>
+          )}
+
           <input
             type="text"
-            name="specialization"
             placeholder="Специализация"
             className={s.resumeInput}
-            onChange={changeInputHandler}
+            {...register("specialization")}
           />
+          {errors.specialization && (
+            <p className={s.error}>{errors.specialization.message}</p>
+          )}
+
           <input
             type="text"
-            name="hardSkills"
             placeholder="Hard skills"
             className={s.resumeInput}
-            onChange={changeInputHandler}
+            {...register("hardSkills")}
           />
+          {errors.hardSkills && (
+            <p className={s.error}>{errors.hardSkills.message}</p>
+          )}
+
           <input
             type="text"
-            name="softSkills"
             placeholder="Soft skills"
-            className="resume-input"
-            onChange={changeInputHandler}
+            className={s.resumeInput}
+            {...register("softSkills")}
           />
-          <button className={s.resumeButton}>Создать</button>
+          {errors.softSkills && (
+            <p className={s.error}>{errors.softSkills.message}</p>
+          )}
+
+          <button className={s.resumeButton} disabled={isSubmitting}>
+            Создать
+          </button>
         </form>
       </div>
     </div>

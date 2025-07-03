@@ -1,11 +1,12 @@
-import { useState } from "react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
-import { validateEmail } from "../registrationIntern/registrationIntern";
 import { registerService } from "../../../services/register";
 import s from "./registrationCompany.module.scss";
+import { useForm } from "react-hook-form";
 
 export type CompanyForm = {
   name: string;
@@ -14,42 +15,40 @@ export type CompanyForm = {
   conditions: boolean;
 };
 
+const schema = yup.object().shape({
+  name: yup.string().required("Наименование компании обязательно"),
+  email: yup
+    .string()
+    .email("Введите корректный email")
+    .required("Email обязателен"),
+  password: yup
+    .string()
+    .min(8, "Минимальная длина пароля 8 символов")
+    .required("Пароль обязателен"),
+  conditions: yup
+    .boolean()
+    .oneOf([true], "Вы должны принять условия соглашения")
+    .required()
+    .default(false),
+});
+
 export const RegistrationCompany = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState<CompanyForm>({
-    name: "",
-    email: "",
-    password: "",
-    conditions: false,
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CompanyForm>({
+    resolver: yupResolver(schema),
   });
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
-    setForm({ ...form, [event.target.name]: value });
-  };
-
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!form.name || !form.email || !form.password) {
-      toast.info("Заполните все поля формы");
-      return;
-    } else if (form.password.length < 8) {
-      toast.info("Минимальная длина пароля 8 символов");
-      return;
-    } else if (validateEmail(form.email) === false) {
-      toast.info("Email должен содержать специальные символы @ .");
-      return;
-    }
-
+  const onSubmit = async (data: CompanyForm) => {
     try {
-      await registerService.registerCompany(form);
+      await registerService.registerCompany(data);
       navigate("/");
       toast.info(
-        "Вы зерегистрированы, войдите в приложение с учетными данными"
+        "Вы зарегистрированы, войдите в приложение с учетными данными"
       );
     } catch (error) {
       if ((error as AxiosError).response?.status === 400) {
@@ -67,45 +66,51 @@ export const RegistrationCompany = () => {
       <div className={s.container}>
         <form
           className={s.registrationCompany__form}
-          method="post"
-          onSubmit={handleRegister}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <h1>Регистрация компании</h1>
+
           <input
             type="text"
-            name="name"
             placeholder="Наименование компании"
             className={s.registration__input}
-            onChange={changeHandler}
+            {...register("name")}
           />
+          {errors.name && <p className={s.error}>{errors.name.message}</p>}
+
           <input
             type="email"
-            name="email"
             placeholder="Email"
             className={s.registration__input}
-            onChange={changeHandler}
+            {...register("email")}
           />
+          {errors.email && <p className={s.error}>{errors.email.message}</p>}
+
           <input
             type="password"
-            name="password"
             placeholder="Пароль"
             className={s.registration__input}
-            onChange={changeHandler}
+            {...register("password")}
           />
+          {errors.password && (
+            <p className={s.error}>{errors.password.message}</p>
+          )}
+
           <div className="checkbox-company">
             <input
               type="checkbox"
-              checked={form.conditions}
-              value="interest_development"
-              name="conditions"
               className="checkbox__square"
-              onChange={changeHandler}
+              {...register("conditions")}
             />
             <label>
               Я принимаю условия соглашения и ознакомился c политикой
               конфиденциальности
             </label>
           </div>
+          {errors.conditions && (
+            <p className={s.error}>{errors.conditions.message}</p>
+          )}
+
           <div className={s.form__info}>
             <button type="submit" className={s.button}>
               Зарегистрироваться

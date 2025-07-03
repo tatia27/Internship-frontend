@@ -4,6 +4,11 @@
   padding: 40px 0;
 }
 
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
 .company-profiles__wrapper {
   padding: 30px;
   height: 285px;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { internService } from "../../../services/intern";
 import { AxiosError } from "axios";
-import { validateEmail } from "../../registration/registrationIntern/registrationIntern";
+// import { validateEmail } from "../../registration/registrationIntern/registrationIntern";
 import "./editingInternInfo.css";
 
 export interface IUpdateUser {
@@ -34,9 +34,6 @@ function EditingInternInfo() {
         !isUpdateUser.email
       ) {
         toast.info("Заполните все поля формы");
-        return;
-      } else if (validateEmail(isUpdateUser.email) === false) {
-        toast.info("Email должен содержать специальные символы @ .");
         return;
       }
       if (user?.id) {

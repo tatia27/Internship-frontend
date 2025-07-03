@@ -1,18 +1,28 @@
-.registration-intern {
+@import "../../app/_mixins";
+
+.container {
+  @include container;
+}
+
+.error {
+  @include error;
+}
+
+.registration {
   background-color: #f8f9fa;
   padding: 75px 0;
+
+  &__form {
+    padding: 35px 85px;
+    max-width: 580px;
+    margin: 10px auto;
+    background-color: var(--text-color);
+    border-radius: 10px;
+    border: 1px solid #f3f3f3;
+  }
 }
 
-.registration-intern__form {
-  padding: 35px 85px;
-  max-width: 580px;
-  margin: 10px auto;
-  background-color: var(--text-color);
-  border-radius: 10px;
-  border: 1px solid #f3f3f3;
-}
-
-.registration-intern__button {
+.button {
   background-color: var(--primary-color);
   border: none;
   border-radius: var(--border-items);
@@ -21,11 +31,11 @@
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 10px;
-}
 
-.registration-intern__button:hover {
-  background-color: var(--primary-color-hover);
-  cursor: pointer;
+  :hover {
+    background-color: var(--primary-color-hover);
+    cursor: pointer;
+  }
 }
 
 h1 {
@@ -35,7 +45,8 @@ h1 {
   font-weight: 700;
   color: #404040;
 }
-.registartion-intern-input {
+
+.input {
   border: 0;
   font-size: 16px;
   padding: 10px 0;
@@ -43,10 +54,10 @@ h1 {
   margin-bottom: 35px;
   outline: none;
   border-bottom: 1px solid var(--color-title);
-}
 
-.registartion-intern-input:focus {
-  border-bottom: 1px solid var(--primary-color);
+  :focus {
+    border-bottom: 1px solid var(--primary-color);
+  }
 }
 
 input[type="checkbox"] {
@@ -58,19 +69,19 @@ label {
   display: block;
 }
 
-.registration-intern__form__info {
+.info {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.registration-intern__form__info span {
-  font-size: 14px;
-  text-align: center;
-}
+  span {
+    font-size: 14px;
+    text-align: center;
+  }
 
-.registration-intern__form__info span a {
-  color: var(--primary-color);
+  span a {
+    color: var(--primary-color);
+  }
 }
 
 .checkbox {
@@ -79,14 +90,14 @@ label {
   margin-bottom: 40px;
 }
 
-.checkbox__square {
+.checkboxSquare {
   width: 20px;
   height: 20px;
   margin-top: 1px;
   margin-right: 15px;
 }
 
-.checkbox-intern {
+.checkboxIntern {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
